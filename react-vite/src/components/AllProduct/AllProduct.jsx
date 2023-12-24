@@ -1,11 +1,11 @@
 import { useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { getProductThunk } from "../../redux/product"
-import "./ProductForm.css"
+import "./AllProduct.css"
 
 
 
-const ProductFrom = () =>  { 
+const AllProduct = () =>  { 
 
 const dispatch = useDispatch()
 
@@ -42,4 +42,4 @@ useEffect(() => {
 
 
 
-export default ProductFrom
+export default AllProduct
