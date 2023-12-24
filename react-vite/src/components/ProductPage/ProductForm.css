@@ -1,0 +1,27 @@
+.make-model-year { 
+    display:  flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
+    padding-left: 20px;
+}
+
+img{ 
+    max-width: 400px;
+}
+
+.main-container { 
+    border: 2px gray solid;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 20px;
+       
+}
+
+.type { 
+    padding-left: 20px;
+}
+.price { 
+    padding-left: 20px;
+}
