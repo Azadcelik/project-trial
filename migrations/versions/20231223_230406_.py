@@ -21,6 +21,7 @@ def upgrade():
     op.create_table('products',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('user_id', sa.Integer(), nullable=False),
+    sa.Column('mileage', sa.Integer(), nullable=False),
     sa.Column('image', sa.String(), nullable=False),
     sa.Column('make', sa.String(), nullable=False),
     sa.Column('model', sa.String(), nullable=False),

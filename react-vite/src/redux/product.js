@@ -17,13 +17,12 @@ const getProduct = (product) => {
            await dispatch(getProduct(product))
         }
         else {
-            error = await data.json()
-            console.log('error in thunk', error)
+            const error = await data.json()
             return error
+
         }
     }
     catch (error) {
-        console.log('cath errror',error)
         return error
     }
 }

@@ -10,6 +10,7 @@ class Product(db.Model):
     id = db.Column(db.Integer,primary_key=True,nullable=False)
     user_id = db.Column(db.Integer,db.ForeignKey(add_prefix_for_prod('users.id')),nullable=False)
     image = db.Column(db.String,nullable=False)
+    mileage = db.Column(db.Integer,nullable=False)
     make = db.Column(db.String,nullable=False)
     model = db.Column(db.String,nullable=False)
     year = db.Column(db.Integer,nullable=False)
@@ -30,6 +31,7 @@ class Product(db.Model):
         "year": self.year,
         "price": self.price,
         "type": self.type,
+        "mileage": self.mileage,
         "created_at": self.created_at
        }
        if Printer:

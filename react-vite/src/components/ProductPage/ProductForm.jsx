@@ -1,7 +1,7 @@
 import { useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { getProductThunk } from "../../redux/product"
-
+import "./ProductForm.css"
 
 
 
@@ -19,19 +19,24 @@ useEffect(() => {
 
     return (
 
-    <>
+    <div className="main-container">
         {products.map(product => (
         <div key={product.id}> 
             <img src={product.image} alt="" />
-            <h1>{product.make}</h1>
-            <h1>{product.model}</h1>
-            <h1>{product.year}</h1>
-            <h1>{product.type}</h1>
-            <h1>{product.price}</h1>
-            <h1>{product.created_at}</h1>
+            <div className="make-model-year">
+                <h3>{product.year}</h3>
+                <h3>{product.make}</h3>
+                <h3>{product.model}</h3>
+            </div>
+
+            <div className="type">
+                <span>{product.type} &nbsp; &#183; &nbsp; {product.mileage} </span>
+                <span></span>
+            </div>
+            <h2 className="price">$ {product.price}</h2>
         </div>
          ))}
-    </>
+    </div>
     )
 }
 
