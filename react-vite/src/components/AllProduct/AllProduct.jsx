@@ -2,12 +2,14 @@ import { useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { getProductThunk } from "../../redux/product"
 import "./AllProduct.css"
+import { useNavigate } from "react-router-dom"
 
 
 
 const AllProduct = () =>  { 
 
 const dispatch = useDispatch()
+const navigate = useNavigate()
 
 const products = useSelector(state => Object.values(state.products))
 
@@ -17,12 +19,20 @@ useEffect(() => {
     dispatch(getProductThunk())
 },[dispatch])
 
+
+
+const handleSingleProduct = (productId) => { 
+    navigate(`/product/${productId}`)
+    // {<OneProduct productId={productId}/>}
+
+}
+
     return (
 
     <div className="main-container">
         {products.map(product => (
         <div key={product.id}> 
-            <img src={product.image} alt="" />
+            <img src={product.image} alt="" onClick={() => handleSingleProduct(product.id)}/>
             <div className="make-model-year">
                 <h3>{product.year}</h3>
                 <h3>{product.make}</h3>

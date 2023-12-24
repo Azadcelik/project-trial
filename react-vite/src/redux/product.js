@@ -1,5 +1,6 @@
 const GET_PRODUCT = 'products/GET_PRODUCT'
 const CREATE_PRODUCT = 'products/CREATE_PRODUCT'
+const GET_ONE_PRODUCT = 'products/GET_ONE_PRODUCT'
 
 const getProduct = (product) => { 
     return { 
@@ -13,6 +14,65 @@ const CreateProduct = (productData) => {
         type: CREATE_PRODUCT,
         payload: productData
     }
+}
+
+
+const OneProduct  = (product)  => { 
+    return {
+        type: GET_ONE_PRODUCT,
+        payload: product
+    }
+}
+
+
+
+
+
+
+
+ export const getProductThunk = () => async dispatch => { 
+    try {
+        const data =  await fetch('/api/products')
+        if (data.ok) {
+            const product = await data.json()
+            console.log('produict in thunk ss',product)
+           await dispatch(getProduct(product))
+        }
+        else {
+            const error = await data.json()
+            return error
+
+        }
+    }
+    catch (error) {
+        return error
+    }
+}
+
+
+
+export const oneProductThunk = (productId) => async dispatch => { 
+try { 
+
+    const data = await fetch(`/api/products/${productId}`)
+    console.log('data in thunkss', data)
+    
+    if (data.ok) { 
+        const product = await data.json()
+        console.log('proidiucssttssadaadsads',product)
+        dispatch(OneProduct(product))
+    }
+    else { 
+        const error = await data.json()
+        console.log('errrorrrr in thunk', error)
+        return error
+    }
+
+} catch(error) { 
+    console.log('catch errror', error)
+    return error
+}
+
 }
 
 
@@ -38,26 +98,6 @@ export const createProductThunk = (productData) => async dispatch => {
     }
 }
 
- export const getProductThunk = () => async dispatch => { 
-    try {
-        const data =  await fetch('/api/products')
-        if (data.ok) {
-            const product = await data.json()
-            console.log('produict in thunk ss',product)
-           await dispatch(getProduct(product))
-        }
-        else {
-            const error = await data.json()
-            return error
-
-        }
-    }
-    catch (error) {
-        return error
-    }
-}
-
-
 const getProductReducer = (state={},action) =>  {
     switch(action.type) {
         case GET_PRODUCT : {
@@ -67,6 +107,10 @@ const getProductReducer = (state={},action) =>  {
             });
             console.log('new state in reducer',newState)
             return newState
+        }
+
+        case GET_ONE_PRODUCT : { 
+            return {...state, [action.payload.id]: action.payload}
         }
         case CREATE_PRODUCT: { 
             const newState = {...state}
