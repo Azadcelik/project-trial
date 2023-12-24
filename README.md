@@ -11,6 +11,7 @@ This is the starter for the Flask React project.
    ```bash
    pipenv install -r requirements.txt
    ```
+   to regenerate requirement.text run pipenv requirements > requirements.txt
 
 3. Create a __.env__ file based on the example with proper settings for your
    development environment.
