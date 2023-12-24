@@ -5,7 +5,7 @@ from ..models import Product
 product_routes = Blueprint('products', __name__)
 
 
-@product_routes.route('/')
+@product_routes.route('')
 def get_products():
    product = [product.to_dict() for product in Product.query.all()]
    return product
