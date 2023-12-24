@@ -6,7 +6,7 @@ from datetime import date
 def seed_product():
     product_1 = Product(
         user_id = 1,
-        image = "https://cars-projects.s3.us-east-2.amazonaws.com/nissan-figaro-4368962_640.jpg",
+        image = "https://cars-projects.s3.us-east-2.amazonaws.com/f5c7e63c4eaf4a15971fea5b03153d9a.jpg",
         make = "Toyota",
         model = "Prius",
         year = "2008",

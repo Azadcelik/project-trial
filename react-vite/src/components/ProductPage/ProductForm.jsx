@@ -22,7 +22,7 @@ useEffect(() => {
     <>
         {products.map(product => (
         <div key={product.id}> 
-            <h1>{product.image}</h1>
+            <img src={product.image} alt="" />
             <h1>{product.make}</h1>
             <h1>{product.model}</h1>
             <h1>{product.year}</h1>
