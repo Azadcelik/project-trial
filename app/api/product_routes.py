@@ -1,4 +1,4 @@
-from flask import Blueprint, request
+from flask import Blueprint, request, make_response
 from flask_login import login_required, current_user
 from ..models import Product, db
 from ..forms import ProductForm
@@ -14,6 +14,20 @@ def get_products():
    return product
 
 
+
+@product_routes.route('/<int:id>')
+def get_product(id):
+
+   product = Product.query.get(id)
+   if product:
+        print(product)
+        # Process and return the product data
+        return product.to_dict()
+   else:
+        # Handle the case where product is not found
+        return {"message": "Product not found"}, 404
+   
+   
 
 @product_routes.route('/new-product', methods=['POST'])
 @login_required
@@ -60,59 +74,69 @@ def create_product():
       return form.errors
 
 
-@product_routes.route('/<int:id>')
-def get_product(id):
 
-   product = Product.query.get(id)
-   if product:
-        print(product)
-        # Process and return the product data
-        return product.to_dict()
-   else:
-        # Handle the case where product is not found
-        return {"message": "Product not found"}, 404
-   
+@product_routes.route('/<int:id>/update',methods=["PUT"])
+@login_required
+def update_product(id):
+
+
+
+   form = ProductForm()
    
 
-# @product_routes.route('/<int:id>update',methods=["UPDATE"])
-# def update_product():
 
-
-
-#    form = ProductForm()
-#    product = Product.query.get(id)
-
-
-#    form["csrf_token"].data = request.cookies["csrf_token"]
+   form["csrf_token"].data = request.cookies["csrf_token"]
    
-#    if form.validate_on_submit():
-#         product = Product.query.get(id)
-#         old_url = product.image
-#         image = form.data["cover_image"]
-#         if not isinstance(image, str):
-#             image.filename = get_unique_filename(image.filename)
-#             upload = upload_file_to_s3(image)
-#             # print("UPLOAD FROM CREATE ALBUM ROUTE: ", upload)
+   if form.validate_on_submit():
+        
+        product = Product.query.get(id)
+        print('-----------------------------------------------',product)
+        old_url = product.image
+        image = form.data["image"]
+        if not isinstance(image, str):
+            image.filename = get_unique_filename(image.filename)
+            upload = upload_file_to_s3(image)
+            print(upload)
+            # print("UPLOAD FROM CREATE ALBUM ROUTE: ", upload)
 
-#             if "url" not in upload:
-#             # if the dictionary doesn't have a url key
-#             # it means that there was an error when you tried to upload
-#             # so you send back that error message (and you printed it above)
-#                 return upload
+            if "url" not in upload:
+            # if the dictionary doesn't have a url key
+            # it means that there was an error when you tried to upload
+            # so you send back that error message (and you printed it above)
+                return upload
 
-#             remove_file_from_s3(old_url)
-#             product.image = upload["url"]
+            remove_file_from_s3(old_url)
+            product.image = upload["url"]
 
           
-#         product.make = form.data['make']
-#         product.mileage = form.data['mileage']
-#         product.model = form.data['model']
-#         product.year = form.data['year']
-#         product.type = form.data['type']
-#         product.price = form.data['price']
+        product.make = form.data['make']
+        product.mileage = form.data['mileage']
+        product.model = form.data['model']
+        product.year = form.data['year']
+        product.type = form.data['type']
+        product.price = form.data['price']
 
-#         db.session.commit()
-#         return product.to_dict()
-#    else :
-#       print(form.errors)
-#       return form.errors
+        db.session.commit()
+        return product.to_dict()
+   else :
+      print(form.errors)
+      return form.errors
+
+
+@product_routes.route('/<int:id>/delete',methods=["DELETE"])
+def delete_product(id):
+    
+    product = Product.query.get(id)
+
+    if (current_user.id != product.user_id):
+        response = make_response({ "errors": { "message": "forbidden"} }, 401)
+        return response
+    old_url = product.image
+
+
+
+    db.session.delete(product)
+    db.session.commit()
+
+    remove_file_from_s3(old_url)
+    return {'message': 'succesfully deleted'}

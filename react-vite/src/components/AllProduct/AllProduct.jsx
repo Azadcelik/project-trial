@@ -32,6 +32,7 @@ const handleSingleProduct = (productId) => {
     <div className="main-container">
         {products.map(product => (
         <div key={product.id}> 
+             {console.log(product)}
             <img src={product.image} alt="" onClick={() => handleSingleProduct(product.id)}/>
             <div className="make-model-year">
                 <h3>{product.year}</h3>

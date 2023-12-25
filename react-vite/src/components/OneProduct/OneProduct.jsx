@@ -1,19 +1,38 @@
 import { useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
-import { useParams } from "react-router-dom"
-import { oneProductThunk } from "../../redux/product"
+import { useNavigate, useParams } from "react-router-dom"
+import { deleteProductThunk, oneProductThunk } from "../../redux/product"
 
 
 const OneProduct = () => { 
    const dispatch = useDispatch()
    const {id} = useParams()
+   const navigate = useNavigate()
    const product = useSelector(state => state.products[id])
-   console.log('in componennttttt',product)
-   console.log(id)
+   const user = useSelector(state => state.session.user)
+
+
+       
+        const  handleUpdateButton = () => { 
+            if (user.id == product.user_id) { 
+            navigate(`/product/${product.id}/update`)
+         }
+        }
+
+        const handleDeleteButton = () => { 
+            if (user.id == product.user_id) {
+                dispatch(deleteProductThunk(product.id))
+
+                navigate('/product')
+            }
+        }
 
    useEffect(() => { 
     dispatch(oneProductThunk(id))
    },[dispatch,id])
+
+
+   
 
     return product && (
 
@@ -30,11 +49,13 @@ const OneProduct = () => {
                 <span></span>
             </div>
             <h2 className="price">$ {product.price}</h2>
-
-
+            { user && product.user_id == user.id && (
+                <>
+              <button onClick={handleUpdateButton}>Update</button>
+              <button onClick={handleDeleteButton}>Delete</button>
+               </> 
+                )}
 </>
-
-
 
     )
 }

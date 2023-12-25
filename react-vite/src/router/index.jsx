@@ -5,6 +5,7 @@ import Layout from './Layout';
 import AllProduct from '../components/AllProduct';
 import CreateProduct from '../components/CreateProduct';
 import OneProduct from '../components/OneProduct';
+import UpdateProduct from '../components/UpdateProduct';
 
 export const router = createBrowserRouter([
   {
@@ -31,8 +32,12 @@ export const router = createBrowserRouter([
         element: <CreateProduct />
       },
       {
-        path: "product/:id",
+        path: "/product/:id",
         element: <OneProduct />
+      },
+      {
+        path: "/product/:id/update",
+        element: <UpdateProduct />
       }
     ],
   },

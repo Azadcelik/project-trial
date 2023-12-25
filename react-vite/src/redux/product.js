@@ -1,6 +1,8 @@
 const GET_PRODUCT = 'products/GET_PRODUCT'
 const CREATE_PRODUCT = 'products/CREATE_PRODUCT'
 const GET_ONE_PRODUCT = 'products/GET_ONE_PRODUCT'
+const UPDATE_PRODUCT = 'products/UPDATE_PRODUCT'
+const DELETE_PRODUCT = 'products/DELETE_PRODUCT'
 
 const getProduct = (product) => { 
     return { 
@@ -25,10 +27,19 @@ const OneProduct  = (product)  => {
 }
 
 
+const updateProduct = (data) => { 
+    return {
+        type: UPDATE_PRODUCT,
+        payload: data
+    }
+}
 
-
-
-
+const deleteProduct = (productId) => { 
+    return { 
+        type: DELETE_PRODUCT,
+        payload: productId
+    }
+}
 
  export const getProductThunk = () => async dispatch => { 
     try {
@@ -98,6 +109,50 @@ export const createProductThunk = (productData) => async dispatch => {
     }
 }
 
+export const updateProductThunk = (formData,id) => async dispatch => { 
+    try { 
+        const response = await fetch(`/api/products/${id}/update`, { 
+            method: "PUT",
+            body: formData
+        })
+        if (response.ok) { 
+            const data = await response.json()
+            dispatch(updateProduct(data))
+            console.log('data in thunk', data)
+        }
+        else { 
+            const error = await response.json()
+            console.log('error in repossne',error)
+            return error
+        }
+
+    }catch (error) {
+        console.log('catch errror', error)
+        return error
+    }
+}
+
+
+export const deleteProductThunk = (productId) => async dispatch => { 
+    try { 
+        const response = await fetch(`/api/products/${productId}/delete`, {
+            method: "DELETE"
+        })
+        if (response.ok) {
+            dispatch(deleteProduct(productId))
+        }
+        else { 
+            const error  = await response.json()
+            return error
+        }
+
+    }catch (error) {
+        return error
+    }
+}
+
+
+
 const getProductReducer = (state={},action) =>  {
     switch(action.type) {
         case GET_PRODUCT : {
@@ -118,6 +173,17 @@ const getProductReducer = (state={},action) =>  {
                 ...newState, [action.payload.id] : action.payload
             }
         }
+        case UPDATE_PRODUCT: { 
+            const newState = {...state}
+            return {...newState,[action.payload.id]:action.payload}
+        }
+
+        case DELETE_PRODUCT: {
+            const newState = {...state}
+            delete newState[action.payload]
+            return newState
+        }
+
         default:
         return state
     }
