@@ -7,6 +7,7 @@ from ..api.aws_helpers import ALLOWED_EXTENSIONS
 class ProductForm(FlaskForm):
     
     make = StringField('Make', validators=[DataRequired()])
+    mileage=FloatField('Mileage',validators=[DataRequired()])
     model = StringField('Model', validators=[DataRequired()])
     year = IntegerField('Year',validators=[DataRequired()])
     price = FloatField('Price',validators=[DataRequired()])
