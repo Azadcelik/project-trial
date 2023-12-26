@@ -1,19 +1,34 @@
 import { useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { getReviewThunk } from "../../redux/review"
+import { useModal } from "../../context/Modal"
+import ReviewDeleteButton from "./ReviewDeleteButton"
 
 
 
 const ReviewList = ({productId}) => { 
 
+const { setModalContent } = useModal()
+
+
 const dispatch = useDispatch()
 const review = useSelector(state => Object.values(state.reviews))
+const currentUser  = useSelector(state => state.session.user || {})
+
+
+
+
 console.log('reviews in reviewlist ', review)
 
     useEffect(() => {
 
         dispatch(getReviewThunk(productId))
     },[dispatch.productId])
+
+
+     const handleDeleteButton = (reviewId) => { 
+        setModalContent(<ReviewDeleteButton  reviewId={reviewId}/>)
+    }
 
 
     return (
@@ -32,6 +47,10 @@ console.log('reviews in reviewlist ', review)
               })}
             </h2>
             <h2>{rev.text_body}</h2>
+            { rev.user_id == currentUser.id && (
+              
+               <button onClick={() => handleDeleteButton(rev.id)}>Delete</button>
+            )}
             </div>
         ))}
      

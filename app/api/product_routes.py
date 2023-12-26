@@ -250,3 +250,21 @@ def get_reviews(id):
         reviews_data.append(review_dict)
 
     return jsonify(reviews_data)
+
+
+@product_routes.route('/<int:id>/delete-review', methods=['DELETE'])
+@login_required
+def delete_review(id):
+    review = Review.query.get(id)
+    user = current_user
+
+    if not review:
+        return {"error": "Review not found"}, 404
+
+    if user.id != review.user_id:  
+        return {"error": "Unauthorized"}, 403
+
+    db.session.delete(review)
+    db.session.commit()
+
+    return {"message": "Review successfully deleted"}
