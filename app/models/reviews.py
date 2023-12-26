@@ -1,10 +1,5 @@
 from .db import db, add_prefix_for_prod, environment, SCHEMA
 
-
-
-
-
-
 class Review(db.Model):
     __tablename__ = "reviews"
 
