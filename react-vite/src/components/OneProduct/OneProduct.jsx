@@ -11,7 +11,7 @@ const OneProduct = () => {
    const {id} = useParams()
    const navigate = useNavigate()
    const product = useSelector(state => state.products[id])
-   const user = useSelector(state => state.session.user)
+   const user = useSelector(state => state.session.user || {})
    const { setModalContent } = useModal();
 
 const reviews = useSelector(state => Object.values(state.reviews))
@@ -19,7 +19,7 @@ const reviews = useSelector(state => Object.values(state.reviews))
 console.log(reviews, 'alll revies data in create review')
    
 
-const hasReviewed = reviews.some(review => review.user_id === user.id && review.product_id === product.id);
+const hasReviewed = reviews.some(review => review.user_id === user?.id && review.product_id === product?.id);
 
 
        
@@ -70,7 +70,8 @@ const hasReviewed = reviews.some(review => review.user_id === user.id && review.
               <button onClick={handleDeleteButton}>Delete</button>
                </> 
                 )}
-                {  !hasReviewed && (
+                {  !hasReviewed &&  user.id != product.user_id && (
+            
               <div>
               <button onClick={handlePostReviewButton}>Post Your Review</button>
               </div>
