@@ -1,9 +1,10 @@
 from flask import Blueprint, request, make_response, jsonify
 from flask_login import login_required, current_user
-from ..models import Product, db
-from ..forms import ProductForm
+from ..models import Product, db, Review
+from ..forms import ProductForm, ReviewForm
 from .aws_helpers import get_unique_filename, upload_file_to_s3,remove_file_from_s3
 from datetime import date
+
 
 product_routes = Blueprint('products', __name__)
 
@@ -195,3 +196,57 @@ def remove_favorite(id):
     else: 
         return { "message" : "product not in favorites"}
         
+
+
+@product_routes.route('/<int:id>/new-review', methods=["POST"])
+@login_required
+def add_review(id):
+    print(id,'adsadsdasdsadsadsadsasdadsadsadsaddaadadsads')
+
+    data = request.json
+
+    if not data:
+        return {"error": "No data provided"}, 400
+    
+    product = Product.query.get(id)
+    user = current_user
+
+    existing_review = Review.query.filter_by(user_id = user.id, product_id = product.id).first()
+    if existing_review:
+        return jsonify({"message": "User already has a review for this product"}), 400
+    
+
+    new_review = Review(
+        user_id=user.id,
+        product_id=product.id,
+        text_body=data.get('text_body'),
+        star_rating=data.get('star_rating'),
+        created_at=date.today()
+    )
+
+    db.session.add(new_review)
+    db.session.commit()
+
+    return_dict = new_review.to_dict()
+    return_dict['product'] = product.to_dict()  # Assuming to_dict method exists
+    return_dict['user'] = user.to_dict()        # Assuming to_dict method exists
+
+    return return_dict
+
+
+@product_routes.route('/<int:id>/get-reviews')
+def get_reviews(id):
+    product = Product.query.get(id)
+    if not product:
+        return {"error": "Product not found"}, 404
+
+    reviews = Review.query.filter_by(product_id=product.id).all()
+
+    reviews_data = []
+    for review in reviews:
+        review_dict = review.to_dict()  # Serialize the review
+        review_dict['product'] = product.to_dict()  # Serialize the product
+        review_dict['user'] = review.reviewer.to_dict()  # Serialize the user who wrote the review
+        reviews_data.append(review_dict)
+
+    return jsonify(reviews_data)
