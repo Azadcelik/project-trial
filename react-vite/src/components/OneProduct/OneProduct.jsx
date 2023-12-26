@@ -2,7 +2,9 @@ import { useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { useNavigate, useParams } from "react-router-dom"
 import { deleteProductThunk, oneProductThunk } from "../../redux/product"
-
+import { useModal } from "../../context/Modal"
+import CreateReview from "../CreateReview"
+import ReviewList from "../ReviewList"
 
 const OneProduct = () => { 
    const dispatch = useDispatch()
@@ -10,6 +12,14 @@ const OneProduct = () => {
    const navigate = useNavigate()
    const product = useSelector(state => state.products[id])
    const user = useSelector(state => state.session.user)
+   const { setModalContent } = useModal();
+
+const reviews = useSelector(state => Object.values(state.reviews))
+
+console.log(reviews, 'alll revies data in create review')
+   
+
+const hasReviewed = reviews.some(review => review.user_id === user.id && review.product_id === product.id);
 
 
        
@@ -33,6 +43,11 @@ const OneProduct = () => {
 
 
    
+   const handlePostReviewButton = () => { 
+
+    setModalContent( <CreateReview productId={product.id} /> )
+
+   }
 
     return product && (
 
@@ -55,6 +70,15 @@ const OneProduct = () => {
               <button onClick={handleDeleteButton}>Delete</button>
                </> 
                 )}
+                {  !hasReviewed && (
+              <div>
+              <button onClick={handlePostReviewButton}>Post Your Review</button>
+              </div>
+
+                )}
+           <div>
+            <ReviewList productId={product.id} />
+           </div>
 </>
 
     )
