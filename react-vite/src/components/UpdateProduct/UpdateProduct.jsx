@@ -1,23 +1,30 @@
 import { useEffect, useState } from "react"
-import { useDispatch } from "react-redux"
-import { createProductThunk } from "../../redux/product"
-import { useNavigate } from "react-router-dom"
-import "./CreateProduct.css"
+import { useDispatch, useSelector } from "react-redux"
+import { updateProductThunk } from "../../redux/product"
+import { useNavigate, useParams } from "react-router-dom"
+import "./UpdateProduct.css"
 
 
 
 
-const CreateProduct = () => {
+
+const UpdateProduct = () => {
     
     const dispatch = useDispatch()
     const navigate = useNavigate()
-    const [image,setImage] = useState(null)
-    const [mileage,setMileage] = useState('')
-    const [make,setMake] = useState('')
-    const [model,setModel] = useState('')
-    const [year,setYear] = useState(0)
-    const [price,setPrice] = useState('')
-    const [type,setType] = useState('')
+    const {id} = useParams()
+    
+    const product = useSelector(state => state.products[id])
+    console.log('in  componenntss', product)
+
+
+    const [image,setImage] = useState(product?.image)
+    const [mileage,setMileage] = useState(product?.mileage)
+    const [make,setMake] = useState(product?.make)
+    const [model,setModel] = useState(product?.model)
+    const [year,setYear] = useState(product?.year)
+    const [price,setPrice] = useState(product?.price)
+    const [type,setType] = useState(product?.type)
     const [hasSubmitted, setHasSubmitted] = useState(false)
     const [validationErrors, setValidationErrors] = useState({})
 
@@ -50,10 +57,10 @@ const CreateProduct = () => {
         formData.append("year",year)
         formData.append("price",price)
         formData.append("type",type)
-        await dispatch(createProductThunk(formData))
+        await dispatch(updateProductThunk(formData,id))
 
         setHasSubmitted(false)
-        navigate('/product')
+        navigate(`/product/${id}`)
     }
 
 
@@ -163,4 +170,4 @@ const CreateProduct = () => {
 
 
 
-export default CreateProduct
+export default UpdateProduct

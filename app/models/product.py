@@ -1,5 +1,5 @@
 from .db import db,add_prefix_for_prod,environment,SCHEMA
-
+from .favourites import favorite
 
 class Product(db.Model):
     __tablename__ = 'products'
@@ -19,6 +19,7 @@ class Product(db.Model):
     created_at = db.Column(db.Date,nullable=False)
 
     user = db.relationship('User', back_populates = 'products')
+    product_favs = db.relationship("User", secondary = favorite, back_populates = "fav_products")
 
     def to_dict(self,Printer=False): 
         

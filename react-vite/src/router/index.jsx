@@ -4,6 +4,9 @@ import SignupFormPage from '../components/SignupFormPage';
 import Layout from './Layout';
 import AllProduct from '../components/AllProduct';
 import CreateProduct from '../components/CreateProduct';
+import OneProduct from '../components/OneProduct';
+import UpdateProduct from '../components/UpdateProduct';
+import GetFavorite from '../components/GetFavorite';
 
 export const router = createBrowserRouter([
   {
@@ -28,6 +31,19 @@ export const router = createBrowserRouter([
       {
         path: "/product/new",
         element: <CreateProduct />
+      },
+      {
+        path: "/product/:id",
+        element: <OneProduct />
+      },
+      {
+        path: "/product/:id/update",
+        element: <UpdateProduct />
+      },
+
+      {
+        path: "/product/favorite",
+        element : <GetFavorite />
       }
     ],
   },
