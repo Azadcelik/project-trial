@@ -6,6 +6,7 @@ import AllProduct from '../components/AllProduct';
 import CreateProduct from '../components/CreateProduct';
 import OneProduct from '../components/OneProduct';
 import UpdateProduct from '../components/UpdateProduct';
+import GetFavorite from '../components/GetFavorite';
 
 export const router = createBrowserRouter([
   {
@@ -38,6 +39,11 @@ export const router = createBrowserRouter([
       {
         path: "/product/:id/update",
         element: <UpdateProduct />
+      },
+
+      {
+        path: "/product/favorite",
+        element : <GetFavorite />
       }
     ],
   },

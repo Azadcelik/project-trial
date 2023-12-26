@@ -2,6 +2,7 @@ from app.models import db, User, environment, SCHEMA
 from sqlalchemy.sql import text
 from ..models import Product
 from datetime import date
+from .users import User
 
 def seed_product():
     product_1 = Product(
@@ -62,6 +63,17 @@ def seed_product():
     db.session.add_all([product_1,product_2,product_3,product_4,product_5])
     db.session.commit()
 
+    user = User.query.all()
+
+    db.session.add(user[0])
+    db.session.add(user[1])
+    db.session.commit()
+
+    user[0].fav_products.append(product_1)
+    user[1].fav_products.append(product_2)
+    user[1].fav_products.append(product_3)
+
+    db.session.commit()
 
 def undo_product():
     if environment == "production":

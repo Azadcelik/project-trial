@@ -1,4 +1,4 @@
-from flask import Blueprint, request, make_response
+from flask import Blueprint, request, make_response, jsonify
 from flask_login import login_required, current_user
 from ..models import Product, db
 from ..forms import ProductForm
@@ -124,6 +124,7 @@ def update_product(id):
 
 
 @product_routes.route('/<int:id>/delete',methods=["DELETE"])
+@login_required
 def delete_product(id):
     
     product = Product.query.get(id)
@@ -140,3 +141,57 @@ def delete_product(id):
 
     remove_file_from_s3(old_url)
     return {'message': 'succesfully deleted'}
+
+
+
+
+@product_routes.route('/<int:id>/add-favorite', methods=["POST"])
+@login_required
+def add_favorite(id):
+    
+   product = Product.query.get(id)
+
+   if not product:
+       return {"message": "product not found"}, 404
+   
+   if product in current_user.fav_products:
+       return {"message": "product is already in favorites"}
+   
+   current_user.fav_products.append(product)
+
+   db.session.commit()
+
+
+   return product.to_dict()
+
+
+
+@product_routes.route('/favorites') 
+@login_required
+def view_favorites():
+    user = current_user
+    print(user)
+    
+    favorite_products = [product.to_dict() for product in user.fav_products]
+
+
+    return jsonify(favorite_products)
+
+
+@product_routes.route('/<int:id>/remove-favorite', methods =["DELETE"])
+@login_required
+def remove_favorite(id):
+    
+    user = current_user
+    product_remove = Product.query.get(id)
+
+    if not product_remove:
+        return { "message": "product not found"}, 404
+    
+    if product_remove in user.fav_products: 
+        user.fav_products.remove(product_remove)
+        db.session.commit()
+        return { "message": "product removed from your favorites"}
+    else: 
+        return { "message" : "product not in favorites"}
+        

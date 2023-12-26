@@ -1,8 +1,10 @@
-import { useEffect } from "react"
+import { useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { getProductThunk } from "../../redux/product"
 import "./AllProduct.css"
 import { useNavigate } from "react-router-dom"
+import { addToFavoriteThunk, deleteFavoriteThunk, getFavoriteThunk } from "../../redux/favorite"
+import { FaRegHeart, FaHeart } from "react-icons/fa";
 
 
 
@@ -10,14 +12,31 @@ const AllProduct = () =>  {
 
 const dispatch = useDispatch()
 const navigate = useNavigate()
-
+const [likedProducts, setLikedProducts] = useState({})
 const products = useSelector(state => Object.values(state.products))
-
+const favoriteProducts = useSelector(state => Object.values(state.favorites)) // Get favorite products from Redux store
 console.log('products in compionent ', products)
 
 useEffect(() => { 
+    console.log("Dispatching getProductThunk and getFavoriteThunk");
     dispatch(getProductThunk())
+    dispatch(getFavoriteThunk()) // Dispatch action to fetch favorite products
+
 },[dispatch])
+
+
+useEffect(() => {
+    console.log("Updating likedProducts state", favoriteProducts);
+    
+    const newLiked = favoriteProducts.reduce((acc, product) => {
+        acc[product.id] = true;
+        return acc;
+    }, {});
+
+    if (Object.keys(newLiked).length !== Object.keys(likedProducts).length) {
+        setLikedProducts(newLiked);
+    }
+}, [favoriteProducts]);
 
 
 
@@ -26,6 +45,19 @@ const handleSingleProduct = (productId) => {
     // {<OneProduct productId={productId}/>}
 
 }
+
+
+const toggleFavorite = (productId) => { 
+    if (likedProducts[productId]) {
+        dispatch(deleteFavoriteThunk(productId))
+    } else {
+        dispatch(addToFavoriteThunk(productId))
+    }
+    setLikedProducts(prev => ({ ...prev, [productId]: !prev[productId] }))
+}
+
+
+
 
     return (
 
@@ -45,6 +77,10 @@ const handleSingleProduct = (productId) => {
                 <span></span>
             </div>
             <h2 className="price">$ {product.price}</h2>
+            {likedProducts[product.id] ? 
+                        <FaHeart onClick={() => toggleFavorite(product.id)} /> : 
+                        <FaRegHeart onClick={() => toggleFavorite(product.id)} />
+                    }
         </div>
          ))}
     </div>
