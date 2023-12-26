@@ -20,6 +20,8 @@ class Product(db.Model):
 
     user = db.relationship('User', back_populates = 'products')
     product_favs = db.relationship("User", secondary = favorite, back_populates = "fav_products")
+    review = db.relationship('Review', back_populates = "product")
+
 
     def to_dict(self,Printer=False): 
         
