@@ -1,6 +1,8 @@
+import { json } from "react-router-dom"
+
 const NEW_REVIEW = '/review/NEW_REVIEW'
 const GET_REVIEW = '/review/GET_REVIEW'
-
+const DELETE_REVIEW = '/review/DELETE_REVIEW'
 
 const newReview = (data) => { 
     return { 
@@ -14,6 +16,13 @@ const getReview = (data) => {
     return { 
         type: GET_REVIEW,
         payload: data
+    }
+}
+
+const deleteReview = (reviewId) => { 
+    return {
+        type: DELETE_REVIEW,
+        payload: reviewId
     }
 }
 
@@ -72,6 +81,25 @@ export const   getReviewThunk = (productId) => async dispatch => {
 }
 
 
+export const deleteReviewThunk = (reviewId) => async dispatch => {
+    try { 
+        const response = await fetch(`/api/products/${reviewId}/delete-review`, {
+            method: "DELETE"
+        })
+        if (response.ok) { 
+            
+            dispatch(deleteReview(reviewId))
+        }
+        else { 
+            const error = await response.json()
+            return error
+        }
+    }
+    catch(error) { 
+        return error
+    }
+}
+
 
 const newReviewReducer = (state={},action) => { 
 
@@ -89,6 +117,11 @@ const newReviewReducer = (state={},action) => {
         const newState = {...state}
         return {...newState, [action.payload.id]: action.payload}
     }
+        case DELETE_REVIEW: {
+            const newState = {...state}
+            delete newState[action.payload]
+            return newState
+        }
     default: 
     return state
 }
