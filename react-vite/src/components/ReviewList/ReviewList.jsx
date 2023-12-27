@@ -20,12 +20,12 @@ const total = review.reduce((acc,rev) => acc + rev.star_rating,0)
 const totalRate = total/ review.length 
 
 
-console.log('reviews in reviewlist ', review)
+console.log('reviews in reviewlis', review)
 
     useEffect(() => {
 
         dispatch(getReviewThunk(productId))
-    },[dispatch.productId])
+    },[dispatch,productId])
 
 
      const handleDeleteButton = (reviewId) => { 
