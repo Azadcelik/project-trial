@@ -16,6 +16,8 @@ const review = useSelector(state => Object.values(state.reviews))
 const currentUser  = useSelector(state => state.session.user || {})
 
 
+const total = review.reduce((acc,rev) => acc + rev.star_rating,0)
+const totalRate = total/ review.length 
 
 
 console.log('reviews in reviewlist ', review)
@@ -39,7 +41,7 @@ console.log('reviews in reviewlist ', review)
         .sort((a,b) => new Date(b.created_at) - new Date(a.created_at))
         .map(rev => (
             <div key={rev.id} className="revieww">
-            <h2 className="review-namee">{rev.user.username}</h2>
+            <h2 className="review-namee">{rev.user?.username}</h2>
             <h2 className="date-review">
               {new Date(rev.created_at).toLocaleString("default", {
                 month: "long",
@@ -53,7 +55,7 @@ console.log('reviews in reviewlist ', review)
             )}
             </div>
         ))}
-     
+     <h2>{totalRate.toFixed(2)}</h2>
         </>
     )
 }

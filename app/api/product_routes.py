@@ -241,6 +241,7 @@ def get_reviews(id):
         return {"error": "Product not found"}, 404
 
     reviews = Review.query.filter_by(product_id=product.id).all()
+    
 
     reviews_data = []
     for review in reviews:
