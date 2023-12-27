@@ -71,3 +71,17 @@ def get_shopping_cart():
     } for item in shopping_cart_items]
 
     return cart_data
+
+
+@shopping_cart.route('/<int:id>', methods=["DELETE"])
+@login_required
+def remove_item(id):
+
+    user = current_user
+    shopping_cart = ShoppingCart.query.filter_by(user_id=user.id).first()
+    shopping_cart_item = ShoppingCartItem.query.filter_by(shopping_cart_id=shopping_cart.id).first()
+
+    db.session.delete(shopping_cart_item)
+    db.session.commit()
+    return {"message": "succesfully deleted"}
+    

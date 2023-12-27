@@ -1,6 +1,6 @@
 import { useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
-import { getCartItemsThunk } from "../../redux/shoppingCart"
+import { deleteItemThunk, getCartItemsThunk } from "../../redux/shoppingCart"
 
 
 
@@ -14,6 +14,13 @@ const AddToShoppingCart = () => {
         dispatch(getCartItemsThunk())
     },[dispatch])
 
+
+    const handleDeleteItemButton = (productId) => { 
+
+      dispatch(deleteItemThunk(productId))
+    }
+
+
     return (
 
 
@@ -24,6 +31,7 @@ const AddToShoppingCart = () => {
         <h1>{product.name}</h1>
         <h1>{product.price}</h1>
         <h1>{product.quantity}</h1>
+        <button onClick={(() => handleDeleteItemButton(product.id))}>Delete</button>
     </div>
   ))}
   <h1>this is shoppingcart yeeee</h1>
