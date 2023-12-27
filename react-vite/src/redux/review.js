@@ -1,4 +1,3 @@
-import { json } from "react-router-dom"
 
 const NEW_REVIEW = '/review/NEW_REVIEW'
 const GET_REVIEW = '/review/GET_REVIEW'
@@ -42,13 +41,11 @@ try {
 
     if (response.ok) {
         const data =  await response.json()
-        console.log('data in thiunk  sdsdsa', data)
         dispatch(newReview(data))
     }
 
     else { 
         const error = await response.json()
-        console.log('error in respibnse', error)
         return error
     }
 }
@@ -66,7 +63,6 @@ export const   getReviewThunk = (productId) => async dispatch => {
         if (response.ok) { 
             const data = await response.json()
             dispatch(getReview(data))
-            console.log('data in getreviasd', data)
 
         }
         else { 
@@ -110,7 +106,6 @@ const newReviewReducer = (state={},action) => {
             action.payload.forEach(review => { 
                 newState[review.id] = review
             })
-            console.log('new state in reducer',newState)
             return newState
         }
         case NEW_REVIEW: { 
