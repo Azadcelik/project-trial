@@ -1,5 +1,7 @@
 const ADD_TO_SHOPPING_CART = 'shopping-cart/ADD_TO_SHOPPING_CART'
 const GET_SHOPPING_CART_ITEMS = 'shopping-cart/GET_SHOPPING_CART_ITEMS'
+const DELETE_ITEM = 'shopping=cart/DELETE_ITEM'
+
 
 const addToCart = (data)  => { 
     return {
@@ -15,6 +17,12 @@ const getCartItems = (data) =>  {
     }
 }
 
+const deleteItem = (productId) => { 
+    return { 
+        type: DELETE_ITEM,
+        payload: productId
+    }
+}
 
 export const getCartItemsThunk = () => async dispatch => { 
     try { 
@@ -55,6 +63,29 @@ export const addToCartThunk = (productId) => async dispatch => {
 }
 
 
+export const deleteItemThunk = (productId) => async dispatch =>  { 
+    try { 
+        const response = await fetch(`/api/shopping-cart/${productId}`, { 
+            method: "DELETE"
+        })
+        if (response.ok) { 
+            dispatch(deleteItem(productId))
+        }
+        else { 
+            const error = await response.json()
+            return error
+        }
+
+    }catch (error) { 
+        return error
+    }
+}
+
+
+
+
+
+
 const shoppingCartReducer = (state={},action) => { 
     switch(action.type) { 
         case GET_SHOPPING_CART_ITEMS :{ 
@@ -68,6 +99,12 @@ const shoppingCartReducer = (state={},action) => {
         case ADD_TO_SHOPPING_CART: {
             const newState = {...state}
             newState[action.payload.id] = action.payload
+            return newState
+        }
+        
+        case DELETE_ITEM: { 
+            const newState = {...state}
+            delete newState[action.payload]
             return newState
         }
         default: 
