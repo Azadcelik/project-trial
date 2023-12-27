@@ -36,7 +36,7 @@ useEffect(() => {
     if (Object.keys(newLiked).length !== Object.keys(likedProducts).length) {
         setLikedProducts(newLiked);
     }
-}, [favoriteProducts]);
+}, [favoriteProducts,likedProducts]);
 
 
 
