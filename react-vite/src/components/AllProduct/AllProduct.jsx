@@ -5,6 +5,7 @@ import "./AllProduct.css"
 import { useNavigate } from "react-router-dom"
 import { addToFavoriteThunk, deleteFavoriteThunk, getFavoriteThunk } from "../../redux/favorite"
 import { FaRegHeart, FaHeart } from "react-icons/fa";
+import { addToCartThunk } from "../../redux/shoppingCart"
 
 
 
@@ -15,6 +16,8 @@ const navigate = useNavigate()
 const [likedProducts, setLikedProducts] = useState({})
 const products = useSelector(state => Object.values(state.products))
 const favoriteProducts = useSelector(state => Object.values(state.favorites)) // Get favorite products from Redux store
+const product = useSelector(state => state.shoppingCart || {})
+    console.log('product in shoppingcart ', product)
 console.log('products in compionent ', products)
 
 useEffect(() => { 
@@ -56,7 +59,10 @@ const toggleFavorite = (productId) => {
     setLikedProducts(prev => ({ ...prev, [productId]: !prev[productId] }))
 }
 
+const addToCartButton = (productId)  => { 
 
+      dispatch(addToCartThunk(productId))
+}
 
 
     return (
@@ -81,9 +87,13 @@ const toggleFavorite = (productId) => {
                         <FaHeart onClick={() => toggleFavorite(product.id)} /> : 
                         <FaRegHeart onClick={() => toggleFavorite(product.id)} />
                     }
+        <div>
+         <button onClick={(() => addToCartButton(product.id))}>Add to Cart</button>
+         </div>
         </div>
          ))}
     </div>
+    
     )
 }
 
