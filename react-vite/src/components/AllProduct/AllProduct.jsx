@@ -5,7 +5,7 @@ import "./AllProduct.css"
 import { useNavigate } from "react-router-dom"
 import { addToFavoriteThunk, deleteFavoriteThunk, getFavoriteThunk } from "../../redux/favorite"
 import { FaRegHeart, FaHeart } from "react-icons/fa";
-import { addToCartThunk } from "../../redux/shoppingCart"
+import { addToCartThunk, getCartItemsThunk } from "../../redux/shoppingCart"
 
 
 
@@ -58,12 +58,12 @@ const toggleFavorite = (productId) => {
     }
     setLikedProducts(prev => ({ ...prev, [productId]: !prev[productId] }))
 }
-
-const addToCartButton = (productId)  => { 
-
-      dispatch(addToCartThunk(productId))
-}
-
+const addToCartButton = async (productId) => {
+        //do not forget to add await otherwise it is buggy
+        await dispatch(addToCartThunk(productId));
+        dispatch(getCartItemsThunk());
+   
+};
 
     return (
 

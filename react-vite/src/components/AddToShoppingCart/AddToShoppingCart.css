@@ -1,0 +1,39 @@
+.sidebar {
+    width: 200px;
+    position: fixed;
+    right: -250px; /* Start off screen */
+    top: 0;
+    height: 100%;
+    background-color: rgb(161, 161, 214);
+    overflow-x: hidden;
+    transition: right 0.9s; /* Smooth transition */
+}
+
+.sidebar.open {
+    right: 0; /* Bring into view */
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+}
+
+
+.img-shop { 
+    border-radius: 9px;
+    margin-left: 20px;
+    margin-top: 30px;
+    max-width: 160px;
+}
+
+
+.toggle-arrow {
+    position: fixed;
+    top: 6%; /* Vertically center the arrow */
+    right: 0; /* Start at the right edge of the screen */
+    cursor: pointer;
+  
+    transition: right 0.9s; /* Smooth transition for moving the arrow */
+}
+
+.sidebar.open + .toggle-arrow {
+    right: 200px; /* Move arrow to the left by the width of the sidebar */
+}
