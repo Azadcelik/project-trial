@@ -4,16 +4,17 @@
     right: -250px; /* Start off screen */
     top: 0;
     height: 100%;
-    background-color: rgb(161, 161, 214);
+    background-color: wheat;
     overflow-x: hidden;
     transition: right 0.9s; /* Smooth transition */
+    
 }
-
 .sidebar.open {
     right: 0; /* Bring into view */
     display: flex;
     flex-direction: column;
     justify-content: start;
+    
 }
 
 
@@ -22,6 +23,7 @@
     margin-left: 20px;
     margin-top: 30px;
     max-width: 160px;
+    
 }
 
 
@@ -36,4 +38,43 @@
 
 .sidebar.open + .toggle-arrow {
     right: 200px; /* Move arrow to the left by the width of the sidebar */
+}
+
+.car-item { 
+display: flex;
+justify-content: center;    
+gap: 10px;
+
+}
+
+.price-shop {
+ position: relative;
+ padding-left: 90px;
+    
+}
+
+.price-quantity { 
+display: flex;
+flex-direction: row;
+justify-content: center;
+gap: 10px;
+
+} 
+.delete-but { 
+margin-left: 70px;
+}
+
+
+.top {
+    border: 1px solid gray; /* Example border style */
+    margin: 5px; /* Optional: Adds some space around each item */
+    border-radius: 10px;
+}
+
+.select  {
+    size: 10px;
+}
+
+.h33 { 
+    padding-left: 40px;
 }

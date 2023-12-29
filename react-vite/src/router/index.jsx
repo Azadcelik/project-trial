@@ -7,7 +7,7 @@ import CreateProduct from '../components/CreateProduct';
 import OneProduct from '../components/OneProduct';
 import UpdateProduct from '../components/UpdateProduct';
 import GetFavorite from '../components/GetFavorite';
-import AddToShoppingCart from '../components/AddToShoppingCart';
+import GetShoppingCart from '../components/AddToShoppingCart/GetShoppingCart';
 
 export const router = createBrowserRouter([
   {
@@ -48,7 +48,7 @@ export const router = createBrowserRouter([
       },
       {
         path: "/shopping-cart",
-        element: <AddToShoppingCart />
+        element: <GetShoppingCart />
       }
     ],
   },

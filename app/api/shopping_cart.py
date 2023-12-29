@@ -40,6 +40,8 @@ def add_to_cart(id):
     product_details = { 
         "id": product.id,
         "name": product.make,
+        "model": product.model,
+        "year": product.year,
         "price": product.price,
         "quantity": shopping_cart_item.quantity }
     return {"productDetails": product_details}, 200
@@ -67,6 +69,8 @@ def get_shopping_cart():
         "image": item.product.image,
         "name": item.product.make,  # Accessing product details via the relationship
         "price": item.product.price,  # Accessing product details via the relationship
+        "model": item.product.model,
+        "year": item.product.year,
         "quantity": item.quantity
     } for item in shopping_cart_items]
 
