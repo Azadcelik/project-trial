@@ -1,52 +1,69 @@
-import { useEffect } from "react"
-import { useDispatch, useSelector } from "react-redux"
-import { deleteItemThunk, getCartItemsThunk } from "../../redux/shoppingCart"
-import { useState } from "react"
-import './AddToShoppingCart.css'
+  import { useEffect } from "react"
+  import { useDispatch, useSelector } from "react-redux"
+  import { deleteItemThunk, getCartItemsThunk } from "../../redux/shoppingCart"
+  import { useState } from "react"
+  import './AddToShoppingCart.css'
 
-const AddToShoppingCart = () => { 
-    const dispatch = useDispatch()
-    const [display,setDisplay] = useState(false)
+  const AddToShoppingCart = () => { 
+      const dispatch = useDispatch()
+      const [display,setDisplay] = useState(false)
 
-    const products = useSelector(state => Object.values(state.shoppingCart) || {})
+      const products = useSelector(state => Object.values(state.shoppingCart) || {})
 
-    useEffect(() => { 
-        dispatch(getCartItemsThunk())
-    },[dispatch])
+      useEffect(() => { 
+          dispatch(getCartItemsThunk())
+      },[dispatch])
 
 
-    const handleDeleteItemButton = (productId) => { 
+      const handleDeleteItemButton = (productId) => { 
 
-      dispatch(deleteItemThunk(productId))
-    }
+        dispatch(deleteItemThunk(productId))
+      }
+      
+  const sideBarButton = () => { 
+      setDisplay(!display)
+  }
+
+   const totalPrice = products.reduce((acc,product) => { 
+      return acc + (product.quantity * product.price)
+       
+   },0)
+
+
+
+      return (
+
+  <div >
+    <div className={display? 'sidebar open' : 'sidebar'}>  
+
+     <h3 className="h33">SubTotal ${totalPrice.toFixed(2)}</h3>
     
-const sideBarButton = () => { 
-    setDisplay(!display)
-}
+    {products.map(product => (
+       
 
-
-    return (
-
-<>
-  <div className={display? 'sidebar open' : 'sidebar'}>    
-  {products.map(product => (
-    <div key={product.id} >
-        <img src={product.image} className="img-shop" />
-        <h1>{product.name}</h1>
-        <h1>{product.price}</h1>
-        <h1>{product.quantity}</h1>
-        <button onClick={(() => handleDeleteItemButton(product.id))}>Delete</button>
+      <div key={product.id} className="top" >
+          <img src={product.image} className="img-shop" />
+          <div className="car-item">
+          <p>{product.year}</p>
+          <p>{product.name}</p>
+          <p>{product.model}</p>
+          </div>
+          <div className="price-quantity">
+          <p>${product.price}</p>
+          <p>Quantit: {product.quantity}</p>
+          </div>
+          <button className="delete-but" onClick={(() => handleDeleteItemButton(product.id))}>Delete</button>
+      </div>
+    ))}
+  
     </div>
-  ))}
- 
+    <span className="toggle-arrow" onClick={sideBarButton}>
+                  {display ? '<' : '>'}
+    </span>
   </div>
-  <span className="toggle-arrow" onClick={sideBarButton}>
-                {display ? '<' : '>'}
-  </span>
-</>
-    )
-} 
+      )
+  } 
 
 
 
-export default AddToShoppingCart
+  export default AddToShoppingCart
