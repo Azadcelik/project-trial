@@ -7,7 +7,7 @@ from .users import User
 def seed_product():
     product_1 = Product(
         user_id = 1,
-        image = "https://cars-projects.s3.us-east-2.amazonaws.com/f5c7e63c4eaf4a15971fea5b03153d9a.jpg",
+        image = "https://cars-projects.s3.us-east-2.amazonaws.com/358f300ab4994338962c5b5193aae955.jpg",
         make = "Toyota",
         mileage = 112.23,
         model = "Prius",
