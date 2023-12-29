@@ -67,36 +67,34 @@ const addToCartButton = async (productId) => {
 
     return (
 
-    <div className="main-container">
-        {products.map(product => (
-        <div key={product.id}> 
-             {console.log(product)}
-            <img src={product.image} alt="" onClick={() => handleSingleProduct(product.id)}/>
-            <div className="make-model-year">
-                <h3>{product.year}</h3>
-                <h3>{product.make}</h3>
-                <h3>{product.model}</h3>
-            </div>
-
-            <div className="type">
-                <span>{product.type} &nbsp; &#183; &nbsp; {product.mileage} </span>
-                <span></span>
-            </div>
-            <h2 className="price">$ {product.price}</h2>
-            {likedProducts[product.id] ? 
-                        <FaHeart onClick={() => toggleFavorite(product.id)} /> : 
-                        <FaRegHeart onClick={() => toggleFavorite(product.id)} />
-                    }
-        <div>
-         <button onClick={(() => addToCartButton(product.id))}>Add to Cart</button>
-         </div>
+     
+        <div className="main-container">
+            {products.map(product => (
+                <div key={product.id} className="product-container">
+                    <div className="image-container">
+                        <img className="product-image" src={product.image} alt="" onClick={() => handleSingleProduct(product.id)} />
+                        {likedProducts[product.id] ?
+                            <FaHeart className="heart-icon" onClick={() => toggleFavorite(product.id)} /> :
+                            <FaRegHeart className="heart-icon" onClick={() => toggleFavorite(product.id)} />
+                        }
+                    </div>
+                    <div className="make-model-year">
+                        <h3>{product.year}</h3>
+                        <h3>{product.make}</h3>
+                        <h3>{product.model}</h3>
+                    </div>
+                    <div className="type">
+                        <span>{product.type} &nbsp; &#183; &nbsp; {product.mileage} </span>
+                    </div>
+                    <h2 className="price">$ {product.price}</h2>
+                    <div>
+                        <button onClick={() => addToCartButton(product.id)}>Add to Cart</button>
+                    </div>
+                </div>
+            ))}
         </div>
-         ))}
-    </div>
-    
-    )
-}
-
+    );
+};
 
 
 export default AllProduct
