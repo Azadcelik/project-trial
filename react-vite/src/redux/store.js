@@ -4,19 +4,22 @@ import {
   compose,
   combineReducers,
 } from "redux";
+
 import thunk from "redux-thunk";
 import sessionReducer from "./session";
 import getProductReducer from "./product";
 import favoriteReducer from "./favorite";
 import newReviewReducer from "./review";
 import shoppingCartReducer from "./shoppingCart";
+import addProductImageReducer from "./productImage";
 
 const rootReducer = combineReducers({
   session: sessionReducer,
   products: getProductReducer,
   favorites: favoriteReducer,
   reviews: newReviewReducer,
-  shoppingCart: shoppingCartReducer
+  shoppingCart: shoppingCartReducer,
+  productImage: addProductImageReducer
 });
 
 let enhancer;
