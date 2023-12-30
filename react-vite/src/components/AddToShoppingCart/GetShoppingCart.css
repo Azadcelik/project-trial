@@ -1,0 +1,35 @@
+.get-cart { 
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 20px;
+    padding-top: 40px;
+}
+
+
+.cart-img { 
+    max-width: 390px;
+    border-radius: 30px;
+}
+
+
+.get-name { 
+    display: flex;
+    flex-direction: center;
+    justify-content: space-between;
+
+}
+
+.main-get-cart { 
+    border: 1px solid wheat;
+    width: 600px;
+    margin: 130px 190px;
+    border-radius: 10px;
+   
+}
+
+.shop { 
+    margin-top: -40px;
+    margin-left: 230px;
+    margin-bottom: 9px;
+}
