@@ -1,8 +1,7 @@
 import { useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { deleteItemThunk, getCartItemsThunk } from "../../redux/shoppingCart"
-import './AddToShoppingCart.css'
-
+import './GetShoppingCart.css'
 const GetShoppingCart = () => { 
     const dispatch = useDispatch()
 
@@ -28,25 +27,36 @@ const GetShoppingCart = () => {
 
 
     return (
-
-<>
-   <h3 className="h33">SubTotal ${totalPrice.toFixed(2)}</h3>
+  
+<div className="main-get-cart">
+<h1 className="shop">Shopping Cart</h1>
   
   {products.map(product => (
      
 
-    <div key={product.id}>
-        <img src={product.image} className="img-shop" />
+    <div key={product.id} className="get-cart">
+      <div className="get-image">
+        <img src={product.image} className="cart-img" />
+      </div>
+        <div>
+        <div className="get-name">
         <p>{product.year}</p>
         <p>{product.name}</p>
         <p>{product.model}</p>
-        <p>${product.price}</p>
+        </div>
+        <p>Price:  ${product.price}</p>
         <p>Quantit: {product.quantity}</p>
         <button className="delete-but" onClick={(() => handleDeleteItemButton(product.id))}>Delete</button>
-    </div>
+        </div>
+      
+   </div>
+   
+   
   ))}
 
-</>
+   <h3 className="h33">SubTotal ${totalPrice.toFixed(2)}</h3>
+   <button>checkout</button>
+</div>
     )
 } 
 
