@@ -97,6 +97,7 @@ export const createProductThunk = (productData) => async dispatch => {
         if (response.ok) {
             const data = await response.json()
              dispatch(CreateProduct(data))
+             return data
         }
         else { 
             const error = await response.json()
