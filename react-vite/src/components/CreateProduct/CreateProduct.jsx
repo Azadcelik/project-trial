@@ -3,6 +3,7 @@ import { useDispatch } from "react-redux"
 import { createProductThunk } from "../../redux/product"
 import { useNavigate } from "react-router-dom"
 import "./CreateProduct.css"
+import { addProductImagesThunk } from "../../redux/productImage"
 
 
 
@@ -21,6 +22,12 @@ const CreateProduct = () => {
     const [hasSubmitted, setHasSubmitted] = useState(false)
     const [validationErrors, setValidationErrors] = useState({})
 
+    const [image1,setImage1] = useState(null)
+    const [image2,setImage2] = useState(null)
+    const [image3,setImage3] = useState(null)
+    const [image4,setImage4] = useState(null)
+    const [image5,setImage5] = useState(null)
+
  
     useEffect(() => { 
         const error = {}
@@ -31,8 +38,13 @@ const CreateProduct = () => {
         if (!price) error.price = 'You should choose one of them'
         if (!type) error.type = 'You should choose one of them'
         if (!image) error.image = 'Image is required'
+        if (!image1) error.image1 = 'Image file required'
+        if (!image2) error.image2 = 'Image file required'
+        if (!image3) error.image3 = 'Image file required'
+        if (!image4) error.image4 = 'Image file required'
+        if (!image5) error.image5 = 'Image file required'
         setValidationErrors(error)
-    },[make,mileage,model,year,price,type,image])
+    },[make,mileage,model,year,price,type,image,image1,image2,image3,image4,image5])
 
     const handleSubmit = async (e) => { 
         e.preventDefault()
@@ -50,10 +62,20 @@ const CreateProduct = () => {
         formData.append("year",year)
         formData.append("price",price)
         formData.append("type",type)
-        await dispatch(createProductThunk(formData))
+        const responseData = await dispatch(createProductThunk(formData));
 
-        setHasSubmitted(false)
-        navigate('/product')
+        if (responseData && responseData.id) {
+            const imageFormData = new FormData()
+            imageFormData.append('image1',image1)
+            imageFormData.append('image2',image2)
+            imageFormData.append('image3',image3)
+            imageFormData.append('image4',image4)
+            imageFormData.append('image5',image5)
+    
+            await dispatch(addProductImagesThunk(responseData.id,imageFormData))
+            navigate(`/product/${responseData.id}`);
+        }
+        setHasSubmitted(false);
     }
 
 
@@ -152,7 +174,39 @@ const CreateProduct = () => {
         onChange={(e => setImage(e.target.files[0]))}
         />
         </label>
+        {hasSubmitted && validationErrors.image1 && (
+            <span className="error">{validationErrors.image1}</span>)}
+            <label>
+                Image1
+                <input type="file" accept="image/*" onChange={(e) => setImage1(e.target.files[0])} />
+            </label>
+
+            {hasSubmitted && validationErrors.image2 && (
+            <span className="error">{validationErrors.image2}</span>)}
+            <label>
+                Image2
+                <input type="file" accept="image/*" onChange={(e) => setImage2(e.target.files[0])} />
+            </label>
+            {hasSubmitted && validationErrors.image3 && (
+            <span className="error">{validationErrors.image3}</span>)}
+            <label>
+                Image3
+                <input type="file" accept="image/*" onChange={(e) => setImage3(e.target.files[0])} />
+            </label>
+            {hasSubmitted && validationErrors.image4 && (
+            <span className="error">{validationErrors.image4}</span>)}
+            <label>
+                Image4
+                <input type="file" accept="image/*" onChange={(e) => setImage4(e.target.files[0])} />
+            </label>
+            {hasSubmitted && validationErrors.image5 && (
+            <span className="error">{validationErrors.image5}</span>)}
+            <label>
+                Image5
+                <input type="file" accept="image/*" onChange={(e) => setImage5(e.target.files[0])} />
+            </label>
     <button>Submit</button>
+
     </div>
 
      </form>

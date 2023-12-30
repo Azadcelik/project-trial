@@ -5,6 +5,8 @@ import { deleteProductThunk, oneProductThunk } from "../../redux/product"
 import { useModal } from "../../context/Modal"
 import CreateReview from "../CreateReview"
 import ReviewList from "../ReviewList"
+import { getProductImageThunk } from "../../redux/productImage"
+import './OneProduct.css'
 
 const OneProduct = () => { 
    const dispatch = useDispatch()
@@ -12,6 +14,9 @@ const OneProduct = () => {
    const navigate = useNavigate()
    const product = useSelector(state => state.products[id])
    const user = useSelector(state => state.session.user || {})
+   const productImage = useSelector(state => state.productImage[id])
+
+   console.log('productimagesss in one priducrt', productImage)
    const { setModalContent } = useModal();
 
 const reviews = useSelector(state => Object.values(state.reviews))
@@ -39,6 +44,7 @@ const hasReviewed = reviews.some(review => review.user_id === user?.id && review
 
    useEffect(() => { 
     dispatch(oneProductThunk(id))
+    dispatch(getProductImageThunk(id))
    },[dispatch,id])
 
 
@@ -51,8 +57,16 @@ const hasReviewed = reviews.some(review => review.user_id === user?.id && review
 
     return product && (
 
-<>
+<div className="top-one">
             <img src={product.image} />
+
+            {productImage?.map(images => (
+                <>
+                 <img src={images.url} />
+                   
+                </>
+            ))}
+            
             <div className="make-model-year">
                 <h3>{product.year}</h3>
                 <h3>{product.make}</h3>
@@ -80,7 +94,7 @@ const hasReviewed = reviews.some(review => review.user_id === user?.id && review
            <div>
             <ReviewList productId={product.id} />
            </div>
-</>
+</div>
 
     )
 }
