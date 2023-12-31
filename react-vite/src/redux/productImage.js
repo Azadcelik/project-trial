@@ -1,6 +1,6 @@
 const ADD_PRODUCT_IMAGES = 'api/product-images/ADD_PRODUCT_IMAGES'
 const GET_PRODUCT_IMAGES = 'api/product-images/GET_PRODUCT_IMAGES'
-
+const DELETE_PRODUCT_IMAGES = 'api/product-images/DELETE_PRODUCT_IMAGES'
 
 
 const addProductImage = (productId, images) => { 
@@ -14,6 +14,13 @@ const getProductImage = (productId, images) => {
     return {
         type: GET_PRODUCT_IMAGES,
         payload: { productId, images }
+    }
+}
+
+const deleteProductImage = (productId) => { 
+    return{ 
+        type: DELETE_PRODUCT_IMAGES,
+        payload: productId
     }
 }
 
@@ -59,6 +66,29 @@ export const addProductImagesThunk = (productId,formData) => async dispatch => {
     }
 }
 
+export const deleteProductImageThunk = (productId) => async dispatch => { 
+    try {
+        const response =  await fetch(`/api/product-image/${productId}/images/delete`, {
+            method: "DELETE"
+        })
+        if (response.ok) { 
+            // const data  = await response.json()
+            dispatch(deleteProductImage(productId))
+        }
+        else { 
+            const error = await response.json()
+            return error
+        }
+
+    }catch(error) { 
+        console.log('erorr in error thunk')
+        return error
+    }
+}
+
+
+
+
 
 const addProductImageReducer = (state = {}, action) => {
     switch (action.type) {
@@ -69,6 +99,11 @@ const addProductImageReducer = (state = {}, action) => {
                 ...state,
                 [productId]: images
             };
+        case DELETE_PRODUCT_IMAGES: { 
+            const newState = {...state}
+            delete newState[action.payload]
+            return newState
+        }
         default:
             return state;
     }

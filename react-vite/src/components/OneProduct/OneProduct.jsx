@@ -5,7 +5,7 @@ import { deleteProductThunk, oneProductThunk } from "../../redux/product"
 import { useModal } from "../../context/Modal"
 import CreateReview from "../CreateReview"
 import ReviewList from "../ReviewList"
-import { getProductImageThunk } from "../../redux/productImage"
+import { deleteProductImageThunk, getProductImageThunk } from "../../redux/productImage"
 import './OneProduct.css'
 
 const OneProduct = () => { 
@@ -50,7 +50,7 @@ const previousButton = () => {
         const handleDeleteButton = () => { 
             if (user.id == product.user_id) {
                 dispatch(deleteProductThunk(product.id))
-
+                dispatch(deleteProductImageThunk(product.id))
                 navigate('/product')
             }
         }
