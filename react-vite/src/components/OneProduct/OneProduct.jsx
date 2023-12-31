@@ -1,4 +1,4 @@
-import { useEffect } from "react"
+import { useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { useNavigate, useParams } from "react-router-dom"
 import { deleteProductThunk, oneProductThunk } from "../../redux/product"
@@ -12,11 +12,13 @@ const OneProduct = () => {
    const dispatch = useDispatch()
    const {id} = useParams()
    const navigate = useNavigate()
+   const [track,setTrack] = useState(0)
+
+
    const product = useSelector(state => state.products[id])
    const user = useSelector(state => state.session.user || {})
    const productImage = useSelector(state => state.productImage[id])
 
-   console.log('productimagesss in one priducrt', productImage)
    const { setModalContent } = useModal();
 
 const reviews = useSelector(state => Object.values(state.reviews))
@@ -26,7 +28,18 @@ console.log(reviews, 'alll revies data in create review')
 
 const hasReviewed = reviews.some(review => review.user_id === user?.id && review.product_id === product?.id);
 
+const proImg = [product?.image, ...(productImage || []).map(img => img.url)];
 
+
+
+
+const nextButton = () => { 
+    setTrack((track + 1) % proImg.length)
+}
+const previousButton = () => { 
+    if (track === 0) setTrack(proImg.length - 1)
+    else setTrack(track - 1)
+}
        
         const  handleUpdateButton = () => { 
             if (user.id == product.user_id) { 
@@ -58,14 +71,9 @@ const hasReviewed = reviews.some(review => review.user_id === user?.id && review
     return product && (
 
 <div className="top-one">
-            <img src={product.image} />
-
-            {productImage?.map(images => (
-                <>
-                 <img src={images.url} />
-                   
-                </>
-            ))}
+               <button onClick={previousButton} className="previous">previous</button>
+               <img src={proImg[track]} alt="Product" />
+                 <button onClick={nextButton}  className="next">next</button>
             
             <div className="make-model-year">
                 <h3>{product.year}</h3>

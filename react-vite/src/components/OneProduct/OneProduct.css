@@ -1,13 +1,35 @@
-.top-one { 
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-self: center;
-    margin-left: 290px;
+.top-one {
+    max-width: 800px; /* Adjust based on your preference */
+    margin: 0 auto; /* Center the container */
+    text-align: center;
+    padding: 20px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    background-color: #fff;
+    border-radius: 8px;
+}
 
+.top-one img {
+    max-width: 500px;
+    height: auto;
+    border-radius: 8px;
 }
 
 
-img { 
-    max-width: 390px;
+.top-one button {
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.next { 
+    position: absolute;
+     margin-top: 190px;
+     margin-left: 10px;
+}
+
+.previous { 
+    
 }
