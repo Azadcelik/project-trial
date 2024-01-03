@@ -1,0 +1,55 @@
+/* LoginForm.css */
+
+.main-login {
+    /* Style for your login modal container */
+    max-width: 400px;
+    margin: auto;
+    padding: 20px;
+    background-color: white;
+    border-radius: 8px;
+  }
+  
+  .main-login h1 {
+    padding-bottom: 30px;
+    text-align: center;
+    color: #333;
+  }
+  
+  .main-login label {
+    display: block;
+    margin-bottom: 10px;
+  }
+  
+  .main-login input {
+    width: 90%;
+    padding: 10px;
+    margin-bottom: 5px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+  }
+  
+  .main-login button {
+    width: 100%;
+    padding: 10px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  /* Error message styling */
+  .error-mes {
+    position: absolute;
+    top: 70px;
+    color: red;
+    font-size: 0.8em;
+   
+  }
+  
+.error-mesa { 
+    position: absolute;
+    top: 90px;
+    color: red;
+    font-size: 0.8em;
+}

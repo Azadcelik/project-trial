@@ -29,6 +29,7 @@ function LoginFormPage() {
     } else {
       navigate("/");
     }
+    
   };
 
   return (

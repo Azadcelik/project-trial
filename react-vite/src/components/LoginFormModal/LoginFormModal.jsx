@@ -26,11 +26,17 @@ function LoginFormModal() {
     } else {
       closeModal();
     }
+    
   };
 
   return (
-    <>
+    <div className="main-login">
       <h1>Log In</h1>
+      <div>
+      {errors.email && <p className="error-mesa">{errors.email}</p>}
+      {errors.password && <p className="error-mes">{errors.password}</p>}
+      </div>
+
       <form onSubmit={handleSubmit}>
         <label>
           Email
@@ -41,7 +47,6 @@ function LoginFormModal() {
             required
           />
         </label>
-        {errors.email && <p>{errors.email}</p>}
         <label>
           Password
           <input
@@ -51,10 +56,9 @@ function LoginFormModal() {
             required
           />
         </label>
-        {errors.password && <p>{errors.password}</p>}
         <button type="submit">Log In</button>
       </form>
-    </>
+    </div>
   );
 }
 
