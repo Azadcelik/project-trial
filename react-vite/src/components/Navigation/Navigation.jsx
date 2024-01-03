@@ -23,7 +23,7 @@ useEffect(() => {
 
   return (
     <>
-        <NavLink to="/">Home</NavLink>
+        <NavLink to="/product">Home</NavLink>
         <div className="heart">
           <div className="heart-icon-container">
           <FaHeart  style={{color: 'red', fontSize: '25px'}}/>
