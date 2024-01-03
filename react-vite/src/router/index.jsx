@@ -8,6 +8,7 @@ import OneProduct from '../components/OneProduct';
 import UpdateProduct from '../components/UpdateProduct';
 import GetFavorite from '../components/GetFavorite';
 import GetShoppingCart from '../components/AddToShoppingCart/GetShoppingCart';
+import Order from '../components/Order';
 
 export const router = createBrowserRouter([
   {
@@ -49,6 +50,10 @@ export const router = createBrowserRouter([
       {
         path: "/shopping-cart",
         element: <GetShoppingCart />
+      },
+      {
+        path: "/orders",
+        element : <Order />
       }
     ],
   },

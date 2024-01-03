@@ -6,3 +6,5 @@ from .reviews import Review
 from .shoppingCart import ShoppingCart
 from .shoppingCartItem import ShoppingCartItem
 from .productImages import ProductImage
+from .order import Order
+from .order_item import OrderItem

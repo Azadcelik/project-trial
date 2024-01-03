@@ -13,6 +13,12 @@ function SignupFormModal() {
   const [errors, setErrors] = useState({});
   const { closeModal } = useModal();
 
+  const validateEmail = (email) => {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
+  };
+
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -22,6 +28,14 @@ function SignupFormModal() {
           "Confirm Password field must be the same as the Password field",
       });
     }
+
+    if (username.length < 3) return setErrors({ username: "Username must be minimum 3 characters"})
+
+    if (!validateEmail(email)) {
+      return setErrors({ email: "Please enter a valid email address" });
+    }
+
+    
 
     const serverResponse = await dispatch(
       thunkSignup({
@@ -39,7 +53,7 @@ function SignupFormModal() {
   };
 
   return (
-    <>
+    <div className="main-signup">
       <h1>Sign Up</h1>
       {errors.server && <p>{errors.server}</p>}
       <form onSubmit={handleSubmit}>
@@ -52,7 +66,7 @@ function SignupFormModal() {
             required
           />
         </label>
-        {errors.email && <p>{errors.email}</p>}
+        {errors.email && <p className="error-email">{errors.email}</p>}
         <label>
           Username
           <input
@@ -62,7 +76,7 @@ function SignupFormModal() {
             required
           />
         </label>
-        {errors.username && <p>{errors.username}</p>}
+        {errors.username && <p className="error-username">{errors.username}</p>}
         <label>
           Password
           <input
@@ -72,7 +86,7 @@ function SignupFormModal() {
             required
           />
         </label>
-        {errors.password && <p>{errors.password}</p>}
+        {errors.password && <p className="error-password">{errors.password}</p>}
         <label>
           Confirm Password
           <input
@@ -82,10 +96,10 @@ function SignupFormModal() {
             required
           />
         </label>
-        {errors.confirmPassword && <p>{errors.confirmPassword}</p>}
+        {errors.confirmPassword && <p className="error-confirmpassword">{errors.confirmPassword}</p>}
         <button type="submit">Sign Up</button>
       </form>
-    </>
+    </div>
   );
 }
 

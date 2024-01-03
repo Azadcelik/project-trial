@@ -12,6 +12,7 @@ import favoriteReducer from "./favorite";
 import newReviewReducer from "./review";
 import shoppingCartReducer from "./shoppingCart";
 import addProductImageReducer from "./productImage";
+import orderReducer from "./order";
 
 const rootReducer = combineReducers({
   session: sessionReducer,
@@ -19,7 +20,8 @@ const rootReducer = combineReducers({
   favorites: favoriteReducer,
   reviews: newReviewReducer,
   shoppingCart: shoppingCartReducer,
-  productImage: addProductImageReducer
+  productImage: addProductImageReducer,
+  order: orderReducer
 });
 
 let enhancer;

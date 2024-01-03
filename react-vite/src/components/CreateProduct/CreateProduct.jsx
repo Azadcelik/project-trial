@@ -40,9 +40,9 @@ const CreateProduct = () => {
         if (!image) error.image = 'Image is required'
         if (!image1) error.image1 = 'Image file required'
         if (!image2) error.image2 = 'Image file required'
-        if (!image3) error.image3 = 'Image file required'
-        if (!image4) error.image4 = 'Image file required'
-        if (!image5) error.image5 = 'Image file required'
+        // if (!image3) error.image3 = 'Image file required'
+        // if (!image4) error.image4 = 'Image file required'
+        // if (!image5) error.image5 = 'Image file required'
         setValidationErrors(error)
     },[make,mileage,model,year,price,type,image,image1,image2,image3,image4,image5])
 
@@ -52,7 +52,7 @@ const CreateProduct = () => {
         setHasSubmitted(true)
 
         if (Object.values(validationErrors).length) {
-            return;
+            return 'something went wrong please try agian aaaa';
         }
         const formData = new FormData()
         formData.append("image",image)
@@ -187,20 +187,20 @@ const CreateProduct = () => {
                 Image2
                 <input type="file" accept="image/*" onChange={(e) => setImage2(e.target.files[0])} />
             </label>
-            {hasSubmitted && validationErrors.image3 && (
-            <span className="error">{validationErrors.image3}</span>)}
+            {/* {hasSubmitted && validationErrors.image3 && (
+            <span className="error">{validationErrors.image3}</span>)} */}
             <label>
                 Image3
                 <input type="file" accept="image/*" onChange={(e) => setImage3(e.target.files[0])} />
             </label>
-            {hasSubmitted && validationErrors.image4 && (
-            <span className="error">{validationErrors.image4}</span>)}
+            {/* {hasSubmitted && validationErrors.image4 && (
+            <span className="error">{validationErrors.image4}</span>)} */}
             <label>
                 Image4
                 <input type="file" accept="image/*" onChange={(e) => setImage4(e.target.files[0])} />
             </label>
-            {hasSubmitted && validationErrors.image5 && (
-            <span className="error">{validationErrors.image5}</span>)}
+            {/* {hasSubmitted && validationErrors.image5 && (
+            <span className="error">{validationErrors.image5}</span>)} */}
             <label>
                 Image5
                 <input type="file" accept="image/*" onChange={(e) => setImage5(e.target.files[0])} />
