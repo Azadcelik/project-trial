@@ -69,11 +69,12 @@ const previousButton = () => {
    }
 
     return product && (
+        <>
 
 <div className="top-one">
-               <button onClick={previousButton} className="previous">previous</button>
+                <i className="fa-solid fa-arrow-left" onClick={previousButton}></i>
                <img src={proImg[track]} alt="Product" />
-                 <button onClick={nextButton}  className="next">next</button>
+               <i className="fa-solid fa-arrow-right" onClick={nextButton}></i>
             
             <div className="make-model-year">
                 <h3>{product.year}</h3>
@@ -82,7 +83,7 @@ const previousButton = () => {
             </div>
 
             <div className="type">
-                <span>{product.type} &nbsp; &#183; &nbsp; {product.mileage} </span>
+                <span>{product.type} &nbsp; &#183; &nbsp; {product.mileage} miles</span>
                 <span></span>
             </div>
             <h2 className="price">$ {product.price}</h2>
@@ -99,11 +100,12 @@ const previousButton = () => {
               </div>
 
                 )}
-           <div>
+           
+</div>
+            <div>
             <ReviewList productId={product.id} />
            </div>
-</div>
-
+</>
     )
 }
 
