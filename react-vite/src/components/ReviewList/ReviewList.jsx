@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux"
 import { getReviewThunk } from "../../redux/review"
 import { useModal } from "../../context/Modal"
 import ReviewDeleteButton from "./ReviewDeleteButton"
-
+import './ReviewList.css'
 
 
 const ReviewList = ({productId}) => { 
@@ -49,13 +49,14 @@ console.log('reviews in reviewlis', review)
               })}
             </h2>
             <h2>{rev.text_body}</h2>
+            <h2>{totalRate.toFixed(2)}</h2>
+
             { rev.user_id == currentUser.id && (
               
                <button onClick={() => handleDeleteButton(rev.id)}>Delete</button>
             )}
             </div>
         ))}
-     <h2>{totalRate.toFixed(2)}</h2>
         </>
     )
 }
