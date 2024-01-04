@@ -2,7 +2,7 @@ import { useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { getProductThunk } from "../../redux/product"
 import "./AllProduct.css"
-import { useNavigate } from "react-router-dom"
+import { useLocation, useNavigate } from "react-router-dom"
 import { addToFavoriteThunk, deleteFavoriteThunk, getFavoriteThunk } from "../../redux/favorite"
 import { FaRegHeart, FaHeart } from "react-icons/fa";
 import { addToCartThunk, getCartItemsThunk } from "../../redux/shoppingCart"
@@ -13,18 +13,28 @@ const AllProduct = () =>  {
 
 const dispatch = useDispatch()
 const navigate = useNavigate()
+const location = useLocation()
 const [likedProducts, setLikedProducts] = useState({})
 const products = useSelector(state => Object.values(state.products))
 const favoriteProducts = useSelector(state => Object.values(state.favorites)) // Get favorite products from Redux store
-const product = useSelector(state => state.shoppingCart || {})
-    console.log('product in shoppingcart ', product)
-console.log('products in compionent ', products)
+// const product = useSelector(state => state.shoppingCart || {})
+const [display,setDisplay] = useState(false)
+const [model,setModel] = useState('')
+
+
+//     console.log('product in shoppingcart ', product)
+// console.log('products in compionent ', products)
+
+useEffect(() => { 
+    if (location.pathname === '/product') setModel('') 
+},[location])
+
 
 useEffect(() => { 
     console.log("Dispatching getProductThunk and getFavoriteThunk");
     dispatch(getProductThunk())
     dispatch(getFavoriteThunk()) // Dispatch action to fetch favorite products
-
+  
 },[dispatch])
 
 
@@ -39,6 +49,7 @@ useEffect(() => {
     if (Object.keys(newLiked).length !== Object.keys(likedProducts).length) {
         setLikedProducts(newLiked);
     }
+    
 }, [favoriteProducts,likedProducts]);
 
 
@@ -65,11 +76,32 @@ const addToCartButton = async (productId) => {
    
 };
 
+const toggleHamburgerBar = () => { 
+    setDisplay(!display)
+}
+
+const handleCarModel = (selectedCar) => { 
+ 
+    setModel(selectedCar)
+}
     return (
 
+    <>
+    <div>
+    <i className="fa-solid fa-bars hamburger-icon" onClick={toggleHamburgerBar}></i>
+    { display &&   
+    <div className="hamburger-menu">
+         <div onClick={() => handleCarModel('Toyota')}>Toyota</div>
+         <div onClick={() => handleCarModel('Honda')}>Honda</div>
+         <div onClick={() => handleCarModel('Ford')}>Ford</div>
+         <div onClick={() => handleCarModel('Mercedes')}>Mercedes</div>
+    </div>
+    }
+    </div>
      
         <div className="main-container">
-            {products.map(product => (
+            {products.filter(product => model === '' || product.make == model)
+            .map(product => (
                 <div key={product.id} className="product-container">
                     <div className="image-container">
                         <img className="product-image" src={product.image} alt="" onClick={() => handleSingleProduct(product.id)} />
@@ -88,11 +120,13 @@ const addToCartButton = async (productId) => {
                     </div>
                     <h2 className="price">$ {product.price}</h2>
                     <div>
-                        <button onClick={() => addToCartButton(product.id)}>Add to Cart</button>
+                        <button onClick={() => addToCartButton(product.id)} className="button-add-to-cart">Add to Cart</button>
                     </div>
                 </div>
             ))}
         </div>
+
+    </>
     );
 };
 
