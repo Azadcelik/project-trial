@@ -21,22 +21,29 @@ useEffect(() => {
 
 
 
+
+
   return (
-    <>
-        <NavLink to="/product"> Home </NavLink>
+    <div className="all">
+        <NavLink to="/product">
+        <i className="fa-solid fa-car">Carsy</i>
+        </NavLink>
+        
         <div className="heart">
           <div className="heart-icon-container">
           <FaHeart  style={{color: 'red', fontSize: '25px'}}/>
            <span style={{ fontSize: '12px'}}>{fav.length}</span> 
            </div>    
            <div className="heart-icon-container">     
-          <i className="fa-solid fa-cart-shopping" style={{fontSize: '30px'}}></i>
+           <NavLink to='/shopping-cart'>
+          <i className="fa-solid fa-cart-shopping" style={{fontSize: '30px', cursor: 'pointer'}}></i>
+          </NavLink>
           <span style={{ fontSize: '12px'}}>{products.length}</span> 
           </div>
           <ProfileButton />
         </div>
         <AddToShoppingCart />
-    </>
+    </div>
   );
 }
 

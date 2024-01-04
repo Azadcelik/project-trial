@@ -15,3 +15,13 @@
 }
 
 
+.fa-car {
+  position: absolute;
+  font-size: 20px; /* Larger car icon */
+  padding-left: 180px;
+}
+
+.all { 
+  margin-top: 30px;
+}
+
