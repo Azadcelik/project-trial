@@ -1,10 +1,10 @@
 .sidebar {
-    width: 200px;
+    width: 180px;
     position: fixed;
     right: -250px; /* Start off screen */
     top: 0;
     height: 100%;
-    background-color: wheat;
+    background-color: rgb(172, 185, 185);
     overflow-x: hidden;
     transition: right 0.9s; /* Smooth transition */
     
