@@ -6,7 +6,7 @@ import { useLocation, useNavigate } from "react-router-dom"
 import { addToFavoriteThunk, deleteFavoriteThunk, getFavoriteThunk } from "../../redux/favorite"
 import { FaRegHeart, FaHeart } from "react-icons/fa";
 import { addToCartThunk, getCartItemsThunk } from "../../redux/shoppingCart"
-
+import { NavLink } from "react-router-dom"
 
 
 const AllProduct = () =>  { 
@@ -18,6 +18,7 @@ const [likedProducts, setLikedProducts] = useState({})
 const products = useSelector(state => Object.values(state.products))
 const favoriteProducts = useSelector(state => Object.values(state.favorites)) // Get favorite products from Redux store
 // const product = useSelector(state => state.shoppingCart || {})
+const user = useSelector(state => state.session.user)
 const [display,setDisplay] = useState(false)
 const [model,setModel] = useState('')
 
@@ -76,7 +77,8 @@ const addToCartButton = async (productId) => {
    
 };
 
-const toggleHamburgerBar = () => { 
+const toggleHamburgerBar = (event) => { 
+    event.stopPropagation();
     setDisplay(!display)
 }
 
@@ -86,9 +88,11 @@ const handleCarModel = (selectedCar) => {
 }
     return (
 
-    <>
+        <>
+    
     <div>
     <i className="fa-solid fa-bars hamburger-icon" onClick={toggleHamburgerBar}></i>
+    {user && <NavLink to='/product/new' className='sell-trade'>SELL/TRADE</NavLink>}
     { display &&   
     <div className="hamburger-menu">
          <div onClick={() => handleCarModel('Toyota')}>Toyota</div>

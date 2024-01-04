@@ -56,7 +56,7 @@
 .fa-bars {
     position: relative;
     cursor: pointer;
-    font-size: 24px; 
+    font-size: 21px; 
     margin-left: 90px;
 }
 
@@ -73,7 +73,7 @@
 
 
 .hamburger-icon {
-    color: blue;
+    color: purple;
     position: relative;
     top: -30px; 
     left: 190px; 
@@ -96,4 +96,13 @@
 
 .button-add-to-cart:hover {
     background-color: aqua;  
+}
+
+
+.sell-trade  { 
+    position: relative;
+    top: -30px;
+    left: 210px;
+    font-size: 17px;
+    color: purple;
 }

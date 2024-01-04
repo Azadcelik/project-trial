@@ -6,10 +6,16 @@ import "./CreateProduct.css"
 import { addProductImagesThunk } from "../../redux/productImage"
 
 
+const makeModelMap = { 
+    'Toyota': ['Camry','Prius','Corolla'],
+    'Honda': ['Civic','Accord','CR-V'],
+    'Ford': ['Mustang','F-150','Explorer']
+}
 
 
 const CreateProduct = () => {
     
+    const [availableModel,setAvailableModel] = useState([])
     const dispatch = useDispatch()
     const navigate = useNavigate()
     const [image,setImage] = useState(null)
@@ -28,18 +34,30 @@ const CreateProduct = () => {
     const [image4,setImage4] = useState(null)
     const [image5,setImage5] = useState(null)
 
+
+
+    useEffect(() => { 
+        if (make) { 
+            setAvailableModel(makeModelMap[make])
+        }
+        else {
+            setAvailableModel([])
+        }
+        setModel('')
+    },[make])
+
  
     useEffect(() => { 
         const error = {}
-        if (!make) error.make = 'You should choose one of them'
-        if (!mileage) error.mileage = 'You should choose one of them'
-        if (!model) error.model = 'You should choose one of them'
-        if (!year) error.year = 'You should choose one of them'
-        if (!price) error.price = 'You should choose one of them'
-        if (!type) error.type = 'You should choose one of them'
-        if (!image) error.image = 'Image is required'
-        if (!image1) error.image1 = 'Image file required'
-        if (!image2) error.image2 = 'Image file required'
+        if (!make) error.make = 'Please select a car make.'
+        if (!model) error.model = 'Please select a car model.'
+        if (!year) error.year = 'Please select the year of the car.'
+        if (!mileage) error.mileage = 'Please enter the car\'s mileage.'
+        if (!type) error.type = 'Please select the fuel type.'
+        if (!price) error.price = 'Please enter the price of the car.'
+        if (!image) error.image = 'Please upload a main image of the car.'
+        if (!image1) error.image1 = 'Additional image file required.'
+        if (!image2) error.image2 = 'Additional image file required.'
         // if (!image3) error.image3 = 'Image file required'
         // if (!image4) error.image4 = 'Image file required'
         // if (!image5) error.image5 = 'Image file required'
@@ -81,43 +99,47 @@ const CreateProduct = () => {
 
 
     return (
+        
 <div>
+    <div className="sell-your-car-heading">SELL YOUR CAR</div>  
+    
      <form onSubmit={handleSubmit} encType="multipart/form-data" action="/product">
     
     <div className="main-create">
 
+        <label>
+    Make
     {hasSubmitted && validationErrors.make && (
         <span className="error">{validationErrors.make}</span>
     )}
-        <label>
-    Make
     <select value={make} onChange={(e) => setMake(e.target.value)}>
         <option value="">Select Make</option>
-        <option value="Toyota">Toyota</option>
-        <option value="Ford">Ford</option>
-        <option value="Honda">Honda</option>
+        {Object.keys(makeModelMap).map(key => (
+          <option key={key} value={key}>{key}</option>
+        ))}
     </select>
 </label>
         
+ 
+     <label>
+    Model
     {hasSubmitted && validationErrors.model && (
         <span className="error">{validationErrors.model}</span>
     )}
-     <label>
-    Model
     <select value={model} onChange={(e) => setModel(e.target.value)}>
-        <option value="">Select Model</option>
-        <option value="Camry">Camry</option>
-        <option value="F-150">F-150</option>
-        <option value="Civic">Civic</option>
-        
+            <option value="">Select Model</option>
+            {availableModel.map(model => (
+             <option key={model} value={model}>{model}</option>
+             ))}
     </select>
 </label>
-       
+  
+       <label>
+    Year
+         
     {hasSubmitted && validationErrors.year && (
         <span className="error">{validationErrors.year}</span>
     )}
-       <label>
-    Year
     <select value={year} onChange={(e) => setYear(e.target.value)}>
         <option value="">Select Year</option>
         {
@@ -129,22 +151,24 @@ const CreateProduct = () => {
 </label>
 
        
-    {hasSubmitted && validationErrors.mileage && (
-        <span className="error">{validationErrors.mileage}</span>
-    )}
+   
         <label>
             Mileage
+            {hasSubmitted && validationErrors.mileage && (
+        <span className="error">{validationErrors.mileage}</span>
+    )}
             <input type="text" 
             value={mileage}
             onChange={(e => setMileage(e.target.value))}
             />
         </label>
 
-        {hasSubmitted && validationErrors.type && (
-        <span className="error">{validationErrors.type}</span>
-    )}
+   
       <label>
     Fuel Type
+    {hasSubmitted && validationErrors.type && (
+        <span className="error">{validationErrors.type}</span>
+    )}
     <select value={type} onChange={(e) => setType(e.target.value)}>
         <option value="">Select Fuel Type</option>
         <option value="Electric">Electric</option>
@@ -153,38 +177,41 @@ const CreateProduct = () => {
     </select>
 </label>
 
-        {hasSubmitted && validationErrors.price && (
-        <span className="error">{validationErrors.price}</span>
-    )}
+  
         <label>
             Price
+            {hasSubmitted && validationErrors.price && (
+        <span className="error">{validationErrors.price}</span>
+    )}
             <input type="text" 
             value={price}
             onChange={(e => setPrice(e.target.value))}
             />
         </label>
        
-        {hasSubmitted && validationErrors.image && (
-        <span className="error">{validationErrors.image}</span>
-    )}
+   
         <label>
             Image
+            {hasSubmitted && validationErrors.image && (
+        <span className="error">{validationErrors.image}</span>
+    )}
         <input type="file"
         accept="image/*"
         onChange={(e => setImage(e.target.files[0]))}
         />
         </label>
-        {hasSubmitted && validationErrors.image1 && (
-            <span className="error">{validationErrors.image1}</span>)}
+       
             <label>
                 Image1
+                {hasSubmitted && validationErrors.image1 && (
+            <span className="error">{validationErrors.image1}</span>)}
                 <input type="file" accept="image/*" onChange={(e) => setImage1(e.target.files[0])} />
             </label>
 
-            {hasSubmitted && validationErrors.image2 && (
-            <span className="error">{validationErrors.image2}</span>)}
             <label>
                 Image2
+            {hasSubmitted && validationErrors.image2 && (
+            <span className="error">{validationErrors.image2}</span>)}
                 <input type="file" accept="image/*" onChange={(e) => setImage2(e.target.files[0])} />
             </label>
             {/* {hasSubmitted && validationErrors.image3 && (

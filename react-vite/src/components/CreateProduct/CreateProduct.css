@@ -1,9 +1,57 @@
-.main-create { 
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 20px;
-    text-align: justify;
-       
+
+.main-create {
+    max-width: 600px;
+    margin: 20px auto;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    background-color: #fff;
+}
+
+
+
+
+.main-create input,
+.main-create select{
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 20px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+
+
+.main-create button {
+    background-color: rgb(77, 77, 223);
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.main-create button:hover {
+    background-color: blue;
+}
+
+.error {
+    color: red;
+    font-size: 0.8em;
+    margin-left: 40px;
+}
+
+
+
+
+
+
+.sell-your-car-heading {
+    text-align: center;
+    font-size: 24px; 
+    font-weight: bold;
+    color: #333;
 }
 
