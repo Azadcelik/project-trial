@@ -48,7 +48,6 @@ def add_product_images(id):
 
 
 @product_images_routes.route('/<int:id>/images')
-@login_required
 def get_product_images(id):
     product = Product.query.get(id)
     if not product:

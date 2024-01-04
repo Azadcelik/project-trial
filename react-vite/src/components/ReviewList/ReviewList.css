@@ -1,0 +1,40 @@
+/* ReviewList.css */
+
+.revieww {
+    background-color: #f9f9f9;
+    margin: 20px auto;
+    padding: 15px;
+    max-width: 600px; /* Maximum width */
+    min-width: 300px; /* Minimum width */
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    word-wrap: break-word;
+}
+
+.review-namee, .date-review, .review-text {
+    margin-bottom: 10px;
+}
+
+/* Consistent styling for text and buttons */
+.review-namee,.review-text{
+    font-size: 20px;
+    color: #333;
+}
+
+.date-review { 
+    font-size: 12px;
+    color: gray;
+}
+
+.revieww button {
+    background-color: #dc3545;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.revieww button:hover {
+    background-color: #c82333;
+}
