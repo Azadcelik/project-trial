@@ -23,7 +23,7 @@ const [display,setDisplay] = useState(false)
 const [model,setModel] = useState('')
 
 
-//     console.log('product in shoppingcart ', product)
+//  console.log('product in shoppingcart ', product)
 // console.log('products in compionent ', products)
 
 useEffect(() => { 
