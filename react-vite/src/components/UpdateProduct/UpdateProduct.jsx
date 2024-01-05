@@ -3,13 +3,18 @@ import { useDispatch, useSelector } from "react-redux"
 import { updateProductThunk } from "../../redux/product"
 import { useNavigate, useParams } from "react-router-dom"
 import "./UpdateProduct.css"
-
+import { makeModelMap } from "../CreateProduct/CreateProduct"
 
 
 
 
 const UpdateProduct = () => {
     
+
+
+
+
+
     const dispatch = useDispatch()
     const navigate = useNavigate()
     const {id} = useParams()
@@ -18,6 +23,16 @@ const UpdateProduct = () => {
     console.log('in  componenntss', product)
 
 
+    useEffect(() => {
+        //initial preview to the existing product image
+        if (product.image) {
+            setImagePreview(product.image);
+        }
+    }, [product]);
+
+
+    const [availableModel,setAvailableModel] = useState([])
+    const [imagePreview,setImagePreview] = useState(null)
     const [image,setImage] = useState(product?.image)
     const [mileage,setMileage] = useState(product?.mileage)
     const [make,setMake] = useState(product?.make)
@@ -28,16 +43,41 @@ const UpdateProduct = () => {
     const [hasSubmitted, setHasSubmitted] = useState(false)
     const [validationErrors, setValidationErrors] = useState({})
 
+
+    const handleBothImage = (event,setImage,setImagePreview) => { 
+        const file = event.target.files[0]
+        setImage(file)
+
+        const previewImage = URL.createObjectURL(file)
+        setImagePreview(previewImage)
+    }
+
+ 
+    useEffect(() => {
+
+        if (make) { 
+            setAvailableModel(makeModelMap[make])
+        }
+        else { 
+            setAvailableModel([])
+        }
+        setModel('')
+
+    },[make])
+
+
+
  
     useEffect(() => { 
         const error = {}
-        if (!make) error.make = 'You should choose one of them'
-        if (!mileage) error.mileage = 'You should choose one of them'
-        if (!model) error.model = 'You should choose one of them'
-        if (!year) error.year = 'You should choose one of them'
-        if (!price) error.price = 'You should choose one of them'
-        if (!type) error.type = 'You should choose one of them'
-        if (!image) error.image = 'Image is required'
+        if (!make) error.make = 'Please select a car make.'
+        if (!model) error.model = 'Please select a car model.'
+        if (!year) error.year = 'Please select the year of the car.'
+        if (!mileage) error.mileage = 'Please enter the car\'s mileage.'
+        if (!type) error.type = 'Please select the fuel type.'
+        if (!price) error.price = 'Please enter the price of the car.'
+        if (!image) error.image = 'Please upload a main image of the car.'
+
         setValidationErrors(error)
     },[make,mileage,model,year,price,type,image])
 
@@ -66,43 +106,47 @@ const UpdateProduct = () => {
 
 
     return (
+      
 <div>
+    <div className="sell-your-car-heading">SELL YOUR CAR</div>  
+    
      <form onSubmit={handleSubmit} encType="multipart/form-data" action="/product">
     
     <div className="main-create">
 
+        <label>
+    Make
     {hasSubmitted && validationErrors.make && (
         <span className="error">{validationErrors.make}</span>
     )}
-        <label>
-    Make
     <select value={make} onChange={(e) => setMake(e.target.value)}>
         <option value="">Select Make</option>
-        <option value="Toyota">Toyota</option>
-        <option value="Ford">Ford</option>
-        <option value="Honda">Honda</option>
+        {Object.keys(makeModelMap).map(key => (
+          <option key={key} value={key}>{key}</option>
+        ))}
     </select>
 </label>
         
+ 
+     <label>
+    Model
     {hasSubmitted && validationErrors.model && (
         <span className="error">{validationErrors.model}</span>
     )}
-     <label>
-    Model
     <select value={model} onChange={(e) => setModel(e.target.value)}>
-        <option value="">Select Model</option>
-        <option value="Camry">Camry</option>
-        <option value="F-150">F-150</option>
-        <option value="Civic">Civic</option>
-        
+            <option value="">Select Model</option>
+            {availableModel.map(model => (
+             <option key={model} value={model}>{model}</option>
+             ))}
     </select>
 </label>
-       
+  
+       <label>
+    Year
+         
     {hasSubmitted && validationErrors.year && (
         <span className="error">{validationErrors.year}</span>
     )}
-       <label>
-    Year
     <select value={year} onChange={(e) => setYear(e.target.value)}>
         <option value="">Select Year</option>
         {
@@ -114,22 +158,24 @@ const UpdateProduct = () => {
 </label>
 
        
-    {hasSubmitted && validationErrors.mileage && (
-        <span className="error">{validationErrors.mileage}</span>
-    )}
+   
         <label>
             Mileage
+            {hasSubmitted && validationErrors.mileage && (
+        <span className="error">{validationErrors.mileage}</span>
+    )}
             <input type="text" 
             value={mileage}
             onChange={(e => setMileage(e.target.value))}
             />
         </label>
 
-        {hasSubmitted && validationErrors.type && (
-        <span className="error">{validationErrors.type}</span>
-    )}
+   
       <label>
     Fuel Type
+    {hasSubmitted && validationErrors.type && (
+        <span className="error">{validationErrors.type}</span>
+    )}
     <select value={type} onChange={(e) => setType(e.target.value)}>
         <option value="">Select Fuel Type</option>
         <option value="Electric">Electric</option>
@@ -138,28 +184,36 @@ const UpdateProduct = () => {
     </select>
 </label>
 
-        {hasSubmitted && validationErrors.price && (
-        <span className="error">{validationErrors.price}</span>
-    )}
+  
         <label>
             Price
+            {hasSubmitted && validationErrors.price && (
+        <span className="error">{validationErrors.price}</span>
+    )}
             <input type="text" 
             value={price}
             onChange={(e => setPrice(e.target.value))}
             />
         </label>
        
-        {hasSubmitted && validationErrors.image && (
+   
+            {hasSubmitted && validationErrors.image && (
         <span className="error">{validationErrors.image}</span>
     )}
         <label>
             Image
         <input type="file"
         accept="image/*"
-        onChange={(e => setImage(e.target.files[0]))}
+        onChange={(e => handleBothImage(e,setImage,setImagePreview))}
         />
+    {imagePreview && (
+         <img src={imagePreview} alt="Preview 1" className="image1"/>
+        )}
+        
         </label>
-    <button>Submit</button>
+        <div className="button-container">
+                <button>Submit</button>
+        </div> 
     </div>
 
      </form>
