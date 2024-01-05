@@ -9,10 +9,12 @@
 }
 
 .top-one img {
-    max-width: 500px;
-    height: auto;
+    width: 500px; /* Fixed width */
+    height: 300px; /* Fixed height, adjust as needed */
+    object-fit: cover; /* This will handle aspect ratio differences */
     border-radius: 8px;
 }
+
 
 
 .top-one button {
@@ -22,6 +24,7 @@
     padding: 10px 20px;
     border-radius: 5px;
     cursor: pointer;
+    margin-left: 30px;
 }
 
 .fa-arrow-right { 
@@ -41,9 +44,9 @@
 
 }
 
-.make-model-year { 
-    justify-content: center;
+
+.make-model-years { 
+    display: flex;
+ padding-left: 330px;
+    gap: 10px;
 }
-
-
-

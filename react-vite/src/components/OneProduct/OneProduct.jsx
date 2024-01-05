@@ -76,7 +76,7 @@ const previousButton = () => {
                <img src={proImg[track]} alt="Product" />
                <i className="fa-solid fa-arrow-right" onClick={nextButton}></i>
             
-            <div className="make-model-year">
+            <div className="make-model-years">
                 <h3>{product.year}</h3>
                 <h3>{product.make}</h3>
                 <h3>{product.model}</h3>
@@ -93,7 +93,7 @@ const previousButton = () => {
               <button onClick={handleDeleteButton}>Delete</button>
                </> 
                 )}
-                {  !hasReviewed &&  user.id != product.user_id && (
+                {  user.id && !hasReviewed &&  user.id != product.user_id && (
             
               <div>
               <button onClick={handlePostReviewButton}>Post Your Review</button>

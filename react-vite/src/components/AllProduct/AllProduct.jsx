@@ -137,8 +137,12 @@ const handleCarModel = (selectedCar) => {
                         <span>{product.type} &nbsp; &#183; &nbsp; {product.mileage} </span>
                     </div>
                     <h2 className="price">$ {product.price}</h2>
+                    
                     <div>
                         <button onClick={() => addToCartButton(product.id)} className="button-add-to-cart">Add to Cart</button>
+                        <p><span className="bold-text">free Shipping</span> &middot; get it by Monday</p>
+
+
                     </div>
                 </div>
             ))}

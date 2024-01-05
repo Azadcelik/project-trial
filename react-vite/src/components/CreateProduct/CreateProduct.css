@@ -23,20 +23,21 @@
 
 
 
-.main-create button {
-    background-color: rgb(77, 77, 223);
-    color: white;
+.button-container button {
+    background-color: #30B1B9; 
     padding: 10px 15px;
     border: none;
     border-radius: 8px;
     cursor: pointer;
     font-size: 16px;
+    margin-top: 90px;
+    color: white; 
+
 }
 
 .main-create button:hover {
-    background-color: blue;
+    background-color: #259197;
 }
-
 .error {
     color: red;
     font-size: 0.8em;
