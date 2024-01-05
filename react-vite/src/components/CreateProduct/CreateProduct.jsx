@@ -6,7 +6,7 @@ import "./CreateProduct.css"
 import { addProductImagesThunk } from "../../redux/productImage"
 
 
-const makeModelMap = { 
+export const makeModelMap = { 
     'Toyota': ['Camry','Prius','Corolla'],
     'Honda': ['Civic','Accord','CR-V'],
     'Ford': ['Mustang','F-150','Explorer']
@@ -256,11 +256,12 @@ const CreateProduct = () => {
             <label>
                 Image5
                 <input type="file" accept="image/*" onChange={(e) => handleBothImage(e,setImage5,setImagePreview5)} />
-    {imagePreview5 && <img src={imagePreview5} alt="Preview 1" className="image1"/>}
                 
+    {imagePreview5 && <img src={imagePreview5} alt="Preview 1" className="image1"/>}
             </label>
-    <button>Submit</button>
-
+            <div className="button-container">
+                <button>Submit</button>
+            </div>      
     </div>
 
      </form>
