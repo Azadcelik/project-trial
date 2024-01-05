@@ -77,9 +77,23 @@ const addToCartButton = async (productId) => {
    
 };
 
+
+useEffect(() => { 
+    const handleWindowClick = () => { 
+        if (display) { 
+            setDisplay(!display)
+        }
+    }    
+    document.addEventListener('click',handleWindowClick)
+    return () => document.removeEventListener('click',handleWindowClick)
+},[display])
+
+
 const toggleHamburgerBar = (event) => { 
-    event.stopPropagation();
+    event.stopPropagation()
+
     setDisplay(!display)
+
 }
 
 const handleCarModel = (selectedCar) => { 
