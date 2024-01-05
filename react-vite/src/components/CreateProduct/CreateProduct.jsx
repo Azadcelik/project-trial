@@ -18,7 +18,6 @@ const CreateProduct = () => {
     const [availableModel,setAvailableModel] = useState([])
     const dispatch = useDispatch()
     const navigate = useNavigate()
-    const [image,setImage] = useState(null)
     const [mileage,setMileage] = useState('')
     const [make,setMake] = useState('')
     const [model,setModel] = useState('')
@@ -28,11 +27,28 @@ const CreateProduct = () => {
     const [hasSubmitted, setHasSubmitted] = useState(false)
     const [validationErrors, setValidationErrors] = useState({})
 
+    const [image,setImage] = useState(null)
     const [image1,setImage1] = useState(null)
     const [image2,setImage2] = useState(null)
     const [image3,setImage3] = useState(null)
     const [image4,setImage4] = useState(null)
     const [image5,setImage5] = useState(null)
+
+    const [imagePreview,setImagePreview] = useState(null)
+    const [imagePreview1,setImagePreview1] = useState(null)
+    const [imagePreview2,setImagePreview2] = useState(null)
+    const [imagePreview3,setImagePreview3] = useState(null)
+    const [imagePreview4,setImagePreview4] = useState(null)
+    const [imagePreview5,setImagePreview5] = useState(null)
+
+    
+    const handleBothImage = (event,setImage,setImagePreview) => { 
+        const file = event.target.files[0]
+        setImage(file)
+
+        const previewImage = URL.createObjectURL(file)
+        setImagePreview(previewImage)
+    }
 
 
 
@@ -190,47 +206,58 @@ const CreateProduct = () => {
         </label>
        
    
-        <label>
-            Image
             {hasSubmitted && validationErrors.image && (
         <span className="error">{validationErrors.image}</span>
     )}
+        <label>
+            Image
         <input type="file"
         accept="image/*"
-        onChange={(e => setImage(e.target.files[0]))}
+        onChange={(e => handleBothImage(e,setImage,setImagePreview))}
         />
+    {imagePreview && <img src={imagePreview} alt="Preview 1" className="image1"/>}
+        
         </label>
-       
             <label>
                 Image1
                 {hasSubmitted && validationErrors.image1 && (
             <span className="error">{validationErrors.image1}</span>)}
-                <input type="file" accept="image/*" onChange={(e) => setImage1(e.target.files[0])} />
+                <input type="file" accept="image/*" onChange={(e) => handleBothImage(e,setImage1,setImagePreview1)} />
+    {imagePreview1 && <img src={imagePreview1} alt="Preview 1" className="image1"/>}
+                
             </label>
 
             <label>
                 Image2
             {hasSubmitted && validationErrors.image2 && (
             <span className="error">{validationErrors.image2}</span>)}
-                <input type="file" accept="image/*" onChange={(e) => setImage2(e.target.files[0])} />
+                <input type="file" accept="image/*" onChange={(e) => handleBothImage(e,setImage2,setImagePreview2)} />
+    {imagePreview2 && <img src={imagePreview2} alt="Preview 2" className="image1"/>}
+
             </label>
             {/* {hasSubmitted && validationErrors.image3 && (
             <span className="error">{validationErrors.image3}</span>)} */}
             <label>
                 Image3
-                <input type="file" accept="image/*" onChange={(e) => setImage3(e.target.files[0])} />
+                <input type="file" accept="image/*" onChange={(e) => handleBothImage(e,setImage3,setImagePreview3)} />
+    {imagePreview3 && <img src={imagePreview3} alt="Preview 1" className="image1"/>}
+
             </label>
             {/* {hasSubmitted && validationErrors.image4 && (
             <span className="error">{validationErrors.image4}</span>)} */}
             <label>
                 Image4
-                <input type="file" accept="image/*" onChange={(e) => setImage4(e.target.files[0])} />
+                <input type="file" accept="image/*" onChange={(e) => handleBothImage(e,setImage4,setImagePreview4)} />
+    {imagePreview4 && <img src={imagePreview4} alt="Preview 1" className="image1"/>}
+
             </label>
             {/* {hasSubmitted && validationErrors.image5 && (
             <span className="error">{validationErrors.image5}</span>)} */}
             <label>
                 Image5
-                <input type="file" accept="image/*" onChange={(e) => setImage5(e.target.files[0])} />
+                <input type="file" accept="image/*" onChange={(e) => handleBothImage(e,setImage5,setImagePreview5)} />
+    {imagePreview5 && <img src={imagePreview5} alt="Preview 1" className="image1"/>}
+                
             </label>
     <button>Submit</button>
 
