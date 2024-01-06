@@ -3,7 +3,6 @@ import { useDispatch, useSelector } from "react-redux"
 import { deleteItemThunk, getCartItemsThunk } from "../../redux/shoppingCart"
 import './GetShoppingCart.css'
 import { useNavigate } from "react-router-dom"
-import { addOrderThunk, getOrderThunk } from "../../redux/order"
 
 const GetShoppingCart = () => { 
     const dispatch = useDispatch()
@@ -29,10 +28,7 @@ const GetShoppingCart = () => {
 
 
  const handleCheckoutButton = async () => { 
-  
-  await dispatch(addOrderThunk())
-  await dispatch(getOrderThunk())
-  navigate('/orders')
+  navigate('/adress')
  }
 
     return (
@@ -64,7 +60,7 @@ const GetShoppingCart = () => {
   ))}
 
    <h3 className="h33">SubTotal ${totalPrice.toFixed(2)}</h3>
-   <button onClick={handleCheckoutButton}>checkout</button>
+   <button onClick={handleCheckoutButton}>Proceed to Checkout</button>
 </div>
     )
 } 
