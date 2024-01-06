@@ -1,6 +1,14 @@
 const ADD_TO_SHOPPING_CART = 'shopping-cart/ADD_TO_SHOPPING_CART'
 const GET_SHOPPING_CART_ITEMS = 'shopping-cart/GET_SHOPPING_CART_ITEMS'
-const DELETE_ITEM = 'shopping=cart/DELETE_ITEM'
+const DELETE_ITEM = 'shopping-art/DELETE_ITEM'
+const CLEAR_CART = 'shopping-cart/CLEAR_OUT'
+
+
+export const clearCart = () => {
+    return { 
+        type: CLEAR_CART 
+    };
+};
 
 
 const addToCart = (data)  => { 
@@ -106,6 +114,10 @@ const shoppingCartReducer = (state={},action) => {
             const newState = {...state}
             delete newState[action.payload]
             return newState
+        }
+
+        case CLEAR_CART: {
+            return {}
         }
         default: 
         return state

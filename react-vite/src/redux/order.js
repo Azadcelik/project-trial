@@ -1,3 +1,5 @@
+import { clearCart } from "./shoppingCart"
+
 const ADD_ORDER = '/api/order/ADD_ORDER'
 const GET_ORDER = '/api/order/GET_ORDER'
 
@@ -46,6 +48,7 @@ export const addOrderThunk = () => async dispatch => {
         if (response.ok) { 
             const data = await response.json()
             dispatch(addOrder(data))
+            dispatch(clearCart())
         }
         else { 
             const error = await response.json()
