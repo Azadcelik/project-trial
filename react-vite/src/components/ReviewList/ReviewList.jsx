@@ -48,8 +48,8 @@ console.log('reviews in reviewlis', review)
                 year: "numeric",
               })}
             </h2>
-            <h2>{rev.text_body}</h2>
-            <h2>{totalRate.toFixed(2)}</h2>
+            <h4>{rev.text_body}</h4>
+            {/* <h4>{totalRate.toFixed(2)}</h4> */}
 
             { rev.user_id == currentUser.id && (
               
