@@ -15,7 +15,7 @@ class ShoppingCart(db.Model):
 
     user = db.relationship('User', back_populates = "shopping_cart", uselist=False)
     
-    shopping_cart_items = db.relationship('ShoppingCartItem',back_populates="shopping_cart")
+    shopping_cart_items = db.relationship('ShoppingCartItem',back_populates="shopping_cart", cascade='all,delete-orphan')
 
 
 

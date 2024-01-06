@@ -206,11 +206,12 @@ const CreateProduct = () => {
         </label>
        
    
+  
+        <label>
+            Image
             {hasSubmitted && validationErrors.image && (
         <span className="error">{validationErrors.image}</span>
     )}
-        <label>
-            Image
         <input type="file"
         accept="image/*"
         onChange={(e => handleBothImage(e,setImage,setImagePreview))}

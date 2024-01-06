@@ -7,6 +7,7 @@ import CreateReview from "../CreateReview"
 import ReviewList from "../ReviewList"
 import { deleteProductImageThunk, getProductImageThunk } from "../../redux/productImage"
 import './OneProduct.css'
+import { addToCartThunk, getCartItemsThunk } from "../../redux/shoppingCart"
 
 const OneProduct = () => { 
    const dispatch = useDispatch()
@@ -30,7 +31,10 @@ const hasReviewed = reviews.some(review => review.user_id === user?.id && review
 
 const proImg = [product?.image, ...(productImage || []).map(img => img.url)];
 
-
+ const addToCartButton = async (productId) => { 
+  await dispatch(addToCartThunk(productId))
+  dispatch(getCartItemsThunk())
+ }
 
 
 const nextButton = () => { 
@@ -69,13 +73,21 @@ const previousButton = () => {
    }
 
     return product && (
-        <>
+
+        <div className="top-top">
+        <div>
 
 <div className="top-one">
+
+    <div className="flexo">
+
+     <div>
                 <i className="fa-solid fa-arrow-left" onClick={previousButton}></i>
                <img src={proImg[track]} alt="Product" />
                <i className="fa-solid fa-arrow-right" onClick={nextButton}></i>
-            
+    </div> 
+
+    <div className="toyotaa">
             <div className="make-model-years">
                 <h3>{product.year}</h3>
                 <h3>{product.make}</h3>
@@ -89,15 +101,21 @@ const previousButton = () => {
             <h2 className="price">$ {product.price}</h2>
             { user && product.user_id == user.id && (
                 <>
-              <button onClick={handleUpdateButton}>Update</button>
-              <button onClick={handleDeleteButton}>Delete</button>
+              <button onClick={handleUpdateButton} className="buttono">Update</button>
+              <button onClick={handleDeleteButton} className="buttono">Delete</button>
                </> 
                 )}
+               { user && user.id != product.user_id && (
+               <button className="add-to-cart-button" onClick={(() => addToCartButton(product.id))}>
+                    <i className="fa-solid fa-cart-plus"></i> {/* Example icon, replace with your desired icon */}
+                    Add to Cart
+                </button>
+                )}
+    </div>
+    </div>
                 {  user.id && !hasReviewed &&  user.id != product.user_id && (
             
-              <div>
-              <button onClick={handlePostReviewButton}>Post Your Review</button>
-              </div>
+              <button onClick={handlePostReviewButton} className="review-post">Post Your Review</button>
 
                 )}
            
@@ -105,7 +123,10 @@ const previousButton = () => {
             <div>
             <ReviewList productId={product.id} />
            </div>
-</>
+ 
+</div>
+
+</div>
     )
 }
 

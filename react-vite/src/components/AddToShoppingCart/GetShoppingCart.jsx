@@ -32,7 +32,6 @@ const GetShoppingCart = () => {
   
   await dispatch(addOrderThunk())
   await dispatch(getOrderThunk())
-
   navigate('/orders')
  }
 

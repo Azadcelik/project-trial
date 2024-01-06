@@ -129,7 +129,7 @@ p {
 }
 
 .make-model-year > h3 {
-    font-size: large;
+    font-size: medium;
     font-family: 'Courier New', Courier, monospace;
     text-transform: uppercase;
 }
