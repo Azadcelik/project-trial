@@ -40,10 +40,14 @@ export const getOrderThunk = () => async dispatch => {
 
 
 
-export const addOrderThunk = () => async dispatch => { 
+export const addOrderThunk = (data) => async dispatch => { 
     try { 
         const response = await fetch('api/order', {
-            method: "POST"
+            method: "POST",
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
         })
         if (response.ok) { 
             const data = await response.json()
