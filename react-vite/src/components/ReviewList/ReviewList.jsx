@@ -16,8 +16,8 @@ const review = useSelector(state => Object.values(state.reviews))
 const currentUser  = useSelector(state => state.session.user || {})
 
 
-const total = review.reduce((acc,rev) => acc + rev.star_rating,0)
-const totalRate = total/ review.length 
+// const total = review.reduce((acc,rev) => acc + rev.star_rating,0)
+// const totalRate = total/ review.length 
 
 
 console.log('reviews in reviewlis', review)

@@ -1,4 +1,4 @@
-from flask import Blueprint,jsonify
+from flask import Blueprint,jsonify,request
 from flask_login import login_required,current_user
 from ..models import Product,Order,db,ShoppingCartItem,ShoppingCart, OrderItem
 from  datetime import date
@@ -13,7 +13,20 @@ def add_orders():
  user = current_user
  try:
 
-    order = Order(user_id=user.id,order_date=date.today(),total_price=0)
+    data = request.json
+    if not data:
+        return {"error": "No data provided"},400
+    
+    country = data.get("country")
+    full_name = data.get("fullName")
+    street_address = data.get("streetAddress")
+    apartment = data.get("apartment")
+    city = data.get("city")
+    zip_code= data.get("zipCode")
+
+
+
+    order = Order(user_id=user.id,order_date=date.today(),total_price=0,country=country,full_name=full_name,street_address=street_address,apartment=apartment,city=city,zip_code=zip_code)
     db.session.add(order)
 
 
@@ -73,6 +86,8 @@ def get_order_history():
                 "quantity": item.quantity,
                 "price": product.price,
                 "name": product.make,
+                "model": product.model,
+                "year": product.year,
                 "image": product.image
                 # Additional product details can be added here
             }
@@ -82,6 +97,12 @@ def get_order_history():
             "order_id": order.id,
             "order_date": order.order_date,
             "total_price": order.total_price,
+            "country": order.country,
+            "full_name": order.full_name,
+            "street_address": order.street_address,
+            "apartment": order.apartment,
+            "city": order.city,
+            "zip_code": order.zip_code,
             "items": items_data
         }
         history.append(order_data)
