@@ -12,6 +12,7 @@ function Navigation() {
 const dispatch = useDispatch()
 const fav = useSelector(state => Object.values(state.favorites))
 const products = useSelector(state => Object.values(state.shoppingCart))
+const user = useSelector(state => state.session.user)
 console.log('productiso in navigation var haho', products)
 
 
@@ -28,19 +29,29 @@ useEffect(() => {
         <NavLink to="/product">
         <i className="fa-solid fa-car">Carsy</i>
         </NavLink>
-        
+        <div className="my-classname">
         <div className="heart">
+            <NavLink to='/product/favorite' className='navlink'>
           <div className="heart-icon-container">
-          <FaHeart  style={{color: 'red', fontSize: '25px'}}/>
+          {user && <NavLink to='/product/new' className='new-trade'>SELL/TRADE</NavLink>}
+
+            <FaHeart  style={{color: 'red', fontSize: '25px'}}/>
            <span style={{ fontSize: '12px'}}>{fav.length}</span> 
+           
+           
            </div>    
+            </NavLink>
+         
            <div className="heart-icon-container">     
            <NavLink to='/shopping-cart'>
           <i className="fa-solid fa-cart-shopping" style={{fontSize: '30px', cursor: 'pointer'}}></i>
           </NavLink>
           <span style={{ fontSize: '12px'}}>{products.length}</span> 
+          
+
           </div>
           <ProfileButton />
+        </div>
         </div>
         <AddToShoppingCart />
     </div>

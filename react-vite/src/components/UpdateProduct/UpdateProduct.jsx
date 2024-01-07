@@ -19,7 +19,7 @@ const UpdateProduct = () => {
     const navigate = useNavigate()
     const {id} = useParams()
     
-    const product = useSelector(state => state.products[id])
+    const product = useSelector(state => state.products[id] || {})
     console.log('in  componenntss', product)
 
 

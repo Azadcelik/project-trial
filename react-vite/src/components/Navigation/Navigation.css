@@ -11,7 +11,7 @@
 
 
 .heart-icon-container {
-  display: inline-block; /* Aligns the icon and text properly */
+  display: inline-block; 
 }
 
 
@@ -25,3 +25,11 @@
   margin-top: 30px;
 }
 
+
+.new-trade { 
+ margin-right: 30px; 
+}
+.new-trade { 
+  text-decoration: none;
+  font-size: 18px;
+}

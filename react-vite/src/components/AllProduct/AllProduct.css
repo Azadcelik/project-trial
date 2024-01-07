@@ -53,13 +53,18 @@
     top: 55px;
     padding-left: 290px;
 }
-
 .fa-bars {
     position: relative;
     cursor: pointer;
-    font-size: 21px; 
-    margin-left: 90px;
+    font-size: 20px;
+    margin-left: 100px;
+   
 }
+
+.fa-bars:hover {
+    background-color: #e8e8e8; /* Slightly darker background on hover */
+}
+
 
 .hamburger-menu div {
     padding: 10px 20px;
@@ -140,3 +145,12 @@ p, .make-model-year > h3 {
     font-family: 'Courier New', Courier, monospace;
     text-transform: uppercase;
 }
+.search-cars {
+    font-size: 17px;
+    text-transform:lowercase;
+    margin-left: 10px;
+}
+
+
+
+
