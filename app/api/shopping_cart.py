@@ -67,8 +67,8 @@ def get_shopping_cart():
         "id": item.id,
         "product_id": item.product_id,
         "image": item.product.image,
-        "name": item.product.make,  # Accessing product details via the relationship
-        "price": item.product.price,  # Accessing product details via the relationship
+        "name": item.product.make,  
+        "price": item.product.price,  
         "model": item.product.model,
         "year": item.product.year,
         "quantity": item.quantity

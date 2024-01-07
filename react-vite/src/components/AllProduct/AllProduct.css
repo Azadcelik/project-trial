@@ -82,11 +82,9 @@
 }
 
 
-/* AllProduct.css */
 
-/* Styling for the Add to Cart button */
 .button-add-to-cart {
-    background-color: rgb(86, 86, 72); /* Green background */
+    background-color: rgb(86, 86, 72); 
     color: white; 
     padding: 10px 15px; 
     border: none; 
@@ -111,21 +109,30 @@
 }
 
 body {
-    background-color: #d8e8f9; /* Soft blue-gray */
+    background-color: #f5f5f5;
+
+}
+
+p, .make-model-year > h3 {
+    color: #333; 
+}
+
+
+.button-add-to-cart:hover {
+    background-color: #4CAF50; 
 }
 
 
 
-
-p {
-    color: #aaa; /* Lighter color for the entire text */
+.main-all p {
+    color: #aaa; 
     padding-left: 10px;
-    /* Other styling for the paragraph text can go here */
+   
 }
 
 .bold-text {
-    font-weight: bold; /* Makes the text bold */
-    color: #000; /* Default color for bold text */
+    font-weight: bold; 
+    color: #000;
 }
 
 .make-model-year > h3 {

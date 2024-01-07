@@ -13,12 +13,7 @@
 }
 
 
-.get-name { 
-    display: flex;
-    flex-direction: center;
-    justify-content: space-between;
 
-}
 
 .main-get-cart { 
     border: 1px solid wheat;
@@ -32,4 +27,65 @@
     margin-top: -40px;
     margin-left: 230px;
     margin-bottom: 9px;
+}
+.checkout-section {
+margin-top: 199px;
+border: 1px solid gray;
+border-radius: 9px;
+width: 11%;
+height: 60%;
+}
+
+
+
+.h33 {
+    font-size: 18px; 
+    color: #333; 
+    margin-bottom: 20px; 
+}
+
+.checkout-section button {
+    background-color: #ff9900; 
+    color: white;
+    padding: 10px 15px; 
+    border: none; 
+    border-radius: 4px; 
+    cursor: pointer; 
+    font-size: 9px;
+    margin-left: 50px;
+    margin-bottom: 10px;
+}
+
+button:hover {
+    background-color: #e68a00;
+}
+
+
+.toppest-main { 
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+
+.span-text {
+    font-weight: bold; 
+    color: #555; 
+    margin-right: 5px; 
+}
+
+ .get-cart > p {
+    color: #333; 
+    font-size: 14px; 
+    margin: 5px 0; 
+}
+
+.delete-buttonn {
+    background-color: #ff4d4d; 
+    color: white; 
+    padding: 5px 10px; 
+    border: none; 
+    border-radius: 6px; 
+    cursor: pointer; 
+    font-size: 14px; 
 }

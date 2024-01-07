@@ -102,7 +102,7 @@ const handleCarModel = (selectedCar) => {
 }
     return (
 
-        <>
+        <div className="main-all">
     
     <div>
     <i className="fa-solid fa-bars hamburger-icon" onClick={toggleHamburgerBar}></i>
@@ -148,7 +148,7 @@ const handleCarModel = (selectedCar) => {
             ))}
         </div>
 
-    </>
+    </div>
     );
 };
 

@@ -4,8 +4,12 @@ import { thunkLogout } from "../../redux/session";
 import OpenModalMenuItem from "./OpenModalMenuItem";
 import LoginFormModal from "../LoginFormModal";
 import SignupFormModal from "../SignupFormModal";
+import { clearCart } from "../../redux/shoppingCart";
+import { clearFavorite } from "../../redux/favorite";
+import { useNavigate } from "react-router-dom";
 
 function ProfileButton() {
+  const navigate = useNavigate()
   const dispatch = useDispatch();
   const [showMenu, setShowMenu] = useState(false);
   const user = useSelector((store) => store.session.user);
@@ -35,7 +39,11 @@ function ProfileButton() {
   const logout = (e) => {
     e.preventDefault();
     dispatch(thunkLogout());
+    dispatch(clearCart())
+    dispatch(clearFavorite())
+    navigate('/product')
     closeMenu();
+    
   };
 
   return (
