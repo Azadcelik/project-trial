@@ -42,7 +42,10 @@
        
 
       <div key={product.id} className="top" >
-          <img src={product.image} className="img-shop" />
+          <div className="img-wrapper">
+            <img src={product.image} alt="Product" className="img-shop" />
+        </div>
+
           <div className="car-item">
           <p>{product.year}</p>
           <p>{product.name}</p>

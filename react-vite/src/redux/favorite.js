@@ -1,6 +1,14 @@
 const ADD_TO_FAVORITE = 'favorites/ADD_TO_FAVORITE'
 const GET_FAVORITES =  'favorites/GET_FAVORITES'
 const DELETE_FAVORITES = 'favorites/DELETE_FAVORITES'
+const CLEAR_FAVORITE = 'favorites/CLEAR_FAVORITES'
+
+
+export const clearFavorite = () => { 
+    return { 
+        type: CLEAR_FAVORITE
+    }
+}
 
 const addFavorite = (product) =>  { 
     return { 
@@ -117,6 +125,10 @@ const favoriteReducer = (state = {}, action) => {
                 delete newStateDelete[action.payload]
                 return newStateDelete
             }
+
+        case CLEAR_FAVORITE: { 
+            return {}
+        }
 
         default:
             return state;

@@ -3,6 +3,8 @@ import { thunkLogin } from "../../redux/session";
 import { useDispatch } from "react-redux";
 import { useModal } from "../../context/Modal";
 import "./LoginForm.css";
+import { getCartItemsThunk } from "../../redux/shoppingCart";
+import { getFavoriteThunk } from "../../redux/favorite";
 
 function LoginFormModal() {
   const dispatch = useDispatch();
@@ -24,6 +26,8 @@ function LoginFormModal() {
     if (serverResponse) {
       setErrors(serverResponse);
     } else {
+      await dispatch(getCartItemsThunk())
+      await dispatch(getFavoriteThunk())
       closeModal();
     }
     

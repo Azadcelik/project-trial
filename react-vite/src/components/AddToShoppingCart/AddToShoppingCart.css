@@ -1,16 +1,16 @@
 .sidebar {
     width: 180px;
     position: fixed;
-    right: -250px; /* Start off screen */
+    right: -250px; 
     top: 0;
     height: 100%;
-    background-color: rgb(172, 185, 185);
+    background-color: rgb(242, 236, 236);
     overflow-x: hidden;
-    transition: right 0.9s; /* Smooth transition */
+    transition: right 0.9s; 
     
 }
 .sidebar.open {
-    right: 0; /* Bring into view */
+    right: 0; 
     display: flex;
     flex-direction: column;
     justify-content: start;
@@ -20,22 +20,23 @@
 
 .img-shop { 
     border-radius: 9px;
-    max-width: 168px;
+    max-width: 167px;
+    object-fit: cover;
     
 }
 
 
 .toggle-arrow {
     position: fixed;
-    top: 6%; /* Vertically center the arrow */
-    right: 0; /* Start at the right edge of the screen */
+    top: 6%; 
+    right: 0; 
     cursor: pointer;
   
-    transition: right 0.9s; /* Smooth transition for moving the arrow */
+    transition: right 0.9s; 
 }
 
 .sidebar.open + .toggle-arrow {
-    right: 200px; /* Move arrow to the left by the width of the sidebar */
+    right: 200px; 
 }
 
 .car-item { 
@@ -59,13 +60,24 @@ gap: 10px;
 
 } 
 .delete-but { 
-margin-left: 70px;
+    background-color: #ff4d4d; 
+    color: white; 
+    padding: 5px 10px; 
+    margin-left: 55px; 
+    border: none; 
+    border-radius: 6px; 
+    cursor: pointer; 
+    font-size: 14px; 
+}
+
+.delete-but:hover {
+    background-color: #cc0000;
 }
 
 
 .top {
-    border: 1px solid gray; /* Example border style */
-    margin: 5px; /* Optional: Adds some space around each item */
+    border: 1px solid gray; 
+    margin: 5px; 
     border-radius: 10px;
 }
 

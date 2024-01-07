@@ -9,6 +9,8 @@ const GetShoppingCart = () => {
     const navigate = useNavigate()
     const products = useSelector(state => Object.values(state.shoppingCart) || {})
 
+    console.log('products in shopping cart foir debugging',products)
+
     useEffect(() => { 
         dispatch(getCartItemsThunk())
     },[dispatch])
@@ -31,36 +33,49 @@ const GetShoppingCart = () => {
   navigate('/adress')
  }
 
-    return (
+ const handleSingleProduct = (productId) => { 
+  navigate(`/product/${productId}`)
+  // {<OneProduct productId={productId}/>}
+
+}
+
+
+return (
+
+  <div className='toppest-main'>
   
 <div className="main-get-cart">
 <h1 className="shop">Shopping Cart</h1>
   
   {products.map(product => (
      
-
+     
     <div key={product.id} className="get-cart">
+      {console.log('product id which shoulkd be 25',product.id)}
       <div className="get-image">
-        <img src={product.image} className="cart-img" />
+        <img src={product.image} className="cart-img" onClick={() => handleSingleProduct(product.product_id)}/>
       </div>
         <div>
         <div className="get-name">
-        <p>{product.year}</p>
-        <p>{product.name}</p>
-        <p>{product.model}</p>
+        <p> <span className="span-text">Year: </span>{product.year}</p>
+        <p><span className="span-text">Make: </span> {product.name}</p>
+        <p><span className="span-text">Model: </span>{product.model}</p>
         </div>
-        <p>Price:  ${product.price}</p>
-        <p>Quantit: {product.quantity}</p>
-        <button className="delete-but" onClick={(() => handleDeleteItemButton(product.id))}>Delete</button>
+        <p><span className="span-text">Price: </span> ${product.price}</p>
+        <p><span className="span-text">Quantity: </span>{product.quantity}</p>
+        <button className="delete-buttonn" onClick={(() => handleDeleteItemButton(product.id))}>Delete</button>
         </div>
       
    </div>
    
    
   ))}
+</div>
 
-   <h3 className="h33">SubTotal ${totalPrice.toFixed(2)}</h3>
-   <button onClick={handleCheckoutButton}>Proceed to Checkout</button>
+<div className="checkout-section">
+            <h3 className="h33">SubTotal: ${totalPrice.toFixed(2)}</h3>
+            <button onClick={handleCheckoutButton}>Proceed to Checkout</button>
+</div>
 </div>
     )
 } 

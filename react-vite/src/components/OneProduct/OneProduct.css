@@ -1,6 +1,6 @@
 .top-one {
-    width: 800px; /* Adjust based on your preference */
-    margin: 0 auto; /* Center the container */
+    width: 800px; 
+    margin: 0 auto; 
     text-align: center;
     padding: 100px;
     box-shadow: 0 2px 4px rgba(0,0,0,0.1);
@@ -11,9 +11,9 @@
 }
 
 .top-one img {
-    width: 600px; /* Fixed width */
-    height: 400px; /* Fixed height, adjust as needed */
-    object-fit: cover; /* This will handle aspect ratio differences */
+    width: 600px; 
+    height: 400px; 
+    object-fit: cover; 
     border-radius: 8px;
     margin-left: 70px;
 }
@@ -63,10 +63,9 @@
 
 
 
-/* Add to Cart button styling */
 .add-to-cart-button {
     position: absolute;
-    background-color: rgb(96, 96, 47); /* Green background */
+    background-color: rgb(96, 96, 47);
     color: white;
     padding: 7px 12px; 
     font-size: 18px; 
