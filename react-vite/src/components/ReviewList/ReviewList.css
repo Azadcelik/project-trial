@@ -1,11 +1,10 @@
-/* ReviewList.css */
 
 .revieww {
     background-color: #f9f9f9;
     margin-top: 49px;
     padding: 15px;
-    max-width: 600px; /* Maximum width */
-    min-width: 300px; /* Minimum width */
+    max-width: 600px; 
+    min-width: 300px;
     border-radius: 8px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     word-wrap: break-word;
@@ -18,7 +17,6 @@
 
 }
 
-/* Consistent styling for text and buttons */
 .review-namee,.review-text{
     font-size: 20px;
     color: #333;

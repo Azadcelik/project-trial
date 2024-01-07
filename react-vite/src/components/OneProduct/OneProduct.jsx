@@ -24,14 +24,15 @@ const OneProduct = () => {
 
 const reviews = useSelector(state => Object.values(state.reviews))
 
-console.log(reviews, 'alll revies data in create review')
+console.log(product, 'alll revies data in create review')
    
 
 const hasReviewed = reviews.some(review => review.user_id === user?.id && review.product_id === product?.id);
 
 const proImg = [product?.image, ...(productImage || []).map(img => img.url)];
 
- const addToCartButton = async (productId) => { 
+ const addToCartButton = async (productId,user) => { 
+    if (!user.id) alert('you need to sign in add car to your shopping-cart')
   await dispatch(addToCartThunk(productId))
   dispatch(getCartItemsThunk())
  }
@@ -106,7 +107,7 @@ const previousButton = () => {
                </> 
                 )}
                { user && user.id != product.user_id && (
-               <button className="add-to-cart-button" onClick={(() => addToCartButton(product.id))}>
+               <button className="add-to-cart-button" onClick={(() => addToCartButton(product.id,user))}>
                     <i className="fa-solid fa-cart-plus"></i> {/* Example icon, replace with your desired icon */}
                     Add to Cart
                 </button>

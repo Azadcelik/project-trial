@@ -44,9 +44,11 @@ const Address = () => {
 
     const handleSubmit = async (event) => {
         event.preventDefault();
-        setHasSubmitted(true)
 
-        if (Object.values(validationErrors).length > 0) return
+        if (Object.values(validationErrors).length > 0) {
+            setHasSubmitted(true)
+            return
+        }
 
 
         const data = {
