@@ -73,62 +73,45 @@ const previousButton = () => {
 
    }
 
-    return product && (
+ return product && (
+    <div className="product-containers">
 
-        <div className="top-top">
-        <div>
+      <div className="image-carousel">
+        <i className="fa-solid fa-arrow-left arrow" onClick={previousButton}></i>
+        <img src={proImg[track]} alt="Product" />
+        <i className="fa-solid fa-arrow-right arrow" onClick={nextButton}></i>
+      </div>
 
-<div className="top-one">
+      <div className="product-detailss">
+        <p> <span className="span-text">Year: </span>{product.year}</p>
+        <p><span className="span-text">Make: </span> {product.make}</p>
+        <p><span className="span-text">Model: </span>{product.model}</p>
+        <p><span className="span-text">{product.type} &nbsp; &#183; &nbsp;</span> {product.mileage} miles</p>
+        <h3>Price: ${product.price}</h3>
+      </div>
 
-    <div className="flexo">
+      <div className="product-actions">
+        {user && product.user_id === user.id && (
+          <>
+            <button onClick={handleUpdateButton} className="button update">Update</button>
+            <button onClick={handleDeleteButton} className="button delete">Delete</button>
+          </>
+        )}
+        {user && user.id !== product.user_id && (
+          <button onClick={() => addToCartButton(product.id, user)} className="button add-to-cart">
+            <i className="fa-solid fa-cart-plus"></i> Add to Cart
+          </button>
+        )}
+        {user.id && !hasReviewed && user.id !== product.user_id && (
+          <button onClick={handlePostReviewButton} className="button post-review">Post Your Review</button>
+        )}
+      </div>
 
-     <div>
-                <i className="fa-solid fa-arrow-left" onClick={previousButton}></i>
-               <img src={proImg[track]} alt="Product" />
-               <i className="fa-solid fa-arrow-right" onClick={nextButton}></i>
-    </div> 
-
-    <div className="toyotaa">
-            <div className="make-model-years">
-                <h3>{product.year}</h3>
-                <h3>{product.make}</h3>
-                <h3>{product.model}</h3>
-            </div>
-
-            <div className="type">
-                <span>{product.type} &nbsp; &#183; &nbsp; {product.mileage} miles</span>
-                <span></span>
-            </div>
-            <h2 className="price">$ {product.price}</h2>
-            { user && product.user_id == user.id && (
-                <>
-              <button onClick={handleUpdateButton} className="buttono">Update</button>
-              <button onClick={handleDeleteButton} className="buttono">Delete</button>
-               </> 
-                )}
-               { user && user.id != product.user_id && (
-               <button className="add-to-cart-button" onClick={(() => addToCartButton(product.id,user))}>
-                    <i className="fa-solid fa-cart-plus"></i> {/* Example icon, replace with your desired icon */}
-                    Add to Cart
-                </button>
-                )}
+      <div className="review-section">
+        <ReviewList productId={product.id} />
+      </div>
     </div>
-    </div>
-                {  user.id && !hasReviewed &&  user.id != product.user_id && (
-            
-              <button onClick={handlePostReviewButton} className="review-post">Post Your Review</button>
-
-                )}
-           
-</div>
-            <div>
-            <ReviewList productId={product.id} />
-           </div>
- 
-</div>
-
-</div>
-    )
+  );
 }
 
 
