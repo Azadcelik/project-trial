@@ -236,9 +236,20 @@ def seed_product():
         type = "Hybrid",
         created_at = date.today()
     )
+    product_21 = Product(
+    user_id = 2,
+    image = "https://cars-projects.s3.us-east-2.amazonaws.com/toyota-347288_640.jpg",
+    make = "Toyota",
+    mileage = 85000,
+    model = "Camry",
+    year = "2015",
+    price = 15000,
+    type = "Gasoline",
+    created_at = date.today()
+)
 
     db.session.add_all([product_1,product_2,product_3,product_4,product_5,product_6,product_7,product_8,product_9,
-                        product_10,product_11,product_12,product_13,product_14,product_15,product_16,product_17,product_18,product_19,product_20])
+                        product_10,product_11,product_12,product_13,product_14,product_15,product_16,product_17,product_18,product_19,product_20,product_21])
     db.session.commit()
 
     user = User.query.all()
