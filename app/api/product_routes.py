@@ -35,7 +35,7 @@ def get_product(id):
 def create_product():
    """Create a new product """
 
-   product = Product.query.all()
+#    product = Product.query.all()
 
    form = ProductForm()
 
