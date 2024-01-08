@@ -1,109 +1,56 @@
-.top-one {
-    width: 800px; 
-    margin: 0 auto; 
-    text-align: center;
-    padding: 100px;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-    background-color: #fff;
+
+.product-containers {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 50px;
+  }
+  
+.image-carousel img  {
+
+    width: 800px;
+    height: 600px;
+    object-fit: cover;
     border-radius: 8px;
-    
-    
 }
+  
 
-.top-one img {
-    width: 600px; 
-    height: 400px; 
-    object-fit: cover; 
-    border-radius: 8px;
-    margin-left: 70px;
+  
+  .fa-arrow-left {
+    position: absolute;
+    top: 40%;
+    margin-left: -40px;
+    font-size: 1.6em;
+    cursor: pointer;
 }
+  
+  .fa-arrow-right {
+    position: absolute;
+    top: 40%;
+    margin-left: 20px;
+    font-size: 1.6em;
+    cursor: pointer;
+  }
+  
 
-
-
-.buttono {
-    background-color: #007BFF;
-    color: white;
+  
+  .button {
+    padding: 10px 40px;
+    margin: 10px 5px;
     border: none;
-    padding: 10px 20px;
     border-radius: 5px;
     cursor: pointer;
-    margin-right: 10px;
-}
-
-.fa-arrow-right { 
-    position: absolute;
-     margin-top: 190px;
-     margin-left: 30px;
-     font-size: 30px;
-     cursor: pointer;
-}
-
-.fa-arrow-left { 
-    position: absolute;
-    margin-top: 190px;
-    font-size: 30px;
-    cursor: pointer;
-
-}
-
-
-.make-model-years { 
-    display: flex;
-    gap: 10px;
-    margin-left: 30px;
-
-}
-
-
-.top-top { 
-    display: flex;
-    padding-left: 190px;
-    padding-top: 40px;
-}
-
-
-
-.add-to-cart-button {
-    position: absolute;
-    background-color: rgb(96, 96, 47);
+    transition: background-color 0.3s;
     color: white;
-    padding: 7px 12px; 
-    font-size: 18px; 
-    border: none; 
-    border-radius: 5px; 
-    cursor: pointer; 
-    margin-left: -70px;
-    margin-top: 0px;
-}
+  }
+  
+  .update { background-color: #007bff; }
+  .delete { background-color: #dc3545; }
+  .add-to-cart { background-color: brown; }
+  .post-review { background-color: #ffc107; color: black; }
+  
+  .review-section {
+    margin-top: 20px;
 
-.add-to-cart-button:hover {
-    background-color: rgb(153, 61, 61); 
-}
-
-.add-to-cart-button i {
-    margin-right: 10px; 
-}
-
-.flexo {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    text-align: center;
-}
-
-.toyotaa { 
-    padding-left: 39px;
-    padding-top: 90px;
-}
-
-.review-post {
-    position: absolute;
-    margin-top: 110px;
-    margin-left: -490px;
-    background-color: rgb(147, 144, 144);
-    padding: 7px 12px; 
-    font-size: 12px; 
-    border: none; 
-    border-radius: 5px; 
-
-}
+  }
+  

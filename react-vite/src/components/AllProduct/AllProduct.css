@@ -38,6 +38,7 @@
 
 .type, .price { 
     padding-left: 20px;
+     font-family: Arial, Helvetica, sans-serif;
 }
 
 .product-image {
@@ -138,11 +139,12 @@ p, .make-model-year > h3 {
 .bold-text {
     font-weight: bold; 
     color: #000;
+    font-family: Arial, Helvetica, sans-serif;
 }
 
 .make-model-year > h3 {
     font-size: medium;
-    font-family: 'Courier New', Courier, monospace;
+    font-family: Arial, Helvetica, sans-serif;
     text-transform: uppercase;
 }
 .search-cars {
