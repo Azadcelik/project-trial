@@ -1,6 +1,19 @@
 from .db import db,add_prefix_for_prod,environment,SCHEMA
 from .favourites import favorite
 
+
+def format_number(number):
+        num_str = str(number)
+        if len(num_str) <= 3:
+            return num_str
+        else:
+            parts = []
+            while num_str:
+                parts.append(num_str[-3:])
+                num_str = num_str[:-3]
+            return '.'.join(reversed(parts))
+
+
 class Product(db.Model):
     __tablename__ = 'products'
 
@@ -25,8 +38,13 @@ class Product(db.Model):
     product_images = db.relationship('ProductImage', back_populates = "product", cascade ='all,delete-orphan')
     order_items = db.relationship('OrderItem',back_populates="product", cascade='all,delete-orphan')
 
+
+    
+
     def to_dict(self,Printer=False): 
         
+       formatted_mileage = format_number(self.mileage)
+
        return_dict = { 
         "id": self.id,
         "user_id": self.user_id,
@@ -36,7 +54,7 @@ class Product(db.Model):
         "year": self.year,
         "price": self.price,
         "type": self.type,
-        "mileage": self.mileage,
+        "mileage": formatted_mileage,
         "created_at": self.created_at
        }
        if Printer:
