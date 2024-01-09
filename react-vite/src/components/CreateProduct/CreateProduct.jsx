@@ -9,7 +9,8 @@ import { addProductImagesThunk } from "../../redux/productImage"
 export const makeModelMap = { 
     'Toyota': ['Camry','Prius','Corolla'],
     'Honda': ['Civic','Accord','CR-V'],
-    'Ford': ['Mustang','F-150','Explorer']
+    'Ford': ['Mustang','F-150','Explorer'],
+    'Mercedes': ['EQS','E-Class','C350e']
 }
 
 

@@ -36,6 +36,10 @@
     border: none;
     border-radius: 4px;
     cursor: pointer;
+    margin-top: 20px;
+  }
+  .main-login button:hover {
+    background-color: blue;
   }
   
   /* Error message styling */
