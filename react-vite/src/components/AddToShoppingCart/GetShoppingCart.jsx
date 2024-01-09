@@ -30,6 +30,7 @@ const GetShoppingCart = () => {
 
 
  const handleCheckoutButton = async () => { 
+
   navigate('/adress')
  }
 
@@ -72,10 +73,13 @@ return (
   ))}
 </div>
 
+           {products.length > 0 && (
 <div className="checkout-section">
+
             <h3 className="h33">SubTotal: ${totalPrice.toFixed(2)}</h3>
             <button onClick={handleCheckoutButton}>Proceed to Checkout</button>
 </div>
+           )}
 </div>
     )
 } 
