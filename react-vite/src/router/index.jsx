@@ -10,6 +10,7 @@ import GetFavorite from '../components/GetFavorite';
 import GetShoppingCart from '../components/AddToShoppingCart/GetShoppingCart';
 import Order from '../components/Order';
 import Address from '../components/Adress';
+import MyProduct from '../components/MyProducts';
 
 export const router = createBrowserRouter([
   {
@@ -59,6 +60,10 @@ export const router = createBrowserRouter([
       {
         path: "/adress",
         element : <Address />
+      },
+      {
+        path: "/my-products",
+        element: <MyProduct />
       }
     ],
   },

@@ -1,9 +1,11 @@
 
 .product-containers {
-    display: flex;
-    flex-direction: column;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
     align-items: center;
     margin-top: 50px;
+    padding-left: 190px;
+    gap: 90px;
   }
   
 .image-carousel img  {
@@ -49,8 +51,33 @@
   .add-to-cart { background-color: brown; }
   .post-review { background-color: #ffc107; color: black; }
   
-  .review-section {
-    margin-top: 20px;
 
-  }
-  
+  .update:hover {
+  background-color: #0066cc; /* Darker shade of #007bff */
+}
+
+.delete:hover {
+  background-color: #c82333; /* Darker shade of #dc3545 */
+}
+
+.add-to-cart:hover {
+  background-color: #993300; /* Darker shade of brown */
+}
+
+.post-review:hover {
+  background-color: #e6ac00; /* Darker shade of #ffc107 */
+}
+
+
+.review-section { 
+  margin-left: 185px;
+}
+
+.fa-solid.fa-star {
+  color: gray;
+}
+
+.fa-solid.fa-star.filled {
+  color: gold; 
+}
+

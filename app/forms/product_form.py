@@ -12,5 +12,5 @@ class ProductForm(FlaskForm):
     year = IntegerField('Year',validators=[DataRequired()])
     price = FloatField('Price',validators=[DataRequired()])
     type = StringField('Type', validators=[DataRequired()])
-    image = FileField('Image File', validators=[FileRequired(),FileAllowed(list(ALLOWED_EXTENSIONS))])
+    image = FileField('Image File', validators=[FileAllowed(list(ALLOWED_EXTENSIONS))])
     submit = SubmitField('Submit')

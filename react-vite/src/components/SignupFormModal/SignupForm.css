@@ -54,6 +54,8 @@
 
   .error-password {
     position: absolute;
+    bottom: 42px;
+    color: red;
         
   }
 
