@@ -42,6 +42,7 @@
     object-fit: cover;
     border-radius: 6px;
     margin-bottom: 8px;
+    cursor: pointer;
 }
 
 .item h3 {

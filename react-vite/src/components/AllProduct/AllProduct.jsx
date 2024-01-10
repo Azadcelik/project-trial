@@ -23,7 +23,7 @@ const [model,setModel] = useState('')
 
 
 //  console.log('product in shoppingcart ', product)
-// console.log('products in compionent ', products)
+console.log('usersssssssss in compionent ', user)
 
 useEffect(() => { 
     if (location.pathname === '/product') setModel('') 
@@ -122,10 +122,13 @@ const handleCarModel = (selectedCar) => {
                 <div key={product.id} className="product-container">
                     <div className="image-container">
                         <img className="product-image" src={product.image} alt="" onClick={() => handleSingleProduct(product.id)} />
-                        {likedProducts[product.id] ?
-                            <FaHeart className="heart-icon" onClick={() => toggleFavorite(product.id)} /> :
-                            <FaRegHeart className="heart-icon" onClick={() => toggleFavorite(product.id)} />
-                        }
+                        {user.id && (
+                            
+                            likedProducts[product.id] ?
+                                <FaHeart className="heart-icon" onClick={() => toggleFavorite(product.id)} /> :
+                                <FaRegHeart className="heart-icon" onClick={() => toggleFavorite(product.id)} />
+                            
+                        )}
                     </div>
                     <div className="make-model-year">
                         <h3>{product.year}</h3>
@@ -138,7 +141,7 @@ const handleCarModel = (selectedCar) => {
                     <h2 className="price"> ${product.price}</h2>
                     
                     <div>
-                        { user.id != product.user_id && (
+                        { user.id != product.user_id && user.id && (
                             <button onClick={() => addToCartButton(product.id)} className="button-add-to-cart">Add to Cart</button>
                         )
                         }

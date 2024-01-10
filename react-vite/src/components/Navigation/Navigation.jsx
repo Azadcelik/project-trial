@@ -31,11 +31,12 @@ useEffect(() => {
         </NavLink>
         <div className="my-classname">
         <div className="heart">
-         {user &&  <NavLink to='/my-products' className='my-cars'>MY CARS</NavLink>}
+          {user && <NavLink to='/orders' className='my-orders'>My Orders</NavLink>}
+         {user &&  <NavLink to='/my-products' className='my-cars'>My Cars</NavLink>}
             <NavLink to='/product/favorite' className='navlink'>
           <div className="heart-icon-container">
 
-          {user && <NavLink to='/product/new' className='new-trade'>SELL/TRADE</NavLink>}
+          {user && <NavLink to='/product/new' className='new-trade'>Sell/Trade</NavLink>}
 
             <FaHeart  style={{color: 'red', fontSize: '25px'}}/>
            <span style={{ fontSize: '12px'}}>{fav.length}</span> 

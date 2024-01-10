@@ -47,6 +47,8 @@ function LoginFormModal() {
       if (serverResponse) { 
         setErrors(serverResponse)
       }else {
+        await dispatch(getCartItemsThunk())
+        await dispatch(getFavoriteThunk())
         navigate('/product')
         closeModal()
       }

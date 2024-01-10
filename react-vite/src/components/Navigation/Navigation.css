@@ -56,6 +56,7 @@
   position: absolute;
   font-size: 20px; /* Larger car icon */
   padding-left: 180px;
+
 }
 
 .all { 
@@ -79,6 +80,13 @@
 
 }
 
+.my-orders { 
+  padding-right: 20px;
+  font-size: 18px;
+  padding-top: 10px;
+  text-decoration: none;
+}
+
 .profile-buttton {
   border-radius: 40px;
   padding: 5px 8px;
@@ -90,3 +98,4 @@
   background-color: rgb(206, 185, 206);
 
 }
+
