@@ -19,6 +19,7 @@
 }
 
 .favorite-car-card:hover {
+    cursor: pointer;
     transform: translateY(-10px); 
     box-shadow: 0 4px 10px gray;
 }

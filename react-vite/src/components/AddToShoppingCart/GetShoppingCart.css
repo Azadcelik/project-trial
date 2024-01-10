@@ -10,6 +10,8 @@
 .cart-img { 
     max-width: 390px;
     border-radius: 30px;
+    cursor: pointer;
+
 }
 
 
