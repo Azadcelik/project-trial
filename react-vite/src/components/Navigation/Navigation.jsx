@@ -31,8 +31,10 @@ useEffect(() => {
         </NavLink>
         <div className="my-classname">
         <div className="heart">
+         {user &&  <NavLink to='/my-products' className='my-cars'>MY CARS</NavLink>}
             <NavLink to='/product/favorite' className='navlink'>
           <div className="heart-icon-container">
+
           {user && <NavLink to='/product/new' className='new-trade'>SELL/TRADE</NavLink>}
 
             <FaHeart  style={{color: 'red', fontSize: '25px'}}/>
@@ -40,6 +42,7 @@ useEffect(() => {
            
            
            </div>    
+           
             </NavLink>
          
            <div className="heart-icon-container">     

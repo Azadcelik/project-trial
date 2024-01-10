@@ -73,7 +73,38 @@ const previousButton = () => {
 
    }
 
+
+  const filteredReview = reviews.filter(review => review.product_id == product.id)
+  console.log(filteredReview,'filterswssss')
+  const totalReview = filteredReview.reduce((acc,rev) => acc+rev.star_rating,0)
+  const totalRate = totalReview / reviews.length
+  console.log(totalRate)
+
+  
+  useEffect(() => {
+  
+    updateStarRating(totalRate)
+  },[totalRate])
+
+  const updateStarRating = (rating) => { 
+    const allStars = document.querySelectorAll('.fa-solid.fa-star')
+    console.log('ratinfg in function,',allStars)
+    allStars.forEach((star,index) => { 
+        if (index < rating) { 
+          star.classList.add('filled')
+        }
+        else {
+          star.classList.remove('filled')
+        }
+      
+    })
+  }
+
+updateStarRating(totalRate)
+
  return product && (
+
+  <>
     <div className="product-containers">
 
       <div className="image-carousel">
@@ -107,10 +138,20 @@ const previousButton = () => {
         )}
       </div>
 
-      <div className="review-section">
-        <ReviewList productId={product.id} />
-      </div>
     </div>
+      <div>
+      {totalRate? totalRate.toFixed(2) : ""}
+      <i className="fa-solid fa-star"></i>
+      <i className="fa-solid fa-star"></i>
+      <i className="fa-solid fa-star"></i>
+      <i className="fa-solid fa-star"></i>
+      <i className="fa-solid fa-star"></i>
+      </div>
+      <div className="review-section">
+    <ReviewList productId={product.id} />
+    </div>
+
+    </>
   );
 }
 

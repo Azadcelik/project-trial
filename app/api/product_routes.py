@@ -94,7 +94,7 @@ def update_product(id):
         print('-----------------------------------------------',product)
         old_url = product.image
         image = form.data["image"]
-        if not isinstance(image, str):
+        if image and hasattr(image, 'filename'): 
             image.filename = get_unique_filename(image.filename)
             upload = upload_file_to_s3(image)
             print(upload)
@@ -109,6 +109,8 @@ def update_product(id):
             remove_file_from_s3(old_url)
             product.image = upload["url"]
 
+        else:
+            print("No new image provided. Keeping the old image.")
           
         product.make = form.data['make']
         product.mileage = form.data['mileage']
@@ -269,3 +271,5 @@ def delete_review(id):
     db.session.commit()
 
     return {"message": "Review successfully deleted"}
+
+

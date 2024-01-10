@@ -88,3 +88,15 @@ gap: 10px;
 .h33 { 
     padding-left: 40px;
 }
+
+.toggle-arrow {
+    font-size: 20px;
+    color: #93a1b0; 
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.toggle-arrow:hover {
+    color: #758da7;
+    cursor: pointer;
+}

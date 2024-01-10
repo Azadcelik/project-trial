@@ -14,7 +14,7 @@ const UpdateProduct = () => {
 
 
 
-
+    const [imageChange,setImageChange] = useState(false)
     const dispatch = useDispatch()
     const navigate = useNavigate()
     const {id} = useParams()
@@ -47,24 +47,27 @@ const UpdateProduct = () => {
     const handleBothImage = (event,setImage,setImagePreview) => { 
         const file = event.target.files[0]
         setImage(file)
+        setImageChange(true)
 
         const previewImage = URL.createObjectURL(file)
         setImagePreview(previewImage)
     }
 
  
-    useEffect(() => {
-
-        if (make) { 
-            setAvailableModel(makeModelMap[make])
+  useEffect(() => {
+    if (make) { 
+        setAvailableModel(makeModelMap[make]);
+        // Only reset the model if it's not in the available models for the selected make
+        if (!makeModelMap[make].includes(model)) {
+            setModel('');
         }
-        else { 
-            setAvailableModel([])
-        }
-        setModel('')
+    } else { 
+        setAvailableModel([]);
+        setModel('');
+    }
+}, [make, model]);
 
-    },[make])
-
+    
 
 
  
@@ -90,7 +93,9 @@ const UpdateProduct = () => {
             return;
         }
         const formData = new FormData()
-        formData.append("image",image)
+        if (imageChange) { 
+            formData.append("image",image)
+        }
         formData.append("mileage",mileage)
         formData.append("make",make)
         formData.append("model",model)

@@ -29,6 +29,8 @@ function SignupFormModal() {
       });
     }
 
+    if (password.length < 8) return setErrors({ password: "Password must be minimum 8 characters"})
+ 
     if (username.length < 3) return setErrors({ username: "Username must be minimum 3 characters"})
 
     if (!validateEmail(email)) {

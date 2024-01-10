@@ -17,7 +17,7 @@ const [likedProducts, setLikedProducts] = useState({})
 const products = useSelector(state => Object.values(state.products))
 const favoriteProducts = useSelector(state => Object.values(state.favorites)) // Get favorite products from Redux store
 // const product = useSelector(state => state.shoppingCart || {})
-// const user = useSelector(state => state.session.user)
+const user = useSelector(state => state.session.user || {})
 const [display,setDisplay] = useState(false)
 const [model,setModel] = useState('')
 
@@ -138,7 +138,10 @@ const handleCarModel = (selectedCar) => {
                     <h2 className="price"> ${product.price}</h2>
                     
                     <div>
-                        <button onClick={() => addToCartButton(product.id)} className="button-add-to-cart">Add to Cart</button>
+                        { user.id != product.user_id && (
+                            <button onClick={() => addToCartButton(product.id)} className="button-add-to-cart">Add to Cart</button>
+                        )
+                        }
                         <p><span className="bold-text">free Shipping</span> &middot; get it by Monday</p>
 
 

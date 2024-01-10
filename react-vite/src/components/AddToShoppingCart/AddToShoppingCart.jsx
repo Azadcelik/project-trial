@@ -61,7 +61,7 @@
   
     </div>
     <span className="toggle-arrow" onClick={sideBarButton}>
-                  {display ? '<' : '>'}
+                  {display ? 'Cart' : 'Cart'}
     </span>
   </div>
       )
