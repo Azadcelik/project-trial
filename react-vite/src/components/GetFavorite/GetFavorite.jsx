@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux"
 import { getFavoriteThunk } from "../../redux/favorite"
 import './GetFavorite.css'
 import { useNavigate } from "react-router-dom"
+import { addToCartThunk, getCartItemsThunk } from "../../redux/shoppingCart"
 
 
 
@@ -16,6 +17,13 @@ const user = useSelector(state => state.session.user)
 const favs = useSelector(state => Object.values(state.favorites))
 console.log(user,favs)
 
+
+const addToCartButton = async (productId) => {
+    //do not forget to add await otherwise it is buggy
+    await dispatch(addToCartThunk(productId));
+    dispatch(getCartItemsThunk());
+
+};
 
     useEffect(() => { 
         dispatch(getFavoriteThunk())
@@ -44,7 +52,12 @@ return (
                     <span>{product.type} &nbsp; &#183; &nbsp; {product.mileage} miles </span>
                 </div>
                 <h2 className="price">$ {product.price}</h2>
+                { user.id != product.user_id && user.id && (
+                            <button onClick={() => addToCartButton(product.id)} className="button-add-to-cart">Add to Cart</button>
+                        )
+                        }
             </div>
+            
         ))}
     </div>
 </>

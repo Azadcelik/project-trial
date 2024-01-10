@@ -78,13 +78,13 @@ const previousButton = () => {
   console.log(filteredReview,'filterswssss')
   const totalReview = filteredReview.reduce((acc,rev) => acc+rev.star_rating,0)
   const totalRate = totalReview / reviews.length
+  const avgRate = Math.round(totalRate)
   console.log(totalRate)
 
   
   useEffect(() => {
-  
-    updateStarRating(totalRate)
-  },[totalRate])
+    updateStarRating(avgRate)
+  },[avgRate])
 
   const updateStarRating = (rating) => { 
     const allStars = document.querySelectorAll('.fa-solid.fa-star')
@@ -100,7 +100,7 @@ const previousButton = () => {
     })
   }
 
-updateStarRating(totalRate)
+updateStarRating(avgRate)
 
  return product && (
 
@@ -139,8 +139,10 @@ updateStarRating(totalRate)
       </div>
 
     </div>
-      <div>
-      {totalRate? totalRate.toFixed(2) : ""}
+      <div className="star-rates">
+        <span>
+      {avgRate ? avgRate.toFixed(2) : ""}
+        </span>
       <i className="fa-solid fa-star"></i>
       <i className="fa-solid fa-star"></i>
       <i className="fa-solid fa-star"></i>
