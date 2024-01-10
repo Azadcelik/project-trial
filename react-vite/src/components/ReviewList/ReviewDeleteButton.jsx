@@ -1,7 +1,7 @@
 import { useDispatch } from "react-redux"
 import { deleteReviewThunk } from "../../redux/review"
 import { useModal } from "../../context/Modal"
-
+import './ReviewList.css'
 
 
 
@@ -21,16 +21,12 @@ const noButton = () => {
 }
 
 return (
-
-<>
-    <h1>Are you sure you want to delete your review?</h1>
-    <button onClick={yesButton}>Yes</button>
-    <button onClick={noButton}>No</button>
-
-
-</>
-)
-
+    <div className="review-delete-modal">
+        <h1>Are you sure you want to delete your review?</h1>
+        <button className="yes-button" onClick={yesButton}>Yes</button>
+        <button className="no-button" onClick={noButton}>No</button>
+    </div>
+);
 }
 
 

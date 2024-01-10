@@ -40,3 +40,52 @@
 .revieww button:hover {
     background-color: #c82333;
 }
+
+
+
+
+
+.review-delete-modal {
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    max-width: 300px;
+    margin: auto;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+}
+
+.review-delete-modal h1 {
+    color: #333;
+    font-size: 18px;
+    margin-bottom: 20px;
+}
+
+.review-delete-modal button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    margin: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.review-delete-modal button:hover {
+    background-color: #ddd;
+}
+
+.review-delete-modal .yes-button {
+    background-color: #ff4d4d;
+    color: white;
+}
+
+.review-delete-modal .yes-button:hover {
+    background-color: #ff3333;
+}
+
+.review-delete-modal .no-button {
+    background-color: #ccc;
+}
