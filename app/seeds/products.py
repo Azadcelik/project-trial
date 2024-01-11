@@ -245,17 +245,7 @@ def seed_product():
                         product_10,product_11,product_12,product_13,product_14,product_15,product_16,product_17,product_18,product_19,product_20])
     db.session.commit()
 
-    user = User.query.all()
 
-    db.session.add(user[0])
-    db.session.add(user[1])
-    db.session.commit()
-
-    user[0].fav_products.append(product_1)
-    user[1].fav_products.append(product_2)
-    user[1].fav_products.append(product_3)
-
-    db.session.commit()
 
 def undo_product():
     if environment == "production":

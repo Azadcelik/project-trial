@@ -11,6 +11,7 @@ import GetShoppingCart from '../components/AddToShoppingCart/GetShoppingCart';
 import Order from '../components/Order';
 import Address from '../components/Adress';
 import MyProduct from '../components/MyProducts';
+import LandingPage from '../components/LandingPage';
 
 export const router = createBrowserRouter([
   {
@@ -18,7 +19,7 @@ export const router = createBrowserRouter([
     children: [
       {
         path: "/",
-        element: <h1>Welcome!</h1>,
+        element: <LandingPage />,
       },
       {
         path: "login",

@@ -9,6 +9,7 @@
       const [display,setDisplay] = useState(false)
 
       const products = useSelector(state => Object.values(state.shoppingCart) || {})
+      const user = useSelector(state => state.session.user || {})
 
       useEffect(() => { 
           dispatch(getCartItemsThunk())
@@ -31,7 +32,7 @@
 
 
 
-      return (
+      return user.id && (
 
   <div >
     <div className={display? 'sidebar open' : 'sidebar'}>  

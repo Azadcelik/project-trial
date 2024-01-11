@@ -99,3 +99,30 @@
 
 }
 
+footer {
+  text-align: center;
+  padding: 10px 0;
+  margin-top: 20px; /* Adds some space above the footer */
+  background-color: #f8f8f8; /* Example background color */
+  border-top: 1px solid #e0e0e0; /* A top border as per your description */
+  width: 100%;
+}
+
+footer p {
+  margin: 0; /* Removes default margin */
+}
+
+html, body {
+  height: 100%; /* Make sure the html and body are full height */
+  margin: 0; /* Reset default margin */
+}
+
+.page-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh; /* Full viewport height */
+}
+
+.content-wrapper {
+  flex-grow: 1; /* Allow this container to grow and fill available space */
+}
