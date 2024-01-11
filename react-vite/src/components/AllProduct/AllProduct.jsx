@@ -136,7 +136,7 @@ const handleCarModel = (selectedCar) => {
                         <h3>{product.model}</h3>
                     </div>
                     <div className="type">
-                        <span>{product.type} &nbsp; &#183; &nbsp; {product.mileage} miles </span>
+                        <span>{product.type} &#183; &nbsp; {product.mileage} miles </span>
                     </div>
                     <h2 className="price"> ${product.price}</h2>
                     

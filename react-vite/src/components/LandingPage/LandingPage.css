@@ -1,0 +1,59 @@
+
+.welcome-message {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    width: 190px;
+    white-space: nowrap;
+    margin-left: 790px;
+    margin-top: 190px;
+    
+}
+
+.welcome-message h1 {
+    font-size: 3.5rem;
+    color: #333;
+    margin-left: -90px;
+}
+
+.mainpage-button, .auth-button {
+    background-color: #007bff;
+    color: white;
+    padding: 10px 20px;
+    margin: 10px 5px; 
+    border: none;
+    border-radius: 5px;
+    text-decoration: none;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.mainpage-button:hover, .auth-button:hover {
+    background-color: #0056b3;
+}
+
+
+.mainpage-button {
+    display: inline-block;
+}
+
+.auth-button {
+    font-size: 1rem; 
+}
+
+
+.welcome-message p {
+    font-size: 1em; 
+    color: #333; 
+    margin-top: 20px; 
+    text-align: center;
+}
+
+.welcome-message p a {
+    color: #007bff; 
+    text-decoration: none; 
+}
+
+.welcome-message p a:hover {
+    text-decoration: underline; 
+}
