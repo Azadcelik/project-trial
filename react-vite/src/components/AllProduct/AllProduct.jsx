@@ -23,19 +23,22 @@ const [model,setModel] = useState('')
 
 
 //  console.log('product in shoppingcart ', product)
-console.log('usersssssssss in compionent ', user)
+// console.log('products in compionent ', products)
 
 useEffect(() => { 
     if (location.pathname === '/product') setModel('') 
 },[location])
 
 
-useEffect(() => { 
-    console.log("Dispatching getProductThunk and getFavoriteThunk");
-    dispatch(getProductThunk())
-    dispatch(getFavoriteThunk()) // Dispatch action to fetch favorite products
-  
-},[dispatch])
+const userId = user && user.id;
+
+useEffect(() => {
+    dispatch(getProductThunk());
+    if (userId) {
+        dispatch(getFavoriteThunk());
+    }
+}, [dispatch, userId]); // Use 'userId' as a dependency
+
 
 
 useEffect(() => {
@@ -122,13 +125,10 @@ const handleCarModel = (selectedCar) => {
                 <div key={product.id} className="product-container">
                     <div className="image-container">
                         <img className="product-image" src={product.image} alt="" onClick={() => handleSingleProduct(product.id)} />
-                        {user.id && (
-                            
-                            likedProducts[product.id] ?
-                                <FaHeart className="heart-icon" onClick={() => toggleFavorite(product.id)} /> :
-                                <FaRegHeart className="heart-icon" onClick={() => toggleFavorite(product.id)} />
-                            
-                        )}
+                        {likedProducts[product.id] ?
+                            <FaHeart className="heart-icon" onClick={() => toggleFavorite(product.id)} /> :
+                            <FaRegHeart className="heart-icon" onClick={() => toggleFavorite(product.id)} />
+                        }
                     </div>
                     <div className="make-model-year">
                         <h3>{product.year}</h3>
@@ -141,10 +141,7 @@ const handleCarModel = (selectedCar) => {
                     <h2 className="price"> ${product.price}</h2>
                     
                     <div>
-                        { user.id != product.user_id && user.id && (
-                            <button onClick={() => addToCartButton(product.id)} className="button-add-to-cart">Add to Cart</button>
-                        )
-                        }
+                        <button onClick={() => addToCartButton(product.id)} className="button-add-to-cart">Add to Cart</button>
                         <p><span className="bold-text">free Shipping</span> &middot; get it by Monday</p>
 
 
