@@ -3,10 +3,12 @@
   import { deleteItemThunk, getCartItemsThunk } from "../../redux/shoppingCart"
   import { useState } from "react"
   import './AddToShoppingCart.css'
+import { useNavigate } from "react-router-dom"
 
   const AddToShoppingCart = () => { 
       const dispatch = useDispatch()
       const [display,setDisplay] = useState(false)
+      const navigate = useNavigate()
 
       const products = useSelector(state => Object.values(state.shoppingCart) || {})
       const user = useSelector(state => state.session.user || {})
@@ -31,14 +33,20 @@
    },0)
 
 
+   const handleCheckoutButton = async () => { 
+
+    navigate('/adress')
+   }
 
       return user.id && (
 
   <div >
     <div className={display? 'sidebar open' : 'sidebar'}>  
 
-     <h3 className="h33">SubTotal ${totalPrice.toFixed(2)}</h3>
-    
+<div className="proceed-checkout">
+<h3 className="h33">SubTotal: ${totalPrice.toFixed(2)}</h3>
+<button onClick={handleCheckoutButton} className="proced-button">Proceed to Checkout</button>
+</div>
     {products.map(product => (
        
 
