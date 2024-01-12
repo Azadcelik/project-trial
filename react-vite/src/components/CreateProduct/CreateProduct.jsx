@@ -209,7 +209,7 @@ const CreateProduct = () => {
    
   
         <label>
-            Image
+            Image*
             {hasSubmitted && validationErrors.image && (
         <span className="error">{validationErrors.image}</span>
     )}
@@ -221,7 +221,7 @@ const CreateProduct = () => {
         
         </label>
             <label>
-                Image1
+                Image1*
                 {hasSubmitted && validationErrors.image1 && (
             <span className="error">{validationErrors.image1}</span>)}
                 <input type="file" accept="image/*" onChange={(e) => handleBothImage(e,setImage1,setImagePreview1)} />
@@ -230,7 +230,7 @@ const CreateProduct = () => {
             </label>
 
             <label>
-                Image2
+                Image2*
             {hasSubmitted && validationErrors.image2 && (
             <span className="error">{validationErrors.image2}</span>)}
                 <input type="file" accept="image/*" onChange={(e) => handleBothImage(e,setImage2,setImagePreview2)} />

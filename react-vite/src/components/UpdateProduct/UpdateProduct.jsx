@@ -165,7 +165,7 @@ const UpdateProduct = () => {
        
    
         <label>
-            Mileage
+            Miles
             {hasSubmitted && validationErrors.mileage && (
         <span className="error">{validationErrors.mileage}</span>
     )}
