@@ -5,8 +5,6 @@
     text-align: center;
     width: 190px;
     white-space: nowrap;
-    margin-left: 790px;
-    margin-top: 190px;
     
 }
 
@@ -56,4 +54,12 @@
 
 .welcome-message p a:hover {
     text-decoration: underline; 
+}
+
+
+.main-center { 
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 90px;
 }

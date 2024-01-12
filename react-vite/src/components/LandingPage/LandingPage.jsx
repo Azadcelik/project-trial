@@ -20,7 +20,7 @@ const LandingPage = () => {
 
     return (
 
-        <div>
+        <div className='main-center'>
     <div className="welcome-message">
         <h1>Welcome to Carsy!</h1>
         <NavLink to='/product'  className="mainpage-button">View Cars</NavLink>

@@ -2,7 +2,7 @@ import { useState } from "react"
 import { useDispatch } from "react-redux"
 import { newReviewThunk } from "../../redux/review"
 import { useModal } from "../../context/Modal"
-
+import './CreateReview.css'
 
 const CreateReview = ({productId}) => { 
 
@@ -60,7 +60,7 @@ const submitYourReview = async (e) => {
 
     
   return (
-    <div>
+    <div className="create-review-modal">
       <h1>How was your Car?</h1>
       {/* {error && <p className='post-error'>{error}</p>} */}
       <textarea cols="55" rows="15" placeholder="Leave your review here..." value={text} onChange={e => setText(e.target.value)}></textarea>
