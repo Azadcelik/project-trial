@@ -71,7 +71,7 @@ gap: 10px;
 }
 
 .delete-but:hover {
-    background-color: #cc0000;
+    background-color: #8c0d0d;
 }
 
 
@@ -100,4 +100,24 @@ gap: 10px;
 .toggle-arrow:hover {
     color: #758da7;
     cursor: pointer;
+}
+
+.proceed-checkout { 
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-bottom: 20px;
+    
+}
+.proced-button { 
+    background-color: #ff9900; 
+    color: white;
+    padding: 10px 15px; 
+    border: none; 
+    border-radius: 4px; 
+    cursor: pointer; 
+    font-size: 9px;
+    margin-bottom: 10px;
+    margin-right: 20px;
+    margin-left: 20px;
 }
