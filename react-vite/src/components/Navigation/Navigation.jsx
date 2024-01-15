@@ -24,42 +24,29 @@ useEffect(() => {
 
 
 
-  return (
-    <div className="all">
-        <NavLink to="/product">
-        <i className="fa-solid fa-car">Carsy</i>
-        </NavLink>
-        <div className="my-classname">
-        <div className="heart">
-          {user.id && <NavLink to='/orders' className='my-orders'>My Orders</NavLink>}
-         {user.id &&  <NavLink to='/my-products' className='my-cars'>My Cars</NavLink>}
-            <NavLink to='/product/favorite' className='navlink'>
-          <div className="heart-icon-container">
+return (
 
-          {user.id && <NavLink to='/product/new' className='new-trade'>Sell/Trade</NavLink>}
-
+  <div className="main-div">
+    <NavLink to="/product">
+      <i className="fa-solid fa-car">Carsy</i>
+    </NavLink>
+       <div className="second-sub-main">
+        {user.id && <NavLink to='/orders'>My Orders</NavLink>}
+        {user.id && <NavLink to='/my-products'>My Cars</NavLink>}
+        {user.id && <NavLink to='/product/new'>Sell/Trade</NavLink>}
+        <NavLink to='/product/favorite'>
             <FaHeart  style={{color: 'red', fontSize: '25px'}}/>
-           <span style={{ fontSize: '12px'}}>{fav.length}</span> 
-           
-           
-           </div>    
-           
-            </NavLink>
-         
-           <div className="heart-icon-container">     
-           <NavLink to='/shopping-cart'>
-          <i className="fa-solid fa-cart-shopping" style={{fontSize: '30px', cursor: 'pointer'}}></i>
-          </NavLink>
+            <span style={{ fontSize: '12px'}}>{fav.length}</span> 
+        </NavLink>
+          <NavLink to='/shopping-cart'>
+            <i className="fa-solid fa-cart-shopping" style={{fontSize: '30px', cursor: 'pointer'}}></i>
           <span style={{ fontSize: '12px'}}>{products.length}</span> 
-          
-
-          </div>
-          <ProfileButton />
-        </div>
-        </div>
-        <AddToShoppingCart />
+          </NavLink>
+        <ProfileButton />
+    <AddToShoppingCart />
     </div>
-  );
+  </div>
+);
 }
 
 export default Navigation;

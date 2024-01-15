@@ -39,19 +39,6 @@
 }
 
 
-.heart { 
- display: flex;
- justify-content: end;
- gap: 20px;
- margin-right: 200px;
-}
-
-
-.heart-icon-container {
-  display: inline-block; 
-}
-
-
 .fa-car {
   position: absolute;
   font-size: 20px; /* Larger car icon */
@@ -59,33 +46,7 @@
 
 }
 
-.all { 
-  margin-top: 30px;
-}
 
-
-.new-trade { 
- margin-right: 30px; 
-}
-.new-trade { 
-  text-decoration: none;
-  font-size: 18px;
-}
-
-.my-cars { 
-  padding-right: 20px;
-  font-size: 18px;
-  padding-top: 10px;
-  text-decoration: none;
-
-}
-
-.my-orders { 
-  padding-right: 20px;
-  font-size: 18px;
-  padding-top: 10px;
-  text-decoration: none;
-}
 
 .profile-buttton {
   border-radius: 40px;
@@ -98,4 +59,39 @@
   background-color: rgb(206, 185, 206);
 
 }
+
+
+
+
+
+
+.main-div { 
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-top: 33px;
+}
+
+.second-sub-main { 
+display: flex;
+flex-direction: row;
+align-items: center;
+gap: 40px;
+margin-right: 150px;
+}
+
+.main-div a { 
+  text-decoration: none;
+  font-size: 19px;
+  color: #4B0082; 
+}
+
+.main-div a:hover { 
+  color: #008080;
+}
+
+
+
+
+
 

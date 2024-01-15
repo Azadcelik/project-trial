@@ -66,10 +66,13 @@
     position: relative;
     cursor: pointer;
     font-size: 20px;
-    margin-left: 100px;
+    margin-left: 120px;
    
 }
+.fa-bars:hover { 
+    color: #008080;
 
+}
 
 
 .hamburger-menu div {
