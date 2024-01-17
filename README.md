@@ -95,10 +95,10 @@ https://my-carsy.onrender.com
 | `GET /api/orders` | Retrieves the order history of the current user (Auth required) | `[{ "order_id": INT, "order_date": DATE, "total_price": FLOAT, "country": STRING, "full_name": STRING, "street_address": STRING, "apartment": STRING, "city": STRING, "zip_code": STRING, "items": [{"id": INT, "product_id": INT, "quantity": INT, "price": FLOAT, "name": STRING, "model": STRING, "year": INT, "image": STRING}] }]` |
 
 # Feature List
-1.Advanced search options to filter cars by make, model, year, price, etc.
-2.Responsive Design
+1. Advanced search options to filter cars by make, model, year, price, etc.
+2. Responsive Design
 
 # Feature Implementation Goals
-1.Enhanced Search Functionality
-2.Diverse Payment System Integration
-3.Develop a feedback feature where users can include photos in their car reviews
+1. Enhanced Search Functionality
+2. Diverse Payment System Integration
+3. Develop a feedback feature where users can include photos in their car reviews
