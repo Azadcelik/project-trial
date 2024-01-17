@@ -1,132 +1,104 @@
-# Flask React Project
+# Carsy
 
-This is the starter for the Flask React project.
+Welcome to Carsy! It's my take on bringing the car marketplace into the e-commerce world. Think of it as Etsy, but instead of handmade crafts, it's all about cars. I got this idea when I heard about Amazon possibly selling cars. I thought, why not make a platform where buying and selling cars is as easy as ordering a book online?
 
-## Getting started
+Carsy is pretty simple to use and has a clean look, much like Etsy. I've added some cool features like image carousels for the cars.It's still a work in progress, but I'm excited about where it's going.
 
-1. Clone this repository (only this branch).
+# Live Link
+https://my-carsy.onrender.com
 
-2. Install dependencies.
+# Tech used
+    Python Flask and React for the main framework.
+    Redux for state management.
+    CSS3 and HTML5 to make it look nice.
+    Postgres for the database stuff.
+    Render for hosting.
 
-   ```bash
-   pipenv install -r requirements.txt
-   ```
-   to regenerate requirement.text run pipenv requirements > requirements.txt
+# Index
+- [Database Schema][database-schema]
+- [Future List][future-list]
+- [User Stories][user-stories]
+- [Wireframes][wireframes]
 
-3. Create a __.env__ file based on the example with proper settings for your
-   development environment.
+<!-- Reference-style link definitions -->
+[database-schema]: https://github.com/Azadcelik/project-trial/wiki/Database-Schema
+[future-list]: https://github.com/Azadcelik/project-trial/wiki/Future-List
+[user-stories]: https://github.com/Azadcelik/project-trial/wiki/User-Stories
+[wireframes]: https://github.com/Azadcelik/project-trial/wiki/Wireframes
 
-4. Make sure the SQLite3 database connection URL is in the __.env__ file.
 
-5. This starter organizes all tables inside the `flask_schema` schema, defined
-   by the `SCHEMA` environment variable.  Replace the value for
-   `SCHEMA` with a unique name, **making sure you use the snake_case
-   convention.**
+# Endpoints
 
-6. Get into your pipenv, migrate your database, seed your database, and run your
-   Flask app:
 
-   ```bash
-   pipenv shell
-   ```
+## Auth
 
-   ```bash
-   flask db upgrade
-   ```
+| Request | Purpose | Return Value |
+| ------- | ------- | ------------ |
+| `GET /api/auth/` | Checks current user session | `{'id': INT, 'username': STRING, 'email': STRING}` |
+| `POST /api/auth/unauthorized` | Handles unauthorized access | `{'errors': ARRAY[STRINGS]}` |
+| `POST /api/auth/signup` | Processes new user registration | `{'id': INT, 'username': STRING, 'email': STRING}` |
+| `POST /api/auth/login` | Attempts to log in a user | `{'id': INT, 'username': STRING, 'email': STRING}` |
+| `POST /api/auth/logout` | Logs out the current user | `{'message': STRING}` |
 
-   ```bash
-   flask seed all
-   ```
 
-   ```bash
-   flask run
-   ```
+## Product
 
-7. The React frontend has no styling applied. Copy the __.css__ files from your
-   Authenticate Me project into the corresponding locations in the
-   __react-vite__ folder to give your project a unique look.
+| Request | Purpose | Return Value |
+| ------- | ------- | ------------ |
+| `GET /api/products/:id` | Retrieves a specific product by ID | `{"id": INT, "user_id": INT, "image": STRING, "make": STRING, "mileage": INT, "model": STRING, "year": INT, "price": FLOAT, "type": STRING,"created_at":DATE}`|
+| `POST /api/products` | Creates a new product  | `{"id": INT, "user_id": INT, "image": STRING, "make": STRING, "mileage": INT, "model": STRING, "year": INT, "price": FLOAT, "type": STRING, "created_at": DATE}` |
+| `PUT /api/products/:id` | Updates a specific product by ID  | `{"id": INT, "user_id": INT, "image": STRING, "make": STRING, "mileage": INT, "model": STRING, "year": INT, "price": FLOAT, "type": STRING}` |
+| `DELETE /api/products/:id` | Deletes a specific product by ID  | `{"message": "successfully deleted"}` |
 
-8. To run the React frontend in development, `cd` into the __react-vite__
-   directory and run `npm i` to install dependencies. Next, run `npm run build`
-   to create the `dist` folder. The starter has modified the `npm run build`
-   command to include the `--watch` flag. This flag will rebuild the __dist__
-   folder whenever you change your code, keeping the production version up to
-   date.
 
-## Deployment through Render.com
+## Review
 
-First, recall that Vite is a development dependency, so it will not be used in
-production. This means that you must already have the __dist__ folder located in
-the root of your __react-vite__ folder when you push to GitHub. This __dist__
-folder contains your React code and all necessary dependencies minified and
-bundled into a smaller footprint, ready to be served from your Python API.
+| Request | Purpose | Return Value |
+| ------- | ------- | ------------ |
+| `GET /api/products/:id/reviews` | Retrieves all reviews for a specific product | `[{ "review": {"id": INT, "user_id": INT, "product_id": INT, "text_body": STRING, "star_rating": INT, "created_at": DATE}, "product":{Product details}, "user": {User details} }]` |
+| `POST /api/products/:id/new-review` | Adds a new review to a specific product (Auth required)  | `{ "review": {"id": INT, "user_id": INT, "product_id": INT, "text_body": STRING, "star_rating": INT, "created_at": DATE}, "product": {Product details}, "user": {User details} }` |
+| `DELETE /api/reviews/:id` | Deletes a specific review by ID (Auth required)  | `{"message": "Review successfully deleted"}` |
 
-Begin deployment by running `npm run build` in your __react-vite__ folder and
-pushing any changes to GitHub.
 
-Refer to your Render.com deployment articles for more detailed instructions
-about getting started with [Render.com], creating a production database, and
-deployment debugging tips.
+## Shopping Cart
 
-From the Render [Dashboard], click on the "New +" button in the navigation bar,
-and click on "Web Service" to create the application that will be deployed.
+| Request | Purpose | Return Value |
+| ------- | ------- | ------------ |
+| `POST /api/shopping_cart/add-to-cart/<int:id>` | Adds a product to the shopping cart (Auth required) | `{ "productDetails": {"id": INT, "name": STRING, "model": STRING, "year": INT, "price": FLOAT, "quantity": INT} }` |
+| `GET /api/shopping_cart/` | Retrieves the current user's shopping cart (Auth required) | `[{ "id": INT, "product_id": INT, "image": STRING, "name": STRING, "price": FLOAT, "model": STRING, "year": INT, "quantity": INT }]`|
+| `DELETE /api/shopping_cart/<int:id>` | Removes an item from the shopping cart (Auth required) | `{"message": "successfully deleted"}` |
 
-Select that you want to "Build and deploy from a Git repository" and click
-"Next". On the next page, find the name of the application repo you want to
-deploy and click the "Connect" button to the right of the name.
 
-Now you need to fill out the form to configure your app. Most of the setup will
-be handled by the __Dockerfile__, but you do need to fill in a few fields.
+## Favorites
 
-Start by giving your application a name.
+| Request | Purpose | Return Value |
+| ------- | ------- | ------------ |
+| `POST /api/products/:id/add-favorite` | Adds a product to favorites (Auth required) | `{ "id": INT, "user_id": INT, "image": STRING, "make": STRING, "mileage": INT, "model": STRING, "year": INT, "price": FLOAT, "type": STRING, "created_at": DATE }` |
+| `GET /api/products/favorites` | Retrieves the user's favorite products (Auth required) | `[{ "id": INT, "user_id": INT, "image": STRING, "make": STRING, "mileage": INT, "model": STRING, "year": INT, "price": FLOAT, "type": STRING, "created_at": DATE }]` |
+| `DELETE /api/products/:id/remove-favorite` | Removes a product from favorites (Auth required) | `{"message": "product removed from your favorites"}` |
 
-Make sure the Region is set to the location closest to you, the Branch is set to
-"main", and Runtime is set to "Docker". You can leave the Root Directory field
-blank. (By default, Render will run commands from the root directory.)
 
-Select "Free" as your Instance Type.
+## Product Images
 
-### Add environment variables
+| Request | Purpose | Return Value |
+| ------- | ------- | ------------ |
+| `POST /api/product_images/<int:id>/images` | Adds multiple images to a product (Auth required) | `{ "images": [{"product_id": INT, "url": STRING, "created_at": DATE}] }` |
+| `GET /api/product_images/<int:id>/images` | Retrieves all images for a specific product | `{ "images": [{"product_id": INT, "url": STRING, "created_at": DATE}] }` |
+| `DELETE /api/product_images/<int:id>/images/delete` | Deletes all images of a product | `{"message": "Successfully deleted"}` |
 
-In the development environment, you have been securing your environment
-variables in a __.env__ file, which has been removed from source control (i.e.,
-the file is gitignored). In this step, you will need to input the keys and
-values for the environment variables you need for production into the Render
-GUI.
 
-Add the following keys and values in the Render GUI form:
+## Order
 
-- SECRET_KEY (click "Generate" to generate a secure secret for production)
-- FLASK_ENV production
-- FLASK_APP app
-- SCHEMA (your unique schema name, in snake_case)
+| Request | Purpose | Return Value |
+| ------- | ------- | ------------ |
+| `POST /api/orders` | Creates a new order (Auth required) | `{ "order_id": INT, "total_price": FLOAT }` |
+| `GET /api/orders` | Retrieves the order history of the current user (Auth required) | `[{ "order_id": INT, "order_date": DATE, "total_price": FLOAT, "country": STRING, "full_name": STRING, "street_address": STRING, "apartment": STRING, "city": STRING, "zip_code": STRING, "items": [{"id": INT, "product_id": INT, "quantity": INT, "price": FLOAT, "name": STRING, "model": STRING, "year": INT, "image": STRING}] }]` |
 
-In a new tab, navigate to your dashboard and click on your Postgres database
-instance.
+# Feature List
+1. Advanced search options to filter cars by make, model, year, price, etc.
+2. Responsive Design
 
-Add the following keys and values:
-
-- DATABASE_URL (copy value from the **External Database URL** field)
-
-**Note:** Add any other keys and values that may be present in your local
-__.env__ file. As you work to further develop your project, you may need to add
-more environment variables to your local __.env__ file. Make sure you add these
-environment variables to the Render GUI as well for the next deployment.
-
-### Deploy
-
-Now you are finally ready to deploy! Click "Create Web Service" to deploy your
-project. The deployment process will likely take about 10-15 minutes if
-everything works as expected. You can monitor the logs to see your Dockerfile
-commands being executed and any errors that occur.
-
-When deployment is complete, open your deployed site and check to see that you
-have successfully deployed your Flask application to Render! You can find the
-URL for your site just below the name of the Web Service at the top of the page.
-
-**Note:** By default, Render will set Auto-Deploy for your project to true. This
-setting will cause Render to re-deploy your application every time you push to
-main, always keeping it up to date.
-
-[Render.com]: https://render.com/
-[Dashboard]: https://dashboard.render.com/
+# Feature Implementation Goals
+1. Enhanced Search Functionality
+2. Diverse Payment System Integration
+3. Develop a feedback feature where users can include photos in their car reviews
