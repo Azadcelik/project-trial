@@ -70,7 +70,7 @@ import { useNavigate } from "react-router-dom"
   
     </div>
     <span className="toggle-arrow" onClick={sideBarButton}>
-                  {display ? 'Cart' : 'Cart'}
+                  {display ? '' : ''}
     </span>
   </div>
       )
