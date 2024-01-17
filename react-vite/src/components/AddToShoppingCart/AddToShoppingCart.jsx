@@ -41,7 +41,7 @@ import { useNavigate } from "react-router-dom"
       return user.id && (
 
   <div >
-    <div className={display? 'sidebar open' : 'sidebar'}>  
+    <div className={display || products.length > 0 ? 'sidebar open' : 'sidebar'}>  
 
 <div className="proceed-checkout">
 <h3 className="h33">SubTotal: ${totalPrice.toFixed(2)}</h3>

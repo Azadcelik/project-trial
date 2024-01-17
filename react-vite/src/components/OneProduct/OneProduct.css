@@ -8,13 +8,14 @@
     gap: 90px;
   }
   
-.image-carousel img  {
-
+  .image-carousel img {
     width: 800px;
     height: 600px;
     object-fit: cover;
     border-radius: 8px;
+    box-shadow: 15px 15px 15px rgba(0, 0, 0, 0.2);
 }
+
   
 
   
@@ -87,4 +88,15 @@
 }
 .star-rates span { 
   padding-right: 10px;
+}
+
+.product-detailss { 
+  border: 0.1px solid black;
+  display: inline-block;
+  padding: 20px;
+  width: 190px;
+  border-radius: 15px;
+  line-height: 1.8;
+  margin-left: 50px;
+  box-shadow: 6px 6px 6px rgba(0, 0, 0, 0.2);
 }

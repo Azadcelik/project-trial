@@ -1,0 +1,25 @@
+.footer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 15px 0;
+    background-color: #fafafa; 
+    color: #333; 
+    font-size: 16px;
+    box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1); 
+}
+
+.footer-content {
+    text-align: center;
+}
+
+.footer a {
+    color: #007bff; 
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.footer a:hover {
+    color: #0056b3;
+    text-decoration: underline;
+}

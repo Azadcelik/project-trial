@@ -8,6 +8,8 @@ import { FaRegHeart, FaHeart } from "react-icons/fa";
 import { addToCartThunk, getCartItemsThunk } from "../../redux/shoppingCart"
 
 
+
+
 const AllProduct = () =>  { 
 
 const dispatch = useDispatch()
@@ -125,10 +127,10 @@ const handleCarModel = (selectedCar) => {
                 <div key={product.id} className="product-container">
                     <div className="image-container">
                         <img className="product-image" src={product.image} alt="" onClick={() => handleSingleProduct(product.id)} />
-                        {user.id !== product.user_id && user.id &&  (
-                           likedProducts[product.id] ?
-                                <FaHeart className="heart-icon" onClick={() => toggleFavorite(product.id)} /> :
-                                <FaRegHeart className="heart-icon" onClick={() => toggleFavorite(product.id)} /> )}
+                    {user.id !== product.user_id && user.id &&  (
+                    likedProducts[product.id] ?
+                        <FaHeart className="heart-icon" onClick={() => toggleFavorite(product.id)} /> :
+                    <FaRegHeart className="heart-icon" onClick={() => toggleFavorite(product.id)} /> )}
                     </div>
                     <div className="make-model-year">
                         <h3>{product.year}</h3>
