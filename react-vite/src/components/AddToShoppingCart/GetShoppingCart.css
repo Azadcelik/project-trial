@@ -30,13 +30,23 @@
     margin-left: 230px;
     margin-bottom: 9px;
 }
+
+
+
 .checkout-section {
-margin-top: 199px;
-border: 1px solid gray;
-border-radius: 9px;
-width: 11%;
-height: 60%;
-}
+    
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 199px;
+    border: 1px solid gray;
+    border-radius: 9px;
+    width: 13%;
+    height: 60%;
+    }
+    
 
 
 
@@ -57,6 +67,7 @@ height: 60%;
     margin-left: 20px;
     margin-bottom: 10px;
 }
+
 
 button:hover {
     background-color: #e68a00;
