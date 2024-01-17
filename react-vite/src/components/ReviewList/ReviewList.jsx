@@ -4,6 +4,7 @@ import { getReviewThunk } from "../../redux/review"
 import { useModal } from "../../context/Modal"
 import ReviewDeleteButton from "./ReviewDeleteButton"
 import './ReviewList.css'
+import { FaStar,FaRegStar } from "react-icons/fa"
 
 
 const ReviewList = ({productId}) => { 
@@ -33,6 +34,18 @@ console.log('reviews in reviewlis', review)
     }
 
 
+    const renderStars = (starRate) => { 
+        let stars = []
+
+        for (let i = 1; i <= 5; i++) { 
+         stars.push(
+            i <= starRate ? <FaStar key={i} style={{color: 'gold'}} /> : <FaRegStar key={i} />
+         )
+    }
+    return stars
+
+    }
+
     return (
 
 
@@ -41,6 +54,10 @@ console.log('reviews in reviewlis', review)
         .sort((a,b) => new Date(b.created_at) - new Date(a.created_at))
         .map(rev => (
             <div key={rev.id} className="revieww">
+                <div className="star-div">
+            {renderStars(rev.star_rating)}
+
+                </div>
             <h2 className="review-namee">{rev.user?.username}</h2>
             <h2 className="date-review">
               {new Date(rev.created_at).toLocaleString("default", {
