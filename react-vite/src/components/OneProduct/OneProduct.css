@@ -8,15 +8,7 @@
     gap: 90px;
   }
   
-  .image-carousel img {
-    width: 800px;
-    height: 600px;
-    object-fit: cover;
-    border-radius: 8px;
-    box-shadow: 15px 15px 15px rgba(0, 0, 0, 0.2);
-}
 
-  
 
   
   .fa-arrow-left {
@@ -99,4 +91,29 @@
   line-height: 1.8;
   margin-left: 50px;
   box-shadow: 6px 6px 6px rgba(0, 0, 0, 0.2);
+}
+
+
+
+
+
+
+
+.product-containers .carousel img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+
+.carousel .control-arrow:hover {
+    background: rgba(0, 0, 0, 0.8);
+}
+
+
+
+
+.for-carousel { 
+  width: 1130px;
 }
