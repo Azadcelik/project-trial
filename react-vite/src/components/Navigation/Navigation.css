@@ -92,6 +92,15 @@ margin-right: 150px;
 
 
 
+/* 
 
+.heart-icon {
+  color: red; 
+  font-size: 25px;
+  transition: color 0.3s;
+}
 
+.heart-icon:hover {
+  color: darkred; 
+} */
 

@@ -1,10 +1,10 @@
 import { useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
-import { getFavoriteThunk } from "../../redux/favorite"
+import { deleteFavoriteThunk, getFavoriteThunk } from "../../redux/favorite"
 import './GetFavorite.css'
 import { useNavigate } from "react-router-dom"
 import { addToCartThunk, getCartItemsThunk } from "../../redux/shoppingCart"
-
+import { FaTimes } from "react-icons/fa"
 
 
 
@@ -33,6 +33,11 @@ const addToCartButton = async (productId) => {
         navigate(`/product/${productId}`)
     }
 
+    const handleDeleteFav = async (productId) => { 
+
+        await dispatch(deleteFavoriteThunk(productId))
+    }
+
 return (
 
 <>
@@ -42,6 +47,7 @@ return (
         {favs.map(product => (
             <div key={product.id} className="favorite-car-card">
                 <img src={product.image} onClick={() => handleSingleImage(product.id)}/>
+                <FaTimes  className="x-icon" onClick={(() => handleDeleteFav(product.id))}/>
                 <div className="make-model-year">
                     <h3>{product.year}</h3>
                     <h3>{product.make}</h3>

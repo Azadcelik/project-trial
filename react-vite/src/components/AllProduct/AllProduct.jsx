@@ -8,6 +8,8 @@ import { FaRegHeart, FaHeart } from "react-icons/fa";
 import { addToCartThunk, getCartItemsThunk } from "../../redux/shoppingCart"
 
 
+
+
 const AllProduct = () =>  { 
 
 const dispatch = useDispatch()
