@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react"
+import { useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { useNavigate, useParams } from "react-router-dom"
 import { deleteProductThunk, oneProductThunk } from "../../redux/product"
@@ -8,12 +8,13 @@ import ReviewList from "../ReviewList"
 import { deleteProductImageThunk, getProductImageThunk } from "../../redux/productImage"
 import './OneProduct.css'
 import { addToCartThunk, getCartItemsThunk } from "../../redux/shoppingCart"
+import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
+import { Carousel } from 'react-responsive-carousel';
 
 const OneProduct = () => { 
    const dispatch = useDispatch()
    const {id} = useParams()
    const navigate = useNavigate()
-   const [track,setTrack] = useState(0)
 
 
    const product = useSelector(state => state.products[id])
@@ -24,7 +25,6 @@ const OneProduct = () => {
 
 const reviews = useSelector(state => Object.values(state.reviews))
 
-console.log(product, 'alll revies data in create review')
    
 
 const hasReviewed = reviews.some(review => review.user_id === user?.id && review.product_id === product?.id);
@@ -38,13 +38,6 @@ const proImg = [product?.image, ...(productImage || []).map(img => img.url)];
  }
 
 
-const nextButton = () => { 
-    setTrack((track + 1) % proImg.length)
-}
-const previousButton = () => { 
-    if (track === 0) setTrack(proImg.length - 1)
-    else setTrack(track - 1)
-}
        
         const  handleUpdateButton = () => { 
             if (user.id == product.user_id) { 
@@ -107,12 +100,15 @@ updateStarRating(avgRate)
   <>
     <div className="product-containers">
 
-      <div className="image-carousel">
-        <i className="fa-solid fa-arrow-left arrow" onClick={previousButton}></i>
-        <img src={proImg[track]} alt="Product" />
-        <i className="fa-solid fa-arrow-right arrow" onClick={nextButton}></i>
-      </div>
+        <div className="for-carousel">
+       <Carousel  swipeable={true}
+       >
+        {proImg.map(img => (
+          <img src={img}  className="carosel-image" key={img.id}/> 
+        ))}
 
+       </Carousel>
+       </div>
       <div className="product-detailss">
         <p> <span className="span-text">Year: </span>{product.year}</p>
         <p><span className="span-text">Make: </span> {product.make}</p>
@@ -120,6 +116,7 @@ updateStarRating(avgRate)
         <p><span className="span-text">{product.type} &nbsp; &#183; &nbsp;</span> {product.mileage} miles</p>
         <h3>Price: ${product.price}</h3>
       </div>
+       
 
       <div className="product-actions">
         {user && product.user_id === user.id && (
@@ -143,11 +140,15 @@ updateStarRating(avgRate)
         <span>
       {avgRate ? avgRate.toFixed(2) : ""}
         </span>
-      <i className="fa-solid fa-star"></i>
-      <i className="fa-solid fa-star"></i>
-      <i className="fa-solid fa-star"></i>
-      <i className="fa-solid fa-star"></i>
-      <i className="fa-solid fa-star"></i>
+        {reviews.length > 0 && (
+          <>
+          <i className="fa-solid fa-star"></i>
+          <i className="fa-solid fa-star"></i>
+          <i className="fa-solid fa-star"></i>
+          <i className="fa-solid fa-star"></i>
+          <i className="fa-solid fa-star"></i>
+          </>
+          )}
       </div>
       <div className="review-section">
     <ReviewList productId={product.id} />
