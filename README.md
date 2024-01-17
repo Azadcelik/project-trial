@@ -7,14 +7,14 @@ Carsy is pretty simple to use and has a clean look, much like Etsy. I've added s
 # Live Link
 https://my-carsy.onrender.com
 
-#Tech used
+# Tech used
     Python Flask and React for the main framework.
     Redux for state management.
     CSS3 and HTML5 to make it look nice.
     Postgres for the database stuff.
     Render for hosting.
 
-#Index
+# Index
 - [Database Schema][database-schema]
 - [Future List][future-list]
 - [User Stories][user-stories]
@@ -25,3 +25,23 @@ https://my-carsy.onrender.com
 [future-list]: https://github.com/Azadcelik/project-trial/wiki/Future-List
 [user-stories]: https://github.com/Azadcelik/project-trial/wiki/User-Stories
 [wireframes]: https://github.com/Azadcelik/project-trial/wiki/Wireframes
+
+
+# Endpoints
+
+## Auth
+| Request | Purpose | Return Value |
+| ------- | ------- | ------ |
+| `GET /api/products` | Retrieves all products |[{
+    "id": INT,
+    "user_id": INT,
+    "image": STRING,
+    "make": STRING,
+    "mileage": INT,
+    "model": STRING,
+    "year": INT,
+    "price": FLOAT,
+    "type": STRING,
+    "created_at": DATE
+  }
+]|
