@@ -59,8 +59,9 @@
 
 .hamburger-menu {
     position: absolute;
-    top: 55px;
-    padding-left: 290px;
+    top: 65px;
+    padding-left: 340px;
+    
 }
 .fa-bars {
     position: relative;
@@ -70,10 +71,8 @@
    
 }
 .fa-bars:hover { 
-    color: #008080;
-
+        color: blue;
 }
-
 
 .hamburger-menu div {
     padding: 10px 20px;
@@ -88,10 +87,10 @@
 
 
 .hamburger-icon {
-    color: purple;
+    color: #FFFFFF;
     position: relative;
-    top: -30px; 
-    left: 190px; 
+    top: -60px; 
+    left: 220px; 
     cursor: pointer;
 }
 
@@ -157,6 +156,39 @@ p, .make-model-year > h3 {
     font-size: 17px;
     text-transform:lowercase;
     margin-left: 10px;
+    color: #FFFFFF;
+}
+
+.search-cars:hover {
+    color: blue;
 }
 
 
+
+@media (max-width: 768px) {
+    .hamburger-icon {
+      display: block; 
+      position: absolute; 
+      top: 30px; 
+      left: 10px;
+      z-index: 1000; 
+     
+    }
+  
+    .hamburger-menu {
+      position: absolute;
+      top: 50px; 
+      left: -130px;
+     
+    }
+    .main-container { 
+        display: grid;
+        grid-template-columns: repeat(1,1fr);
+    }
+}  
+
+
+
+body {
+    background-color: #e9e6e6; 
+}
