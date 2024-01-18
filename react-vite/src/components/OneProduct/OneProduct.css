@@ -91,6 +91,7 @@
   line-height: 1.8;
   margin-left: 50px;
   box-shadow: 6px 6px 6px rgba(0, 0, 0, 0.2);
+  margin-bottom: 120px;
 }
 
 
@@ -115,5 +116,6 @@
 
 
 .for-carousel { 
-  width: 1130px;
+  width: 830px;
+  
 }
