@@ -25,7 +25,7 @@ useEffect(() => {
 
 
 return (
-
+  <nav className="nav-bar">
   <div className="main-div">
     <NavLink to="/product">
       <i className="fa-solid fa-car">Carsy</i>
@@ -46,6 +46,7 @@ return (
     <AddToShoppingCart />
     </div>
   </div>
+  </nav>
 );
 }
 
