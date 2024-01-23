@@ -36,7 +36,6 @@ const GetShoppingCart = () => {
 
  const handleSingleProduct = (productId) => { 
   navigate(`/product/${productId}`)
-  // {<OneProduct productId={productId}/>}
 
 }
 
