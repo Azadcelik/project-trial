@@ -27,11 +27,16 @@ import { useNavigate } from "react-router-dom"
       setDisplay(!display)
   }
 
-   const totalPrice = products.reduce((acc,product) => { 
-      return acc + (product.quantity * product.price)
-       
-   },0)
+  const totalPrice = products.reduce((acc, product) => {
+    if (typeof product.price === 'number' && typeof product.quantity === 'number') {
+      return acc + (product.quantity * product.price);
+    }
+    return acc;
+  }, 0) 
+  
 
+   
+   console.log('totla price in component', totalPrice)
 
    const handleCheckoutButton = async () => { 
 
@@ -44,7 +49,11 @@ import { useNavigate } from "react-router-dom"
     <div className={display || products.length > 0 ? 'sidebar open' : 'sidebar'}>  
 
 <div className="proceed-checkout">
-<h3 className="h33">SubTotal: ${totalPrice.toFixed(2)}</h3>
+   
+
+   
+  {<h3 className="h33">SubTotal: ${totalPrice.toFixed(2)}</h3>}
+ 
 <button onClick={handleCheckoutButton} className="proced-button">Proceed to Checkout</button>
 </div>
     {products.map(product => (
