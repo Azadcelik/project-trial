@@ -29,8 +29,7 @@ https://my-carsy.onrender.com
 [user-stories]: https://github.com/Azadcelik/project-trial/wiki/User-Stories
 [wireframes]: https://github.com/Azadcelik/project-trial/wiki/Wireframes
 
-
-#Landing Page
+# Landing Page
 
 ![carsy-project](/react-vite/public/gif/carsy-project-ezgif.com-video-to-gif-converter.gif)
 
