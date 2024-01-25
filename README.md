@@ -20,11 +20,17 @@ https://my-carsy.onrender.com
 - [User Stories][user-stories]
 - [Wireframes][wireframes]
 
+
+
+
 <!-- Reference-style link definitions -->
 [database-schema]: https://github.com/Azadcelik/project-trial/wiki/Database-Schema
 [future-list]: https://github.com/Azadcelik/project-trial/wiki/Future-List
 [user-stories]: https://github.com/Azadcelik/project-trial/wiki/User-Stories
 [wireframes]: https://github.com/Azadcelik/project-trial/wiki/Wireframes
+
+#Landing Page
+![carsy-project](/react-vite/public/gif/carsy-project-ezgif.com-video-to-gif-converter.gif)
 
 
 # Endpoints
