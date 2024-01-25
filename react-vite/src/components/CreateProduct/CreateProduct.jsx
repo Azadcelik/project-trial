@@ -75,9 +75,6 @@ const CreateProduct = () => {
         if (!image) error.image = 'Please upload a main image of the car.'
         if (!image1) error.image1 = 'Additional image file required.'
         if (!image2) error.image2 = 'Additional image file required.'
-        // if (!image3) error.image3 = 'Image file required'
-        // if (!image4) error.image4 = 'Image file required'
-        // if (!image5) error.image5 = 'Image file required'
         setValidationErrors(error)
     },[make,mileage,model,year,price,type,image,image1,image2,image3,image4,image5])
 
