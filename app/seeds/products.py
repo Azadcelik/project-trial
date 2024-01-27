@@ -6,7 +6,7 @@ from .users import User
 
 def seed_product():
     product_1= Product(
-    user_id = 1,
+    user_id = 3,
     image = "https://cars-projects.s3.us-east-2.amazonaws.com/hondacivic1-pexels-jakub-pabis-16475137.jpg",
     make = "Honda",
     mileage = 30000,
@@ -18,7 +18,7 @@ def seed_product():
     )
 
     product_2 = Product(
-        user_id = 1,
+        user_id = 3,
         image = "https://cars-projects.s3.us-east-2.amazonaws.com/hondacord1-pexels-nathan-tran-16387777.jpg",
         make = "Honda",
         mileage = 149521,
@@ -29,7 +29,7 @@ def seed_product():
         created_at = date.today()
     )  
     product_3 = Product(
-        user_id = 1,
+        user_id = 3,
         image = "https://cars-projects.s3.us-east-2.amazonaws.com/hondahrv1-pichard-6894420.jpg",
         make = "Honda",
         mileage = 12536,
@@ -40,7 +40,7 @@ def seed_product():
         created_at = date.today()
     )  
     product_4 = Product(
-        user_id = 1,
+        user_id = 3,
         image = "https://cars-projects.s3.us-east-2.amazonaws.com/fortmustang1-pexels-avinash-patel-544542.jpg",
         make = "Ford",
         mileage = 12214,
@@ -51,7 +51,7 @@ def seed_product():
         created_at = date.today()
     )  
     product_5 = Product(
-        user_id = 1,
+        user_id = 3,
         image = "https://cars-projects.s3.us-east-2.amazonaws.com/ford1-pexels-jeremy-li-18990118.jpg",
         make = "Ford",
         mileage = 11223,
@@ -62,7 +62,7 @@ def seed_product():
         created_at = date.today()
     )
     product_6 = Product(
-        user_id = 1,
+        user_id = 3,
         image = "https://cars-projects.s3.us-east-2.amazonaws.com/fordexplorer1-pexels-erik-mclean-4062472.jpg",
         make = "Ford",
         mileage = 11223,
@@ -73,7 +73,7 @@ def seed_product():
         created_at = date.today()
     )
     product_7 = Product(
-        user_id = 1,
+        user_id = 3,
         image = "https://cars-projects.s3.us-east-2.amazonaws.com/prius1-pexels-feli-art-7639015.jpg",
         make = "Toyota",
         mileage = 257965,
@@ -84,7 +84,7 @@ def seed_product():
         created_at = date.today()
     )
     product_8 = Product(
-        user_id = 1,
+        user_id = 3,
         image = "https://cars-projects.s3.us-east-2.amazonaws.com/corolla1-pexels-chikinbun-14463430.jpg",
         make = "Toyota",
         mileage = 11223,
