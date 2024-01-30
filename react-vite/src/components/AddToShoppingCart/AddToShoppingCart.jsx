@@ -36,7 +36,6 @@ import { useNavigate } from "react-router-dom"
   
 
    
-   console.log('totla price in component', totalPrice)
 
    const handleCheckoutButton = async () => { 
 

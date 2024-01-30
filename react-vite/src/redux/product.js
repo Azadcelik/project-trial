@@ -46,7 +46,6 @@ const deleteProduct = (productId) => {
         const data =  await fetch('/api/products')
         if (data.ok) {
             const product = await data.json()
-            console.log('produict in thunk ss',product)
            await dispatch(getProduct(product))
         }
         else {
@@ -70,7 +69,6 @@ try {
     
     if (data.ok) { 
         const product = await data.json()
-        console.log('proidiucssttssadaadsads',product)
         dispatch(OneProduct(product))
     }
     else { 
@@ -119,7 +117,6 @@ export const updateProductThunk = (formData,id) => async dispatch => {
         if (response.ok) { 
             const data = await response.json()
             dispatch(updateProduct(data))
-            console.log('data in thunk', data)
         }
         else { 
             const error = await response.json()
@@ -161,7 +158,6 @@ const getProductReducer = (state={},action) =>  {
             action.payload.forEach(product => {
               newState[product.id]= product
             });
-            console.log('new state in reducer',newState)
             return newState
         }
 

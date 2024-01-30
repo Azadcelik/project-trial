@@ -21,7 +21,6 @@ const currentUser  = useSelector(state => state.session.user || {})
 // const totalRate = total/ review.length 
 
 
-console.log('reviews in reviewlis', review)
 
     useEffect(() => {
 
