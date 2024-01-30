@@ -8,6 +8,7 @@
     border-radius: 8px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     word-wrap: break-word;
+    margin-bottom: 40px;
 }
 
 .review-namee, .date-review, .review-text {

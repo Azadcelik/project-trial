@@ -18,14 +18,11 @@ const location = useLocation()
 const [likedProducts, setLikedProducts] = useState({})
 const products = useSelector(state => Object.values(state.products))
 const favoriteProducts = useSelector(state => Object.values(state.favorites)) // Get favorite products from Redux store
-// const product = useSelector(state => state.shoppingCart || {})
 const user = useSelector(state => state.session.user || {})
 const [display,setDisplay] = useState(false)
 const [model,setModel] = useState('')
 
 
-//  console.log('product in shoppingcart ', product)
-// console.log('products in compionent ', products)
 
 useEffect(() => { 
     if (location.pathname === '/product') setModel('') 
@@ -44,7 +41,6 @@ useEffect(() => {
 
 
 useEffect(() => {
-    console.log("Updating likedProducts state", favoriteProducts);
     
     const newLiked = favoriteProducts.reduce((acc, product) => {
         acc[product.id] = true;
@@ -61,7 +57,6 @@ useEffect(() => {
 
 const handleSingleProduct = (productId) => { 
     navigate(`/product/${productId}`)
-    // {<OneProduct productId={productId}/>}
 
 }
 

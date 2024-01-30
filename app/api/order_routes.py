@@ -37,19 +37,13 @@ def add_orders():
         cart_items = ShoppingCartItem.query.filter_by(shopping_cart_id=shopping_cart.id).all()
         for item in cart_items:
             product = Product.query.get(item.product_id)
-            print('pructioosadadsadsadsadsads',product.price)
-            print(item.id)
-            print('dfsdfsdfsfsfssdfdfsdfsdfs',item.product_id)
-            print('order items in orderimtem',item.product_id,item.quantity,product.price)
 
            
             item_price = item.quantity * product.price
-            print('adsadsadsadsadsadsads itempirce',item_price)
             total_price += item_price
 
             order_item = OrderItem(order_id=order.id,product_id=item.product_id,quantity=item.quantity)
             db.session.add(order_item)
-            print('adsadsadsadsadsadsads',order_item)
         
         order.total_price= total_price
 

@@ -52,7 +52,6 @@ export const addProductImagesThunk = (productId,formData) => async dispatch => {
         })
         if (response.ok) { 
             const data = await response.json()
-            console.log('data in productimage thnunk', data)
             dispatch(addProductImage(productId,data.images))
         }
         else { 
