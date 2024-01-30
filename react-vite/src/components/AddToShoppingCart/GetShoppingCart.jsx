@@ -9,7 +9,6 @@ const GetShoppingCart = () => {
     const navigate = useNavigate()
     const products = useSelector(state => Object.values(state.shoppingCart) || {})
 
-    console.log('products in shopping cart foir debugging',products)
 
     useEffect(() => { 
         dispatch(getCartItemsThunk())

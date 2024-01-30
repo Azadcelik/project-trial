@@ -40,7 +40,6 @@ export const getFavoriteThunk = () => async dispatch => {
         if  (response.ok) {
         const data = await response.json()
         dispatch(getFavorite(data))
-        console.log('this is data frtom fa',data)
     }
     else { 
         const error = response.json()
@@ -87,7 +86,6 @@ export const deleteFavoriteThunk = (productId) => async dispatch => {
         if (response.ok) { 
      
             const data = response.json()
-            console.log('data in delete thunk', data)
             dispatch(deleteFavorite(productId))
     }
 

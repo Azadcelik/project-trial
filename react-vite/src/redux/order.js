@@ -25,7 +25,6 @@ export const getOrderThunk = () => async dispatch => {
         if (response.ok){ 
             const data =  await response.json()
             dispatch(getOrder(data))
-            console.log('data in get orerr ', data)
 
         }
         else {

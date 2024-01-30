@@ -64,7 +64,6 @@ def create_product():
          created_at = date.today()
 
       )
-      print('adsdasabjdsouadhsadoksadsloadslknadslknadsklnadsklnadsads',new_product)
 
       db.session.add(new_product)
       db.session.commit()
@@ -91,7 +90,6 @@ def update_product(id):
    if form.validate_on_submit():
         
         product = Product.query.get(id)
-        print('-----------------------------------------------',product)
         old_url = product.image
         image = form.data["image"]
         if image and hasattr(image, 'filename'): 
