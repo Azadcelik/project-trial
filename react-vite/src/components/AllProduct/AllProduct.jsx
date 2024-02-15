@@ -57,6 +57,7 @@ useEffect(() => {
 
 const handleSingleProduct = (productId) => { 
     navigate(`/product/${productId}`)
+    window.scrollTo(0,0)
 
 }
 
