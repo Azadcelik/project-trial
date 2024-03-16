@@ -32,7 +32,7 @@ const hasReviewed = reviews.some(review => review.user_id === user?.id && review
 const proImg = [product?.image, ...(productImage || []).map(img => img.url)];
 
  const addToCartButton = async (productId,user) => { 
-    if (!user.id) alert('you need to sign in add car to your shopping-cart')
+    if (!user.id) alert('First you need to sign in to add a car to your shopping-cart')
   await dispatch(addToCartThunk(productId))
   dispatch(getCartItemsThunk())
  }
